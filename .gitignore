@@ -1,0 +1,9 @@
+﻿# .gitignore
+/bin
+/bld
+/bower_components
+/node_modules
+/platforms
+/plugins
+/res
+/*.jsproj.user

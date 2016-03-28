@@ -1,0 +1,6 @@
+{
+  "name": "Starter",
+  "dependencies": {
+    "ionic": "^1.2.4"
+  }
+}
