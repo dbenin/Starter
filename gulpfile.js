@@ -1,10 +1,18 @@
-﻿var gulp = require("gulp");          // Load gulp
-var uglify = require("gulp-uglify"); // Load gulp-uglify
-var concat = require("gulp-concat"); // Load gulp-concat
+﻿/// <binding ProjectOpened='watch' />
+var gulp = require("gulp");
+var ts = require("gulp-typescript");
+var paths = {
+    scripts: ["./scripts/*.ts"],
+    tsconfig: "scripts/tsconfig.json",
+    sass: []
+};
 
-gulp.task("combine-and-uglify", function () {
-    return gulp.src('www/scripts/*.js')
-        .pipe(concat('combined.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('min/scripts'));
+gulp.task("scripts", function () {
+    gulp.src(paths.scripts)
+    .pipe(ts(ts.createProject(paths.tsconfig)))
+    .pipe(gulp.dest("www/scripts"));
+});
+
+gulp.task("watch", ["scripts"], function () {
+    gulp.watch(paths.scripts, ["scripts"]);
 });
