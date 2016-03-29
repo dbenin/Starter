@@ -5,6 +5,7 @@ module Services
     export interface IDataService
     {
         all(): Array<IDataObject>;
+        add();
     }
 
     export interface IDataObject
@@ -29,6 +30,12 @@ module Services
         all()
         {
             return this.data;
+        }
+
+        add()
+        {
+            var d: IDataObject = {id: this.data.length, name: "data" + this.data.length};
+            this.data.push(d);
         }
     }
 }

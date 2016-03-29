@@ -29,7 +29,8 @@
                 <ion-header-bar class="bar-dark">
                     <h1 class="title">Starter</h1>
                 </ion-header-bar>
-                <ion-content>
+                <ion-content ng-controller="MyController2 as mc2">
+                    <button class="button button-royal" ng-click="mc2.add()">Add data</button>
                     <ion-list>
                         <ion-item ng-repeat="data in mc.data">Id: {{data.id}}, Name: {{data.name}}</ion-item>
                     </ion-list>
