@@ -1,5 +1,5 @@
-var TS;
-(function (TS) {
+var Starter;
+(function (Starter) {
     "use strict";
     var Application;
     (function (Application) {
@@ -18,8 +18,8 @@ var TS;
         }
         function onResume() {
         }
-    })(Application = TS.Application || (TS.Application = {}));
+    })(Application = Starter.Application || (Starter.Application = {}));
     window.onload = function () {
         Application.initialize();
     };
-})(TS || (TS = {}));
+})(Starter || (Starter = {}));

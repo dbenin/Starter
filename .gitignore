@@ -6,5 +6,6 @@
 /platforms
 /plugins
 /res
+/www/scripts/bundle.js
 /*.jsproj
 /*.jsproj.user
