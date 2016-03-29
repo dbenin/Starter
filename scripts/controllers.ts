@@ -2,13 +2,13 @@
 
 class MyController
 {
-    public $inject = ["Data"];
-    data: Array<Services.IDataData>;
+    static $inject = ["Data"];
+    data: Array<Services.IDataObject>;
 
-    constructor(public Data: Services.IDataService)
+    constructor(Data: Services.IDataService)
     {
         this.data = Data.all();
     }
 }
 
-angular.module("starter").controller("MyController", MyController);
+angular.module("Starter").controller("MyController", MyController);

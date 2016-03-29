@@ -4,18 +4,18 @@ module Services
 {
     export interface IDataService
     {
-        all(): Array<IDataData>;
+        all(): Array<IDataObject>;
     }
 
-    export interface IDataData
+    export interface IDataObject
     {
         id: Number;
-        name: String
+        name: String;
     }
 
     export class Data implements IDataService
     {
-        data: Array<IDataData>;
+        data: Array<IDataObject>;
 
         constructor()
         {
@@ -33,4 +33,4 @@ module Services
     }
 }
 
-angular.module("starter").service("Data", Services.Data);
+angular.module("Starter").service("Data", Services.Data);
