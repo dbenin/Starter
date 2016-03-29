@@ -2,11 +2,12 @@
 
 class MyController
 {
-    data: any;
+    public $inject = ["Data"];
+    data: Array<Services.IDataData>;
 
-    constructor()
+    constructor(public Data: Services.IDataService)
     {
-        this.data = "Hello World!";
+        this.data = Data.all();
     }
 }
 
