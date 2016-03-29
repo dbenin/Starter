@@ -1,28 +1,44 @@
 ﻿// For an introduction to the Blank template, see the following documentation:
-// http://go.microsoft.com/fwlink/?LinkID=397704
+// http://go.microsoft.com/fwlink/?LinkID=397705
 // To debug code on page load in Ripple or on Android devices/emulators: launch your app, set breakpoints, 
 // and then run "window.location.reload()" in the JavaScript Console.
-(function () {
+module TS
+{
     "use strict";
 
-    document.addEventListener('deviceready', onDeviceReady.bind(this), false);
+    export module Application
+    {
+        export function initialize()
+        {
+            document.addEventListener('deviceready', onDeviceReady, false);
+        }
 
-    function onDeviceReady() {
-        // Handle the Cordova pause and resume events
-        document.addEventListener('pause', onPause.bind(this), false);
-        document.addEventListener('resume', onResume.bind(this), false);
-        
-        // TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
-        var element = document.getElementById("deviceready");
-        element.innerHTML = 'Device Ready';
-        element.className += ' ready';
-    };
+        function onDeviceReady()
+        {
+            // Handle the Cordova pause and resume events
+            document.addEventListener('pause', onPause, false);
+            document.addEventListener('resume', onResume, false);
 
-    function onPause() {
-        // TODO: This application has been suspended. Save application state here.
-    };
+            // TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
+            var element = document.getElementById("deviceready");
+            element.innerHTML = 'Device Ready';
+            element.className += ' ready';
+        }
 
-    function onResume() {
-        // TODO: This application has been reactivated. Restore application state here.
-    };
-})();
+        function onPause()
+        {
+            // TODO: This application has been suspended. Save application state here.
+        }
+
+        function onResume()
+        {
+            // TODO: This application has been reactivated. Restore application state here.
+        }
+
+    }
+
+    window.onload = function ()
+    {
+        Application.initialize();
+    }
+}
