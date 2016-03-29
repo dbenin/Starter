@@ -1,8 +1,0 @@
-﻿{
-    "compilerOptions": {
-        "target": "es5",
-        "out": "bundle.js",
-        "sourceMap": true,
-        "removeComments": true
-    }
-}

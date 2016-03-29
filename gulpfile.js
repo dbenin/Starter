@@ -3,14 +3,20 @@ var gulp = require("gulp");
 var ts = require("gulp-typescript");
 var paths = {
     scripts: ["./scripts/*.ts"],
-    tsconfig: "scripts/tsconfig.json",
     sass: []
 };
 
 gulp.task("scripts", function () {
     gulp.src(paths.scripts)
-    .pipe(ts(ts.createProject(paths.tsconfig)))
-    .pipe(gulp.dest("www/scripts"));
+        .pipe(ts({
+            noImplicitAny: false,
+            noEmitOnError: true,
+            removeComments: true,
+            sourceMap: true,
+            out: "bundle.js",
+            target: "es5"
+        }))
+        .pipe(gulp.dest("www/scripts"));
 });
 
 gulp.task("watch", ["scripts"], function () {
