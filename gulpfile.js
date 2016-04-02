@@ -1,9 +1,10 @@
 ﻿/// <binding ProjectOpened='watch' />
 var gulp = require("gulp");
 var ts = require("gulp-typescript");
+var sass = require('gulp-sass');
 var paths = {
     scripts: ["./scripts/*.ts"],
-    sass: []
+    sass: ["./scss/ionic.app.scss"]
 };
 
 gulp.task("scripts", function () {
@@ -16,9 +17,18 @@ gulp.task("scripts", function () {
             out: "bundle.js",
             target: "es5"
         }))
-        .pipe(gulp.dest("www/scripts"));
+        .pipe(gulp.dest("./www/scripts"));
 });
 
-gulp.task("watch", ["scripts"], function () {
+gulp.task("sass", function (done) {
+    gulp.src(paths.sass)
+      .pipe(sass())
+      .on("error", sass.logError)
+      .pipe(gulp.dest("./www/css/"))
+      .on('end', done);
+});
+
+gulp.task("watch", ["scripts", "sass"], function () {
     gulp.watch(paths.scripts, ["scripts"]);
+    gulp.watch(paths.sass, ["sass"]);
 });
