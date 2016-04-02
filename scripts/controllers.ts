@@ -2,7 +2,7 @@
 
 class MyController
 {
-    public $inject = ["Data"];
+    static $inject = ["Data"];
     data: Array<Services.IDataObject>;
 
     constructor(public Data: Services.IDataService)
@@ -13,7 +13,7 @@ class MyController
 
 class MyController2
 {
-    public $inject = ["Data"];
+    static $inject = ["Data"];
     data: Array<Services.IDataObject>;
 
     constructor(public Data: Services.IDataService)
