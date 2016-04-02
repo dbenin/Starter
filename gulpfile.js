@@ -20,12 +20,11 @@ gulp.task("scripts", function () {
         .pipe(gulp.dest("./www/scripts"));
 });
 
-gulp.task("sass", function (done) {
+gulp.task("sass", function () {
     gulp.src(paths.sass)
-      .pipe(sass())
-      .on("error", sass.logError)
-      .pipe(gulp.dest("./www/css/"))
-      .on('end', done);
+        .pipe(sass())
+        .on("error", sass.logError)
+        .pipe(gulp.dest("./www/css/"));
 });
 
 gulp.task("watch", ["scripts", "sass"], function () {
