@@ -7,5 +7,6 @@
 /plugins
 /res
 /www/scripts/bundle.js
+/www/css/ionic.app.css
 /*.jsproj
 /*.jsproj.user

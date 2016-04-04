@@ -10,8 +10,8 @@ module Services
 
     export interface IDataObject
     {
-        id: Number;
-        name: String;
+        id: number;
+        name: string;
     }
 
     export class Data implements IDataService
@@ -34,7 +34,7 @@ module Services
 
         add()
         {
-            var d: IDataObject = {id: this.data.length, name: "data" + this.data.length};
+            let d: IDataObject = {id: this.data.length, name: "data" + this.data.length};
             this.data.push(d);
         }
     }
