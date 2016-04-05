@@ -5,7 +5,7 @@ module Services
     export interface IDataService
     {
         all(): Array<IDataObject>;
-        add();
+        add(): void;
     }
 
     export interface IDataObject
