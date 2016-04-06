@@ -14,7 +14,7 @@ gulp.task("typescript", function () {
             noEmitOnError: true,
             removeComments: true,
             sourceMap: true,
-            out: "bundle.js",
+            out: "app.js",
             target: "es5"
         }))
         .pipe(gulp.dest("./www/js"));
