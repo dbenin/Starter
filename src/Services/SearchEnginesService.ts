@@ -4,8 +4,9 @@ module SearchEngines
 {
     export interface ILoader
     {
-        get(): Array<ISearchEngine>;
-
+        getEngines(): Array<ISearchEngine>;
+        getActive(): IActiveSearchEngine;
+        setActive(engineIndex: number, setIndex: number): void;
     }
 
     export interface ISearchEngine
@@ -21,13 +22,20 @@ module SearchEngines
         value: any;
     }
 
+    export interface IActiveSearchEngine
+    {
+        engine: string;
+        set: string;
+    }
+
     export class Loader implements ILoader
     {
-        data: Array<ISearchEngine>;
+        engines: Array<ISearchEngine>;
+        active: IActiveSearchEngine;
 
         constructor()
         {
-            this.data = [
+            this.engines = [
                 {
                     name: "CloudSight", key: "Q-mo9tM_bf4fGlaJaAoZ8g", sets: [
                         { name: "Product", value: "" }
@@ -62,11 +70,27 @@ module SearchEngines
                     ]
                 }
             ];
+            let engineIndex: number = parseInt(window.localStorage['lastActiveEngineIndex']) || 0;
+            let setIndex: number = parseInt(window.localStorage['lastActiveSetIndex']) || 0;
+            this.active = { engine: this.engines[engineIndex].name, set: this.engines[engineIndex].sets[setIndex].name };
         }
 
-        get()
+        getEngines()
         {
-            return this.data;
+            return this.engines;
+        }
+
+        getActive()
+        {
+            return this.active;
+        }
+
+        setActive(engineIndex, setIndex)
+        {
+            this.active.engine = this.engines[engineIndex].name;
+            this.active.set = this.engines[engineIndex].sets[setIndex].name;
+            window.localStorage["lastActiveEngineIndex"] = engineIndex;
+            window.localStorage["lastActiveSetIndex"] = setIndex;
         }
     }
 }

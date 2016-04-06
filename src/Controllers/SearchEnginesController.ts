@@ -3,11 +3,22 @@
 class SearchEnginesController
 {
     static $inject = ["Loader"];
-    searchEngines: Array<SearchEngines.ISearchEngine>
+    searchEngines: Array<SearchEngines.ISearchEngine>;
+    activeEngine: SearchEngines.IActiveSearchEngine;
 
     constructor(public Loader: SearchEngines.ILoader)
     {
-        this.searchEngines = Loader.get();
+        this.searchEngines = Loader.getEngines();
+        this.activeEngine = Loader.getActive();
+    }
+
+    selectEngine(engineIndex, setIndex)
+    {
+        this.Loader.setActive(engineIndex, setIndex);
+
+        //$scope.results = {};
+
+        //$ionicSideMenuDelegate.toggleLeft(false);
     }
 }
 
