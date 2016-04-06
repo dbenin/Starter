@@ -3,12 +3,12 @@ var gulp = require("gulp");
 var ts = require("gulp-typescript");
 var sass = require('gulp-sass');
 var paths = {
-    scripts: ["./scripts/*.ts"],
+    typescript: ["./src/*/*.ts"],
     sass: ["./scss/ionic.app.scss"]
 };
 
-gulp.task("scripts", function () {
-    gulp.src(paths.scripts)
+gulp.task("typescript", function () {
+    gulp.src(paths.typescript)
         .pipe(ts({
             noImplicitAny: false,
             noEmitOnError: true,
@@ -17,7 +17,7 @@ gulp.task("scripts", function () {
             out: "bundle.js",
             target: "es5"
         }))
-        .pipe(gulp.dest("./www/scripts"));
+        .pipe(gulp.dest("./www/js"));
 });
 
 gulp.task("sass", function () {
@@ -27,7 +27,7 @@ gulp.task("sass", function () {
         .pipe(gulp.dest("./www/css/"));
 });
 
-gulp.task("watch", ["scripts", "sass"], function () {
-    gulp.watch(paths.scripts, ["scripts"]);
+gulp.task("watch", ["typescript", "sass"], function () {
+    gulp.watch(paths.typescript, ["typescript"]);
     gulp.watch(paths.sass, ["sass"]);
 });

@@ -6,7 +6,7 @@
 /platforms
 /plugins
 /res
-/www/scripts/bundle.js
+/www/js/bundle.js
 /www/css/ionic.app.css
 /*.jsproj
 /*.jsproj.user
