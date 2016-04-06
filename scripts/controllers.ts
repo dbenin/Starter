@@ -11,21 +11,20 @@ class MyController
     }
 }
 
-class MyController2
+class LayoutController
 {
-    static $inject = ["Data"];
-    data: Array<Services.IDataObject>;
+    static $inject = ["$ionicSideMenuDelegate"];
 
-    constructor(public Data: Services.IDataService)
+    constructor(public $ionicSideMenuDelegate: ionic.sideMenu.IonicSideMenuDelegate)
     {
-        this.data = Data.all();
+
     }
 
-    add()
+    toggleSideMenu()
     {
-        this.Data.add();
+        this.$ionicSideMenuDelegate.toggleLeft();
     }
 }
 
 angular.module("VisualSearch").controller("MyController", MyController);
-angular.module("VisualSearch").controller("MyController2", MyController2);
+angular.module("VisualSearch").controller("LayoutController", LayoutController);

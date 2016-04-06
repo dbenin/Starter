@@ -21,27 +21,30 @@
 
         <title>Starter</title>
     </head>
-    <body ng-app="VisualSearch" ng-controller="MyController as mc">
-        <ion-side-menus>
+    <body ng-app="VisualSearch">
+        <ion-side-menus ng-controller="LayoutController as layout">
 
             <!-- Center content -->
             <ion-side-menu-content>
-                <ion-header-bar class="bar-dark">
-                    <h1 class="title">Starter</h1>
+                <ion-header-bar class="bar-positive">
+                    <button class="button button-icon" ng-click="layout.toggleSideMenu()">
+                        <i class="icon ion-navicon"></i>
+                    </button>
+                    <h1 class="title">Visual Search App</h1>
                 </ion-header-bar>
-                <ion-content ng-controller="MyController2 as mc2">
-                    <button class="button button-royal" ng-click="mc2.add()">Add data</button>
-                    <ion-list>
-                        <ion-item ng-repeat="data in mc.data">Id: {{data.id}}, Name: {{data.name}}</ion-item>
-                    </ion-list>
+                <ion-content>
+                    
                 </ion-content>
             </ion-side-menu-content>
 
             <!-- Left menu -->
             <ion-side-menu side="left">
-                <ion-header-bar class="bar-dark">
-                    <h1 class="title">Side menu</h1>
+                <ion-header-bar class="bar-positive">
+                    <h1 class="title">Search Engines</h1>
                 </ion-header-bar>
+                <ion-content>
+
+                </ion-content>
             </ion-side-menu>
 
         </ion-side-menus>
