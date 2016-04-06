@@ -2,16 +2,13 @@
 
 class LayoutController
 {
-    static $inject = ["$ionicSideMenuDelegate"];
+    static $inject = ["SideMenu"];
 
-    constructor(public $ionicSideMenuDelegate: ionic.sideMenu.IonicSideMenuDelegate)
-    {
-
-    }
+    constructor(public SideMenu: Layout.ISideMenu) { }
 
     toggleSideMenu()
     {
-        this.$ionicSideMenuDelegate.toggleLeft();
+        this.SideMenu.toggle();
     }
 }
 

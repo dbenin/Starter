@@ -2,11 +2,11 @@
 
 class SearchEnginesController
 {
-    static $inject = ["Loader"];
+    static $inject = ["Loader", "SideMenu"];
     searchEngines: Array<SearchEngines.ISearchEngine>;
     activeEngine: SearchEngines.IActiveSearchEngine;
 
-    constructor(public Loader: SearchEngines.ILoader)
+    constructor(public Loader: SearchEngines.ILoader, public SideMenu: Layout.ISideMenu)
     {
         this.searchEngines = Loader.getEngines();
         this.activeEngine = Loader.getActive();
@@ -15,10 +15,8 @@ class SearchEnginesController
     selectEngine(engineIndex, setIndex)
     {
         this.Loader.setActive(engineIndex, setIndex);
-
         //$scope.results = {};
-
-        //$ionicSideMenuDelegate.toggleLeft(false);
+        this.SideMenu.toggle();
     }
 }
 
