@@ -40,4 +40,4 @@ module Services
     }
 }
 
-angular.module("Starter").service("Data", Services.Data);
+angular.module("VisualSearch").service("Data", Services.Data);

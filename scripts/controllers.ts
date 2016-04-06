@@ -27,5 +27,5 @@ class MyController2
     }
 }
 
-angular.module("Starter").controller("MyController", MyController);
-angular.module("Starter").controller("MyController2", MyController2);
+angular.module("VisualSearch").controller("MyController", MyController);
+angular.module("VisualSearch").controller("MyController2", MyController2);
