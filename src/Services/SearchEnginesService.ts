@@ -71,4 +71,4 @@ module SearchEngines
     }
 }
 
-angular.module("VisualSearch").service("Data", SearchEngines.Loader);
+angular.module("VisualSearch").service("Loader", SearchEngines.Loader);
