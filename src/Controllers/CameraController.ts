@@ -17,8 +17,8 @@ class CameraController
         options.destinationType = Camera.DestinationType.FILE_URI;
         options.saveToPhotoAlbum = false;
         options.correctOrientation = true;
-        options.targetWidth = 320;
-        options.targetHeight = 320;
+        options.targetWidth = 640;
+        options.targetHeight = 640;
         this.Picture.take(options).then(image => { console.log("CAMERA SUCCESS"); this.lastPhoto = image; }, error => { console.log("CAMERA ERROR"); });
     }
 }
