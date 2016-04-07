@@ -37,15 +37,21 @@ class CameraController
         
         this.Picture.take(options).then(image =>
         {
-            console.log("CAMERA SUCCESS: " + image);
+            console.log("Image: " + image);
             if (options.destinationType === Camera.DestinationType.DATA_URL)
             {
                 this.lastPhoto = "data:image/jpeg;base64," + image;//adding header in order to display the img properly
             }
             else
             {
+                let i: number = image.indexOf('?');
+                if (i > 0)
+                {
+                    image = image.substr(0, i);//removing ? after file name to work properly with API
+                }
                 this.lastPhoto = image;
             }
+            console.log("Last photo: " + this.lastPhoto);
         }, error =>
         {
             console.log("CAMERA ERROR" + error);
