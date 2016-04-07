@@ -35,10 +35,13 @@
                 </ion-header-bar>
                 <ion-content ng-controller="CameraController as cc">
                     <div class="padding">
-                        <h1 class="title">{{sec.activeEngine.engine}}</h1>
-                        <h2>{{sec.activeEngine.set}}</h2>
-                        <button ng-click="cc.getPhoto()" class="button button-block button-positive">Test</button>
-                        <img ng-src="{{cc.lastPhoto}}" style="max-width: 100%">
+                        <div class="card">
+                            <div class="item item-divider">{{sec.activeEngine.engine}}: {{sec.activeEngine.set}}</div>
+                            <div class="item item-body">
+                                <img ng-src="{{cc.lastPhoto}}" style="max-width: 100%">
+                                <button ng-click="cc.getPhoto()" class="button button-block button-positive">Test</button>
+                            </div>
+                        </div>
                     </div>
                 </ion-content>
             </ion-side-menu-content>
