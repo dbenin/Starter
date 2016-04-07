@@ -20,4 +20,4 @@ class SearchEnginesController
     }
 }
 
-angular.module("VisualSearch").controller("SearchEnginesController", SearchEnginesController);
+//angular.module("VisualSearch").controller("SearchEnginesController", SearchEnginesController);

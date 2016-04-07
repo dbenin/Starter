@@ -22,4 +22,4 @@ module Services.Camera
     }
 }
 
-angular.module("VisualSearch").service("Picture", Services.Camera.Picture);
+//angular.module("VisualSearch").service("Picture", Services.Camera.Picture);

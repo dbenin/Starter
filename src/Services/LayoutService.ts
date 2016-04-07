@@ -20,4 +20,4 @@ module Layout
     }
 }
 
-angular.module("VisualSearch").service("SideMenu", Layout.SideMenu);
+//angular.module("VisualSearch").service("SideMenu", Layout.SideMenu);

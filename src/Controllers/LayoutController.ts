@@ -12,4 +12,4 @@ class LayoutController
     }
 }
 
-angular.module("VisualSearch").controller("LayoutController", LayoutController);
+//angular.module("VisualSearch").controller("LayoutController", LayoutController);

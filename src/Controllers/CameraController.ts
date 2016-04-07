@@ -11,8 +11,16 @@ class CameraController
     getPhoto()
     {
         let options: CameraOptions = {};
+        options.quality = 50;
+        options.sourceType = Camera.PictureSourceType.CAMERA;
+        options.encodingType = Camera.EncodingType.JPEG;
+        options.destinationType = Camera.DestinationType.FILE_URI;
+        options.saveToPhotoAlbum = false;
+        options.correctOrientation = true;
+        options.targetWidth = 320;
+        options.targetHeight = 320;
         this.Picture.take(options).then(image => { console.log("CAMERA SUCCESS"); this.lastPhoto = image; }, error => { console.log("CAMERA ERROR"); });
     }
 }
 
-angular.module("VisualSearch").controller("CameraController", CameraController);
+//angular.module("VisualSearch").controller("CameraController", CameraController);
