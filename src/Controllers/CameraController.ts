@@ -2,24 +2,54 @@
 
 class CameraController
 {
-    static $inject = ["Picture"];
+    static $inject = ["Picture", "Loader"];
 
     lastPhoto: any;
 
-    constructor(public Picture: Services.Camera.IPicture) { this.lastPhoto = ""; }
+    constructor(private Picture: Services.Camera.IPicture, private Loader: SearchEngines.ILoader) { this.lastPhoto = ""; }
 
-    getPhoto()
+    getPhoto(library?: boolean)
     {
         let options: CameraOptions = {};
-        options.quality = 50;
-        options.sourceType = Camera.PictureSourceType.CAMERA;
-        options.encodingType = Camera.EncodingType.JPEG;
-        options.destinationType = Camera.DestinationType.FILE_URI;
-        options.saveToPhotoAlbum = false;
         options.correctOrientation = true;
         options.targetWidth = 640;
         options.targetHeight = 640;
-        this.Picture.take(options).then(image => { console.log("CAMERA SUCCESS"); this.lastPhoto = image; }, error => { console.log("CAMERA ERROR"); });
+        if (library)
+        {
+            options.sourceType = Camera.PictureSourceType.SAVEDPHOTOALBUM;
+            options.mediaType = Camera.MediaType.PICTURE;
+        }
+        else
+        {
+            options.quality = 50;
+            options.sourceType = Camera.PictureSourceType.CAMERA;
+            options.encodingType = Camera.EncodingType.JPEG;
+            options.saveToPhotoAlbum = false;
+        }
+        options.destinationType = Camera.DestinationType.FILE_URI;
+        let specifics: CameraOptions = this.Loader.getActiveOptions();
+        if (specifics)
+        {
+            console.log("WE GOT SPECIFIC OPTIONS");
+            //overriding specific in options
+            for (let option in specifics) { options[option] = specifics[option]; }
+        }
+        
+        this.Picture.take(options).then(image =>
+        {
+            console.log("CAMERA SUCCESS: " + image);
+            if (options.destinationType === Camera.DestinationType.DATA_URL)
+            {
+                this.lastPhoto = "data:image/jpeg;base64," + image;//adding header in order to display the img properly
+            }
+            else
+            {
+                this.lastPhoto = image;
+            }
+        }, error =>
+        {
+            console.log("CAMERA ERROR" + error);
+        });
     }
 }
 

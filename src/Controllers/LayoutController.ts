@@ -4,7 +4,7 @@ class LayoutController
 {
     static $inject = ["SideMenu"];
 
-    constructor(public SideMenu: Layout.ISideMenu) { }
+    constructor(private SideMenu: Layout.ISideMenu) { }
 
     toggleSideMenu()
     {

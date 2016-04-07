@@ -11,7 +11,7 @@ module Layout
     {
         static $inject = ["$ionicSideMenuDelegate"];
 
-        constructor(public $ionicSideMenuDelegate: ionic.sideMenu.IonicSideMenuDelegate) { }
+        constructor(private $ionicSideMenuDelegate: ionic.sideMenu.IonicSideMenuDelegate) { }
 
         toggle()
         {

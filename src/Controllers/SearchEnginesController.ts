@@ -6,7 +6,7 @@ class SearchEnginesController
     searchEngines: Array<SearchEngines.ISearchEngine>;
     activeEngine: SearchEngines.IActiveSearchEngine;
 
-    constructor(public Loader: SearchEngines.ILoader, public SideMenu: Layout.ISideMenu)
+    constructor(private Loader: SearchEngines.ILoader, private SideMenu: Layout.ISideMenu)
     {
         this.searchEngines = Loader.getEngines();
         this.activeEngine = Loader.getActive();
