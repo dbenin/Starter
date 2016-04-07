@@ -1,6 +1,7 @@
 ﻿/// <binding ProjectOpened='watch' />
 var gulp = require("gulp");
 var ts = require("gulp-typescript");
+var uglify = require("gulp-uglify");
 var sass = require('gulp-sass');
 var paths = {
     typescript: ["./src/*/*.ts"],
@@ -17,6 +18,7 @@ gulp.task("typescript", function () {
             out: "app.js",
             target: "es5"
         }))
+        .pipe(uglify())
         .pipe(gulp.dest("./www/js"));
 });
 
