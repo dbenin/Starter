@@ -76,16 +76,17 @@ class CloudSight extends SearchEngine
 
         let errorCallback: (error: FileTransferError) => void = (error: FileTransferError) => { q.reject(error); };
 
-        let options: FileUploadOptions = new FileUploadOptions();
-        options.fileKey = "image_request[image]";
-        options.fileName = picture.substr(picture.lastIndexOf('/') + 1);
-        options.mimeType = "image/jpeg";
-        options.httpMethod = "POST";
-        options.params = { "image_request[locale]": "en-US" }; // if we need to send parameters to the server request
-        options.headers = [{ "Authorization": this.key }];
+        let options: FileUploadOptions = {
+            fileKey: "image_request[image]",
+            fileName: picture.substr(picture.lastIndexOf('/') + 1),
+            mimeType: "image/jpeg",
+            httpMethod: "POST",
+            params: { "image_request[locale]": "en-US" },
+            headers: [{ "Authorization": this.key }]
+        };
 
-        let ft: FileTransfer = new FileTransfer();
-        ft.upload(picture, encodeURI("https://api.cloudsightapi.com/image_requests"), successCallback, errorCallback, options, true);
+        let fileTransfer: FileTransfer = new FileTransfer();
+        fileTransfer.upload(picture, encodeURI("https://api.cloudsightapi.com/image_requests"), successCallback, errorCallback, options, true);
 
         return q.promise;
     }
