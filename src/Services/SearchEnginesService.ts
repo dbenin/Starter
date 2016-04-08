@@ -38,6 +38,7 @@ module SearchEngines
 
         constructor()
         {
+            console.log("CONSTRUCTOR");
             this.engines = [
                 {
                     name: "CloudSight",
