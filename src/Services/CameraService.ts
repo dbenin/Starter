@@ -15,7 +15,7 @@ module Services.Camera
 
         take(options)
         {
-            let q = this.$q.defer();
+            let q: ng.IDeferred<any> = this.$q.defer();
             navigator.camera.getPicture((result): void => { q.resolve(result); }, (error): void => { q.reject(error); }, options);
             return q.promise;
         }
