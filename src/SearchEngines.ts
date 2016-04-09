@@ -159,6 +159,13 @@ class GoogleCloudVision extends SearchEngine
         this.$http = http;
         this.options = { destinationType: 0 };//Camera.DestinationType.DATA_URL//Camera is not defined?
     }
+    search(picture: string, set: number): ng.IPromise<any> {//picture in formato base64 SENZA header
+        return this.$http({
+            method: "POST",
+            data: '{"requests":[{"image":{"content":"' + picture + '"},"features":[{"type":"' + this.sets[set].value + '","maxResults":5}]}]}',
+            url: "https://vision.googleapis.com/v1/images:annotate?key=" + this.key
+        });
+    }
 }
 
 class MetaMind extends SearchEngine
@@ -176,6 +183,25 @@ class MetaMind extends SearchEngine
         this.$http = http;
         this.options = { destinationType: 0 };//Camera.DestinationType.DATA_URL//Camera is not defined?
     }
+    search(picture: string, set: number): ng.IPromise<any> {//picture in formato base64 SENZA header
+        let classifier: string = this.sets[set].value;
+        if (set !== 2) {//aggiungo le virgolette al classifier se non e' custom (quindi non e' un numero ma una stringa)
+            classifier = '"' + classifier + '"';
+        }
+        this.$http.defaults.headers.common.Authorization = this.key;
+        return this.$http({
+            method: "POST",
+            data: '{"classifier_id":' + classifier + ', "image_url": "' + picture + '"}',
+            url: "https://www.metamind.io/vision/classify"
+        });
+    }
+    searchDatabase(component: string): ng.IPromise<any> {
+        return this.$http({
+            method: "GET",
+            url: "http://172.16.82.56/test/api/Products?component=" + component
+            //url: "http://172.16.82.56/test/api/Values"
+        });
+    }
 }
 
 class JustVisual extends SearchEngine
@@ -191,5 +217,25 @@ class JustVisual extends SearchEngine
         ];
         super("JustVisual", key, sets);
         this.$q = q;
+    }
+    search(picture: string, set: number): ng.IPromise<any> {
+        console.log("justvisual " + picture);
+        let q: ng.IDeferred<any> = this.$q.defer();
+
+        let successCallback: (result: FileUploadResult) => void = (result: FileUploadResult) => { q.resolve(result); };
+
+        let errorCallback: (error: FileTransferError) => void = (error: FileTransferError) => { q.reject(error); };
+
+        let options: FileUploadOptions = {
+            fileKey: "file",
+            fileName: picture.substr(picture.lastIndexOf('/') + 1),
+            mimeType: "image/jpeg",
+            httpMethod: "POST"
+        };
+
+        let fileTransfer: FileTransfer = new FileTransfer();
+        fileTransfer.upload(picture, encodeURI(this.sets[set].value + "/api-search?apikey=" + this.key), successCallback, errorCallback, options, true);
+
+        return q.promise;
     }
 }
