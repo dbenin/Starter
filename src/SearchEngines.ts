@@ -8,19 +8,18 @@ interface ISearchEngineSet
     value?: string;
 }
 
-interface ISearchEngine
+interface ISearchEngine//interfaccia per campi e metodi pubblici
 {
     name: string;
     key: string;
     sets: Array<ISearchEngineSet>;
     options?: CameraOptions;
-    search(picture: string): ng.IPromise<any>;//usato da getResult
     //getResult(picture: string): IResult;//torna un risultato, da definire risultato generico e specifico per ogni motore
 }
 
 abstract class SearchEngine implements ISearchEngine
 {
-    abstract search(picture: string): ng.IPromise<any>;
+    abstract search(picture: string, set?: number): ng.IPromise<any>;
     constructor(public name: string, public key: string, public sets: Array<ISearchEngineSet>) { }
 }
 
@@ -86,7 +85,7 @@ class CloudSight extends SearchEngine
         };
 
         let fileTransfer: FileTransfer = new FileTransfer();
-        fileTransfer.upload(picture, encodeURI("https://api.cloudsightapi.com/image_requests"), successCallback, errorCallback, options, true);
+        fileTransfer.upload(picture, "https://api.cloudsightapi.com/image_requests", successCallback, errorCallback, options, true);
 
         return q.promise;
     }
@@ -95,11 +94,52 @@ class CloudSight extends SearchEngine
 class Imagga extends SearchEngine
 {
     private $q: ng.IQService;
-    constructor(key: string, q: ng.IQService)
+    private $http: ng.IHttpService;
+    constructor(key: string, q: ng.IQService, http: ng.IHttpService)
     {
         let sets: Array<ISearchEngineSet> = [{ name: "Tagging", value: "tagging" }];
         super("Imagga", key, sets);
         this.$q = q;
+        this.$http = http;
+    }
+    search(picture: string, set: number): ng.IPromise<any> {
+        console.log("imagga " + picture);//formato picture dev'essere file uri senza ?... nel nome
+        let q: ng.IDeferred<any> = this.$q.defer();
+
+        let successCallback: (result: FileUploadResult) => void = (result: FileUploadResult) => {
+            let res: any = JSON.parse(result.response);
+            if (res.status === "success") {
+                let id: string = res.uploaded[0].id;
+                console.log("id " + id);
+                this.$http.defaults.headers.common.Authorization = this.key;
+                this.$http({
+                    method: "GET",
+                    url: "https://api.imagga.com/v1/" + this.sets[set].value + "?content=" + id
+                }).then((promiseValue: ng.IHttpPromiseCallbackArg<any>) => {
+                    q.resolve(promiseValue); 
+                }, (reason: any) => {
+                    q.reject(reason);
+                });
+            }
+            else {
+                q.reject(result);
+            }
+        };
+
+        let errorCallback: (error: FileTransferError) => void = (error: FileTransferError) => { q.reject(error); };
+
+        let options: FileUploadOptions = {
+            fileKey: "file",
+            fileName: picture.substr(picture.lastIndexOf('/') + 1),
+            mimeType: "image/jpeg",
+            httpMethod: "POST",
+            headers: [{ "Authorization": this.key }]
+        };
+
+        let fileTransfer: FileTransfer = new FileTransfer();
+        fileTransfer.upload(picture, "https://api.imagga.com/v1/content", successCallback, errorCallback, options, true);
+
+        return q.promise;
     }
 }
 
