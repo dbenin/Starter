@@ -22,7 +22,7 @@ module VisualSearch.Services
         {
             //console.log("CONSTRUCTOR");
             this.engines = [
-                new Models.CloudSight("Q-mo9tM_bf4fGlaJaAoZ8g", this.$q, this.$http, this.$interval),
+                new Models.CloudSight("CloudSight Q-mo9tM_bf4fGlaJaAoZ8g", this.$q, this.$http, this.$interval),
                 new Models.Imagga("Basic YWNjX2YzMDMyOTkxNzUwODY1Mzo5N2U0YmI4ZjYxMDBlMjc2M2M4ZjNhOTg3YWM2ZDk0Zg==", this.$q, this.$http),
                 new Models.GoogleCloudVision("AIzaSyA3CSP33Kkj0FN1ypV7UeS_BhEcQjqLzsI", this.$http),
                 new Models.MetaMind("Basic T2e0GexSpnGDPmxU4xj6kktMx89yl3aGxSGOd9jljRTe19xFYW", this.$http),
