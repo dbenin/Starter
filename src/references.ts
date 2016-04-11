@@ -1,6 +1,7 @@
-﻿///<reference path="Services/CameraService.ts"/>
-///<reference path="Services/LayoutService.ts"/>
-///<reference path="Services/SearchEnginesService.ts"/>
-///<reference path="Controllers/CameraController.ts"/>
-///<reference path="Controllers/LayoutController.ts"/>
-///<reference path="Controllers/SearchEnginesController.ts"/>
+﻿///<reference path="Services/Picture.ts"/>
+///<reference path="Services/Layout.ts"/>
+///<reference path="Services/SearchEngines.ts"/>
+///<reference path="Controllers/Picture.ts"/>
+///<reference path="Controllers/Layout.ts"/>
+///<reference path="Controllers/SearchEngines.ts"/>
+///<reference path="Models/SearchEngines.ts"/>

@@ -1,6 +1,6 @@
 ﻿///<reference path="../../typings/tsd.d.ts"/>
 
-module Layout
+module VisualSearch.Services
 {
     export interface ISideMenu
     {
@@ -19,5 +19,3 @@ module Layout
         }
     }
 }
-
-//angular.module("VisualSearch").service("SideMenu", Layout.SideMenu);

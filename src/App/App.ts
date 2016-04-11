@@ -1,10 +1,13 @@
 ﻿///<reference path="../../typings/tsd.d.ts"/>
 ///<reference path="../references.ts"/>
 
-angular.module("VisualSearch", ["ionic"])
-    .controller("CameraController", CameraController)
-    .controller("LayoutController", LayoutController)
-    .controller("SearchEnginesController", SearchEnginesController)
-    .service("Picture", Services.Camera.Picture)
-    .service("SideMenu", Layout.SideMenu)
-    .service("Loader", SearchEngines.Loader);
+module VisualSearch.App
+{
+    angular.module("VisualSearch", ["ionic"])
+        .controller("Picture", Controllers.Picture)
+        .controller("Layout", Controllers.Layout)
+        .controller("SearchEngines", Controllers.SearchEngines)
+        .service("Picture", Services.Picture)
+        .service("SideMenu", Services.SideMenu)
+        .service("Loader", Services.Loader);
+}

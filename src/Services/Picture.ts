@@ -1,6 +1,6 @@
 ﻿///<reference path="../../typings/tsd.d.ts"/>
 
-module Services.Camera
+module VisualSearch.Services
 {
     export interface IPicture
     {
@@ -21,5 +21,3 @@ module Services.Camera
         }
     }
 }
-
-//angular.module("VisualSearch").service("Picture", Services.Camera.Picture);
