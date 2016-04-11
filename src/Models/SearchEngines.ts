@@ -14,12 +14,6 @@ module VisualSearch.Models
         content: any//
     }
 
-    export interface IActiveSearchEngine
-    {
-        engine: string;
-        set: string;
-    }
-
     export interface ISearchEngineSet
     {
         name: string;

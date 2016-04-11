@@ -6,7 +6,7 @@ module VisualSearch.Controllers
     {
         static $inject = ["Loader", "SideMenu"];
         searchEngines: Array<Models.ISearchEngine>;
-        activeEngine: Models.IActiveSearchEngine;
+        activeEngine: Models.IActiveNames;
 
         constructor(private Loader: Services.ILoader, private SideMenu: Services.ISideMenu)
         {
