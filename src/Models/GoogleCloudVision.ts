@@ -4,9 +4,8 @@ module VisualSearch.Models
 {
     export class GoogleCloudVision extends SearchEngine
     {
-        private $http: ng.IHttpService;
         options: CameraOptions;
-        constructor(key: string, http: ng.IHttpService)
+        constructor(key: string, q: ng.IQService, http: ng.IHttpService)
         {
             let sets: Array<ISearchEngineSet> = [
                 { name: "Label Detection", value: "LABEL_DETECTION" },
@@ -14,8 +13,7 @@ module VisualSearch.Models
                 { name: "Logo Detection", value: "LOGO_DETECTION" },
                 { name: "Text Detection", value: "TEXT_DETECTION" }
             ];
-            super("GoogleCloudVision", key, sets);
-            this.$http = http;
+            super("GoogleCloudVision", key, sets, q, http);
             this.options = { destinationType: 0 };//Camera.DestinationType.DATA_URL//Camera is not defined?
         }
         search(picture: string, set: number): ng.IPromise<any>
@@ -26,11 +24,20 @@ module VisualSearch.Models
                 url: "https://vision.googleapis.com/v1/images:annotate?key=" + this.key
             });
         }
-        getResult(picture: string, set: number): IResult
+        getResult(picture: string, set: number): ng.IPromise<IResult>
         {
+            let q: ng.IDeferred<IResult> = this.$q.defer();
             let result: IResult;
-            result.status = ResultStatus.SUCCESS;
-            return result;
+            this.search(picture, set).then((promiseValue: any) =>
+            {
+                result = { status: ResultStatus.SUCCESS, content: promiseValue.data };
+                q.resolve(result);
+            }, (reason: any) =>
+                {
+                    result = { status: ResultStatus.ERROR, content: reason };
+                    q.reject(result);
+                });
+            return q.promise;
         }
     }
 }

@@ -4,7 +4,6 @@ module VisualSearch.Models
 {
     export class JustVisual extends SearchEngine
     {
-        private $q: ng.IQService;
         constructor(key: string, q: ng.IQService)
         {
             let sets: Array<ISearchEngineSet> = [
@@ -13,8 +12,7 @@ module VisualSearch.Models
                 { name: "Furniture", value: "http://decor.vsapi01.com" },
                 { name: "Pet", value: "http://pets.vsapi01.com" }
             ];
-            super("JustVisual", key, sets);
-            this.$q = q;
+            super("JustVisual", key, sets, q);
         }
         search(picture: string, set: number): ng.IPromise<any>
         {
@@ -37,11 +35,20 @@ module VisualSearch.Models
 
             return q.promise;
         }
-        getResult(picture: string, set: number): IResult
+        getResult(picture: string, set: number): ng.IPromise<IResult>
         {
+            let q: ng.IDeferred<IResult> = this.$q.defer();
             let result: IResult;
-            result.status = ResultStatus.SUCCESS;
-            return result;
+            this.search(picture, set).then((promiseValue: any) =>
+            {
+                result = { status: ResultStatus.SUCCESS, content: promiseValue.data };
+                q.resolve(result);
+            }, (reason: any) =>
+                {
+                    result = { status: ResultStatus.ERROR, content: reason };
+                    q.reject(result);
+                });
+            return q.promise;
         }
     }
 }

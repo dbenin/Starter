@@ -26,13 +26,20 @@ module VisualSearch.Models
         key: string;
         sets: Array<ISearchEngineSet>;
         options?: CameraOptions;
-        getResult(picture: string, set?: number): any;//ng.IPromise<IResult>;//torna un risultato, da definire risultato generico e specifico per ogni motore
+        getResult(picture: string, set?: number): ng.IPromise<IResult>;//torna un risultato, da definire risultato generico e specifico per ogni motore
     }
 
     export abstract class SearchEngine implements ISearchEngine
     {
         abstract search(picture: string, set?: number): ng.IPromise<any>;//usato dal metodo pubblico getResult
-        abstract getResult(picture: string, set: number): any;//ng.IPromise<IResult>;
-        constructor(public name: string, public key: string, public sets: Array<ISearchEngineSet>) { }
+        abstract getResult(picture: string, set: number): ng.IPromise<IResult>;
+        constructor(
+            public name: string,
+            public key: string,
+            public sets: Array<ISearchEngineSet>,
+            protected $q: ng.IQService,
+            protected $http?: ng.IHttpService,
+            protected $interval?: ng.IIntervalService
+        ) { }
     }
 }

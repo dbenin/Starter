@@ -4,17 +4,15 @@ module VisualSearch.Models
 {
     export class MetaMind extends SearchEngine
     {
-        private $http: ng.IHttpService;
         options: CameraOptions;
-        constructor(key: string, http: ng.IHttpService)
+        constructor(key: string, q: ng.IQService, http: ng.IHttpService)
         {
             let sets: Array<ISearchEngineSet> = [
                 { name: "General Classifier", value: "imagenet-1k-net" },
                 { name: "Food Classifier", value: "food-net" },
                 { name: "Custom Classifier", value: "41291" }
             ];
-            super("MetaMind", key, sets);
-            this.$http = http;
+            super("MetaMind", key, sets, q, http);
             this.options = { destinationType: 0 };//Camera.DestinationType.DATA_URL//Camera is not defined?
         }
         search(picture: string, set: number): ng.IPromise<any>
@@ -39,11 +37,20 @@ module VisualSearch.Models
                 //url: "http://172.16.82.56/test/api/Values"
             });
         }
-        getResult(picture: string, set: number): IResult
+        getResult(picture: string, set: number): ng.IPromise<IResult>
         {
+            let q: ng.IDeferred<IResult> = this.$q.defer();
             let result: IResult;
-            result.status = ResultStatus.SUCCESS;
-            return result;
+            this.search(picture, set).then((promiseValue: any) =>
+            {
+                result = { status: ResultStatus.SUCCESS, content: promiseValue.data };
+                q.resolve(result);
+            }, (reason: any) =>
+                {
+                    result = { status: ResultStatus.ERROR, content: reason };
+                    q.reject(result);
+                });
+            return q.promise;
         }
     }
 }
