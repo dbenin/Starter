@@ -8,7 +8,7 @@ module VisualSearch.Services
         getActive(): Models.IActiveNames;
         getActiveOptions(): CameraOptions;
         setActive(engineIndex: number, setIndex: number): void;
-        getResults(picture: string): Models.IResult;
+        getResults(picture: string): ng.IPromise<Models.IResult>;
     }
 
     export class Loader implements ILoader
@@ -65,7 +65,7 @@ module VisualSearch.Services
             window.localStorage["lastActiveSetIndex"] = setIndex;
         }
 
-        getResults(picture: string): Models.IResult
+        getResults(picture: string): ng.IPromise<Models.IResult>
         {
             return this.active.engine.getResult(picture, this.active.indexes.set);
         }

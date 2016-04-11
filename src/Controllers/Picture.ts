@@ -54,8 +54,19 @@ module VisualSearch.Controllers
                     this.last = image;
                 }
                 console.log("Last photo: " + this.last);
-                //START LOADING
-                this.Loader.getResults(this.last);
+                console.log("START LOADING SCREEN...");
+                let result: Models.IResult;
+                this.Loader.getResults(this.last).then((promiseValue: Models.IResult) =>
+                {
+                    result = promiseValue;
+                    console.log("Status: " + result.status);
+                }, (reason: any) =>
+                {
+                    console.log("FAIL: ");
+                }).finally(() => {
+                    console.log("STOP LOADING SCREEN...");
+                });
+                //console.log("Status: " + result.status);
             }, error =>
             {
                 console.log("CAMERA ERROR: " + error);

@@ -68,19 +68,23 @@ module VisualSearch.Models
 
             return q.promise;
         }
-        getResult(picture: string, set: number): IResult
+        getResult(picture: string, set: number): ng.IPromise<IResult>
         {
+            let q: ng.IDeferred<IResult> = this.$q.defer();
             let result: IResult;
             this.search(picture).then((promiseValue: any) =>
             {
                 result = { status: ResultStatus.SUCCESS, content: promiseValue.data };
+                q.resolve(result);
                 console.log("Status: " + result.content.status + "\nName: " + result.content.name + "\nPolling time: " + result.content.time + " seconds");
             }, (reason: any) =>
             {
-                result = { status: ResultStatus.ERROR, content: reason };//{"code":1,"source":"file:///storage/emulated/0/Android/data/io.cordova.myapp46c7f9/cache/DSC_0183.JPG","target":"https://api.cloudsightapi.com/image_requests","http_status":400,"body":"{\"error\":\"Non OAuth request received\"}","exception":"https://api.cloudsightapi.com/image_requests"}
+                //{"code":1,"source":"file:///storage/emulated/0/Android/data/io.cordova.myapp46c7f9/cache/DSC_0183.JPG","target":"https://api.cloudsightapi.com/image_requests","http_status":400,"body":"{\"error\":\"Non OAuth request received\"}","exception":"https://api.cloudsightapi.com/image_requests"}
+                result = { status: ResultStatus.ERROR, content: reason };
+                q.reject(result);
                 console.log("FAIL: " + result.content.body);
             });
-            return result;
+            return q.promise;
         }
     }
 }
