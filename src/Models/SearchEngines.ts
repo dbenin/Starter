@@ -32,7 +32,7 @@ module VisualSearch.Models
     export abstract class SearchEngine implements ISearchEngine
     {
         abstract search(picture: string, set?: number): ng.IPromise<any>;//usato dal metodo pubblico getResult
-        abstract getResult(picture: string, set?: number): IResult;
+        abstract getResult(picture: string, set: number): IResult;
         constructor(public name: string, public key: string, public sets: Array<ISearchEngineSet>) { }
     }
 }

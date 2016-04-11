@@ -8,6 +8,7 @@ module VisualSearch.Services
         getActive(): Models.IActiveNames;
         getActiveOptions(): CameraOptions;
         setActive(engineIndex: number, setIndex: number): void;
+        getResults(picture: string): Models.IResult;
     }
 
     export class Loader implements ILoader

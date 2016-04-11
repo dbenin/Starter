@@ -39,7 +39,7 @@ module VisualSearch.Models
                 //url: "http://172.16.82.56/test/api/Values"
             });
         }
-        getResult(picture: string, set?: number): IResult
+        getResult(picture: string, set: number): IResult
         {
             let result: IResult;
             result.status = ResultStatus.SUCCESS;

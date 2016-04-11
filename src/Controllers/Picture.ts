@@ -54,9 +54,11 @@ module VisualSearch.Controllers
                     this.last = image;
                 }
                 console.log("Last photo: " + this.last);
+                //START LOADING
+                this.Loader.getResults(this.last);
             }, error =>
             {
-                console.log("CAMERA ERROR" + error);
+                console.log("CAMERA ERROR: " + error);
             });
         }
     }

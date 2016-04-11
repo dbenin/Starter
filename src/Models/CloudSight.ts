@@ -60,7 +60,7 @@ module VisualSearch.Models
                 mimeType: "image/jpeg",
                 httpMethod: "POST",
                 params: { "image_request[locale]": "en-US" },
-                headers: [{ "Authorization": this.key }]
+                headers: { "Authorization": this.key }
             };
 
             let fileTransfer: FileTransfer = new FileTransfer();
@@ -68,10 +68,18 @@ module VisualSearch.Models
 
             return q.promise;
         }
-        getResult(picture: string, set?: number): IResult
+        getResult(picture: string, set: number): IResult
         {
             let result: IResult;
-            result.status = ResultStatus.SUCCESS;
+            this.search(picture).then((promiseValue: any) =>
+            {
+                result = { status: ResultStatus.SUCCESS, content: promiseValue.data };
+                console.log("Status: " + result.content.status + "\nName: " + result.content.name + "\nPolling time: " + result.content.time + " seconds");
+            }, (reason: any) =>
+            {
+                result = { status: ResultStatus.ERROR, content: reason };//{"code":1,"source":"file:///storage/emulated/0/Android/data/io.cordova.myapp46c7f9/cache/DSC_0183.JPG","target":"https://api.cloudsightapi.com/image_requests","http_status":400,"body":"{\"error\":\"Non OAuth request received\"}","exception":"https://api.cloudsightapi.com/image_requests"}
+                console.log("FAIL: " + result.content.body);
+            });
             return result;
         }
     }

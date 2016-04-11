@@ -26,7 +26,7 @@ module VisualSearch.Models
                 url: "https://vision.googleapis.com/v1/images:annotate?key=" + this.key
             });
         }
-        getResult(picture: string, set?: number): IResult
+        getResult(picture: string, set: number): IResult
         {
             let result: IResult;
             result.status = ResultStatus.SUCCESS;

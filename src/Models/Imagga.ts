@@ -58,7 +58,7 @@ module VisualSearch.Models
 
             return q.promise;
         }
-        getResult(picture: string, set?: number): IResult
+        getResult(picture: string, set: number): IResult
         {
             let result: IResult;
             result.status = ResultStatus.SUCCESS;
