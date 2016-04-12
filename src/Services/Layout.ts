@@ -7,15 +7,17 @@ module VisualSearch.Services
         toggleSideMenu(): void;
         showLoading(): void;
         hideLoading(): void;
+        alert(message: string): void;
     }
 
     export class Layout implements ILayout
     {
-        static $inject = ["$ionicSideMenuDelegate", "$ionicLoading"];
+        static $inject = ["$ionicSideMenuDelegate", "$ionicLoading", "$ionicPopup"];
 
         constructor(
             private $ionicSideMenuDelegate: ionic.sideMenu.IonicSideMenuDelegate,
-            private $ionicLoading: ionic.loading.IonicLoadingService
+            private $ionicLoading: ionic.loading.IonicLoadingService,
+            private $ionicPopup: ionic.popup.IonicPopupService
         ) { }
 
         toggleSideMenu(): void
@@ -33,6 +35,14 @@ module VisualSearch.Services
         hideLoading(): void
         {
             this.$ionicLoading.hide();
+        }
+
+        alert(message: string): void
+        {
+            this.$ionicPopup.alert({
+                title: "An error occured",
+                template: message
+            });
         }
     }
 }

@@ -48,7 +48,8 @@ module VisualSearch.Controllers
                     if (this.results.ok) { console.log("Status OK"); }
                 }, (reason: Models.IResult) =>
                 {
-                    alert(reason.content);//Cambiare in ionic alert
+                    this.Layout.alert(reason.content);
+                    //alert(reason.content);//Cambiare in ionic alert
                 }).finally(() =>
                 {
                     this.Layout.hideLoading();
