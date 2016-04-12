@@ -41,13 +41,23 @@ module VisualSearch.Models
             let result: IResult;
             this.search(picture, set).then((promiseValue: any) =>
             {
-                result = { ok: true, content: promiseValue.data };
-                q.resolve(result);
-            }, (reason: any) =>
-                {
-                    result = { ok: false, content: reason };
+                if (JSON.parse(promiseValue.response).errorMessage)
+                {//{"errorMessage":"Result is empty","searchId":"f528ade0-00c5-11e6-95f1-a0d3c10632f4"}
+                    result = { ok: false, content: JSON.parse(promiseValue.response).errorMessage };
                     q.reject(result);
-                });
+                }
+                else
+                {
+                    result = { ok: true, content: JSON.parse(promiseValue.response) };
+                    console.log("SUCCESS :" + JSON.stringify(result.content));
+                    q.resolve(result);
+                }
+            }, (reason: any) =>
+            {
+                //console.log("FAIL :" + JSON.stringify(reason));
+                result = { ok: false, content: JSON.parse(reason.body).errorMessage };
+                q.reject(result);
+            });
             return q.promise;
         }
     }

@@ -65,6 +65,18 @@
                                 </ion-list>
                             </div>
                         </div>
+                        <!--JUSTVISUAL RESULTS bug: non visualizza correttamente la card con foto scattata-->
+                        <div class="card" ng-show="m.results.ok === true && m.activeEngine.engine === 'JustVisual'">
+                            <div class="item item-divider">Results</div>
+                            <div class="item item-text-wrap">
+                                <ion-list>
+                                    <ion-item ng-repeat="result in m.results.content.images" class="item-thumbnail-left">
+                                        <img ng-src="{{result.imageUrl}}">
+                                        <a ng-href="{{result.pageUrl}}">{{result.title}}</a>
+                                    </ion-item>
+                                </ion-list>
+                            </div>
+                        </div>
                     </div>
                 </ion-content>
             </ion-side-menu-content>

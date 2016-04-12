@@ -61,7 +61,6 @@ module VisualSearch.Models
             let result: IResult;
             this.search(picture, set).then((promiseValue: any) =>
             {
-                
                 if (promiseValue.data.unsuccessful)
                 {//{"results":[],"unsuccessful":[{"image":"85bd9f9a9f78cfd00049b568b579e9d0","message":"The request timed out."}]}
                     result = { ok: false, content: promiseValue.data.unsuccessful[0].message };
@@ -71,7 +70,7 @@ module VisualSearch.Models
                 {
                     result = { ok: true, content: promiseValue.data.results[0] };
                     q.resolve(result);
-                    console.log("SUCCESS: " + JSON.stringify(result.content.tags[0]));
+                    //console.log("SUCCESS: " + JSON.stringify(result.content.tags[0]));
                 }
             }, (reason: any) =>
             {
