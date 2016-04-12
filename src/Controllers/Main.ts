@@ -40,15 +40,15 @@ module VisualSearch.Controllers
             this.results = {};
             this.Picture.take(library, this.Loader.getActiveOptions()).then(image =>
             {
-                this.photo = image;
+                this.photo = image;//formato immagine base64 con header oppure file uri senza ?
                 this.Layout.showLoading();
                 this.Loader.getResults(this.photo).then((promiseValue: Models.IResult) =>
                 {
                     this.results = promiseValue;
                     if (this.results.ok) { console.log("Status OK"); }
-                }, (reason: any) =>
+                }, (reason: Models.IResult) =>
                 {
-                    console.log("FAIL: ");
+                    alert(reason.content);//Cambiare in ionic alert
                 }).finally(() =>
                 {
                     this.Layout.hideLoading();

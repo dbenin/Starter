@@ -45,12 +45,25 @@
                                 </div>
                             </div>
                         </div>
+                        <!--CLOUDSIGHT RESULTS http://cloudsightapi.com/dashboard -->
                         <div class="card" ng-show="m.results.ok === true && m.activeEngine.engine === 'CloudSight'">
                             <div class="item item-divider">
                                 Result status: {{m.results.content.status}}
                                 <span style="display:inline-block;float:right">Polling time: {{m.results.content.time.toFixed(1)}} sec</span>
                             </div>
                             <div class="item"><h2 style="text-transform:capitalize">{{m.results.content.name}}</h2></div>
+                        </div>
+                        <!--IMAGGA RESULTS https://imagga.com/profile/dashboard DA TESTARE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+                        <div class="card" ng-show="m.results.ok === true && m.activeEngine.engine === 'Imagga'">
+                            <div class="item item-divider">Results</div>
+                            <div class="item">
+                                <ion-list>
+                                    <ion-item ng-repeat="tag in m.results.tags">
+                                        Tag: {{tag.tag}}
+                                        <span class="item-note">{{tag.confidence.toFixed(1)}}%</span>
+                                    </ion-item>
+                                </ion-list>
+                            </div>
                         </div>
                     </div>
                 </ion-content>
