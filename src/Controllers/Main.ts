@@ -80,7 +80,7 @@ module VisualSearch.Controllers
                     this.photo = image;
                 }
                 console.log("Last photo: " + this.photo);
-                console.log("START LOADING SCREEN...");
+                this.Layout.showLoading();
                 this.Loader.getResults(this.photo).then((promiseValue: Models.IResult) =>
                 {
                     this.results = promiseValue;
@@ -90,7 +90,7 @@ module VisualSearch.Controllers
                     console.log("FAIL: ");
                 }).finally(() =>
                 {
-                    console.log("STOP LOADING SCREEN...");
+                    this.Layout.hideLoading();
                 });
                 //console.log("Status: " + result.status);
             }, error =>
