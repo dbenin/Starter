@@ -51,15 +51,15 @@
                                 Result status: {{m.results.content.status}}
                                 <span style="display:inline-block;float:right">Polling time: {{m.results.content.time.toFixed(1)}} sec</span>
                             </div>
-                            <div class="item"><h2 style="text-transform:capitalize">{{m.results.content.name}}</h2></div>
+                            <div class="item" style="text-transform:capitalize">{{m.results.content.name}}</div>
                         </div>
-                        <!--IMAGGA RESULTS https://imagga.com/profile/dashboard DA TESTARE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+                        <!--IMAGGA RESULTS https://imagga.com/profile/dashboard bug: non visualizza correttamente la card con foto scattata-->
                         <div class="card" ng-show="m.results.ok === true && m.activeEngine.engine === 'Imagga'">
                             <div class="item item-divider">Results</div>
-                            <div class="item">
+                            <div class="item item-text-wrap">
                                 <ion-list>
-                                    <ion-item ng-repeat="tag in m.results.tags">
-                                        Tag: {{tag.tag}}
+                                    <ion-item ng-repeat="tag in m.results.content.tags | limitTo: 10">
+                                        <span style="text-transform:capitalize">{{tag.tag}}</span>
                                         <span class="item-note">{{tag.confidence.toFixed(1)}}%</span>
                                     </ion-item>
                                 </ion-list>
