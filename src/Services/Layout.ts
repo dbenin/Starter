@@ -2,18 +2,18 @@
 
 module VisualSearch.Services
 {
-    export interface ISideMenu
+    export interface ILayout
     {
-        toggle(): void;
+        toggleSideMenu(): void;
     }
 
-    export class SideMenu implements ISideMenu
+    export class Layout implements ILayout
     {
         static $inject = ["$ionicSideMenuDelegate"];
 
         constructor(private $ionicSideMenuDelegate: ionic.sideMenu.IonicSideMenuDelegate) { }
 
-        toggle()
+        toggleSideMenu()
         {
             this.$ionicSideMenuDelegate.toggleLeft();
         }

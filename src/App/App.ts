@@ -9,6 +9,6 @@ module VisualSearch.App
         //.controller("Layout", Controllers.Layout)
         //.controller("SearchEngines", Controllers.SearchEngines)
         .service("Picture", Services.Picture)
-        .service("SideMenu", Services.SideMenu)
+        .service("Layout", Services.Layout)
         .service("Loader", Services.Loader);
 }

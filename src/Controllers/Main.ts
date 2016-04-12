@@ -4,7 +4,7 @@ module VisualSearch.Controllers
 {
     export class Main
     {
-        static $inject = ["Loader", "Picture", "SideMenu"];
+        static $inject = ["Loader", "Picture", "Layout"];
 
         photo: string;
         searchEngines: Array<Models.ISearchEngine>;
@@ -14,7 +14,7 @@ module VisualSearch.Controllers
         constructor(
             private Loader: Services.ILoader,
             private Picture: Services.IPicture,
-            private SideMenu: Services.ISideMenu)
+            private Layout: Services.ILayout)
         {
             this.photo = "";
             this.searchEngines = Loader.getEngines();
@@ -27,12 +27,12 @@ module VisualSearch.Controllers
             this.Loader.setActive(engineIndex, setIndex);
             this.results = {};
             this.photo = "";
-            this.SideMenu.toggle();
+            this.Layout.toggleSideMenu();
         }
 
         toggleSideMenu()
         {
-            this.SideMenu.toggle();
+            this.Layout.toggleSideMenu();
         }
 
         getPhoto(library?: boolean)
