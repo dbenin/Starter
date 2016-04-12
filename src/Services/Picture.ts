@@ -4,7 +4,7 @@ module VisualSearch.Services
 {
     export interface IPicture
     {
-        take(options: CameraOptions): ng.IPromise<any>;
+        take(options: CameraOptions): ng.IPromise<string>;
     }
 
     export class Picture implements IPicture
@@ -13,7 +13,7 @@ module VisualSearch.Services
         
         constructor(private $q: ng.IQService) { }
 
-        take(options)
+        take(options: CameraOptions): ng.IPromise<string>
         {
             let q: ng.IDeferred<any> = this.$q.defer();
             navigator.camera.getPicture((result): void => { q.resolve(result); }, (error): void => { q.reject(error); }, options);

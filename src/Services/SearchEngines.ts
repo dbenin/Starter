@@ -38,22 +38,22 @@ module VisualSearch.Services
             //console.log("SET: "+ this.active.indexes.set);
         }
 
-        getEngines()
+        getEngines(): Array<Models.ISearchEngine>
         {
             return this.engines;
         }
 
-        getActive()
+        getActive(): Models.IActiveNames
         {
             return this.active.names;
         }
 
-        getActiveOptions()
+        getActiveOptions(): CameraOptions
         {
             return this.active.engine.options;
         }
 
-        setActive(engineIndex, setIndex)
+        setActive(engineIndex: number, setIndex: number): void
         {
             this.active.names.engine = this.engines[engineIndex].name;
             this.active.names.set = this.engines[engineIndex].sets[setIndex].name;
