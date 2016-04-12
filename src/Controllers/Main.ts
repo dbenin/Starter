@@ -30,7 +30,7 @@ module VisualSearch.Controllers
             this.Layout.toggleSideMenu();
         }
 
-        toggleSideMenu()
+        toggleSideMenu()//per la chiamata dalla view
         {
             this.Layout.toggleSideMenu();
         }
