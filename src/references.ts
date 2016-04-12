@@ -1,10 +1,10 @@
-﻿///<reference path="Services/Picture.ts"/>
-///<reference path="Services/Layout.ts"/>
-///<reference path="Services/SearchEngines.ts"/>
-///<reference path="Controllers/Main.ts"/>
-///<reference path="Models/SearchEngines.ts"/>
+﻿///<reference path="Models/SearchEngines.ts"/>
 ///<reference path="Models/CloudSight.ts"/>
 ///<reference path="Models/Imagga.ts"/>
 ///<reference path="Models/GoogleCloudVision.ts"/>
 ///<reference path="Models/MetaMind.ts"/>
 ///<reference path="Models/JustVisual.ts"/>
+///<reference path="Services/Picture.ts"/>
+///<reference path="Services/Layout.ts"/>
+///<reference path="Services/SearchEngines.ts"/>
+///<reference path="Controllers/Main.ts"/>

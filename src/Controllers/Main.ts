@@ -38,48 +38,9 @@ module VisualSearch.Controllers
         getPhoto(library?: boolean)
         {
             this.results = {};
-            let options: CameraOptions = {};
-            options.correctOrientation = true;
-            options.targetWidth = 640;
-            options.targetHeight = 640;
-            if (library)
+            this.Picture.take(library, this.Loader.getActiveOptions()).then(image =>
             {
-                options.sourceType = Camera.PictureSourceType.SAVEDPHOTOALBUM;
-                options.mediaType = Camera.MediaType.PICTURE;
-            }
-            else
-            {
-                options.quality = 50;
-                options.sourceType = Camera.PictureSourceType.CAMERA;
-                options.encodingType = Camera.EncodingType.JPEG;
-                options.saveToPhotoAlbum = false;
-            }
-            options.destinationType = Camera.DestinationType.FILE_URI;
-            let specifics: CameraOptions = this.Loader.getActiveOptions();
-            if (specifics)
-            {
-                console.log("WE GOT SPECIFIC OPTIONS");
-                //overriding options with the specifics
-                for (let option in specifics) { options[option] = specifics[option]; }
-            }
-
-            this.Picture.take(options).then(image =>
-            {
-                console.log("Image: " + image);
-                if (options.destinationType === Camera.DestinationType.DATA_URL)
-                {
-                    this.photo = "data:image/jpeg;base64," + image;//adding header in order to display the img properly
-                }
-                else
-                {
-                    let i: number = image.indexOf('?');
-                    if (i > 0)
-                    {
-                        image = image.substr(0, i);//removing ? after file name to work properly with API
-                    }
-                    this.photo = image;
-                }
-                console.log("Last photo: " + this.photo);
+                this.photo = image;
                 this.Layout.showLoading();
                 this.Loader.getResults(this.photo).then((promiseValue: Models.IResult) =>
                 {
@@ -92,7 +53,6 @@ module VisualSearch.Controllers
                 {
                     this.Layout.hideLoading();
                 });
-                //console.log("Status: " + result.status);
             }, error =>
             {
                 console.log("CAMERA ERROR: " + error);
