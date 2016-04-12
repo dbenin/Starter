@@ -4,9 +4,10 @@
 module VisualSearch.App
 {
     angular.module("VisualSearch", ["ionic"])
-        .controller("Picture", Controllers.Picture)
-        .controller("Layout", Controllers.Layout)
-        .controller("SearchEngines", Controllers.SearchEngines)
+        .controller("Main", Controllers.Main)
+        //.controller("Picture", Controllers.Picture)
+        //.controller("Layout", Controllers.Layout)
+        //.controller("SearchEngines", Controllers.SearchEngines)
         .service("Picture", Services.Picture)
         .service("SideMenu", Services.SideMenu)
         .service("Loader", Services.Loader);

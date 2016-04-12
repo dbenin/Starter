@@ -22,26 +22,26 @@
 
         <title>Visual Search</title>
     </head>
-    <body ng-app="VisualSearch" ng-controller="SearchEngines as se">
-        <ion-side-menus ng-controller="Layout as layout">
+    <body ng-app="VisualSearch" ng-controller="Main as m">
+        <ion-side-menus>
 
             <!-- Center content -->
             <ion-side-menu-content>
                 <ion-header-bar class="bar-positive">
-                    <button class="button button-icon" ng-click="layout.toggleSideMenu()">
+                    <button class="button button-icon" ng-click="m.toggleSideMenu()">
                         <i class="icon ion-navicon"></i>
                     </button>
                     <h1 class="title">Visual Search App</h1>
                 </ion-header-bar>
-                <ion-content ng-controller="Picture as photo">
+                <ion-content>
                     <div class="padding">
                         <div class="card">
-                            <div class="item item-divider">{{se.activeEngine.engine}}: {{se.activeEngine.set}}</div>
+                            <div class="item item-divider">{{m.activeEngine.engine}}: {{m.activeEngine.set}}</div>
                             <div class="item item-body" style="text-align:center;">
-                                <img ng-src="{{photo.last}}" style="max-width: 100%; max-height:300px">
+                                <img ng-src="{{m.lastPhoto}}" style="max-width: 100%; max-height:300px">
                                 <div class="button-bar">
-                                    <button ng-click="photo.get()" class="button button-clear button-positive">Take a picture...</button>
-                                    <button ng-click="photo.get(true)" class="button button-clear button-positive">or load it from the gallery!</button>
+                                    <button ng-click="m.getPhoto()" class="button button-clear button-positive">Take a picture...</button>
+                                    <button ng-click="m.getPhoto(true)" class="button button-clear button-positive">or load it from the gallery!</button>
                                 </div>
                             </div>
                         </div>
@@ -56,9 +56,9 @@
                 </ion-header-bar>
                 <ion-content>
                     <ion-list>
-                        <ion-item class="item-divider" ng-repeat="engine in se.searchEngines" ng-init="engineIndex = $index">
+                        <ion-item class="item-divider" ng-repeat="engine in m.searchEngines" ng-init="engineIndex = $index">
                             {{engine.name}}
-                            <ion-item ng-repeat="set in engine.sets" ng-click="se.selectEngine(engineIndex, $index)" ng-class="{active: se.activeEngine.set == set.name}">
+                            <ion-item ng-repeat="set in engine.sets" ng-click="m.selectEngine(engineIndex, $index)" ng-class="{active: m.activeEngine.set == set.name}">
                                 {{set.name}}
                             </ion-item>
                         </ion-item>

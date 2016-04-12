@@ -2,15 +2,37 @@
 
 module VisualSearch.Controllers
 {
-    export class Picture
+    export class Main
     {
-        static $inject = ["Picture", "Loader"];
+        static $inject = ["Loader", "Picture", "SideMenu"];
 
-        last: any;
+        lastPhoto: string;
+        searchEngines: Array<Models.ISearchEngine>;
+        activeEngine: Models.IActiveNames;
 
-        constructor(private Picture: Services.IPicture, private Loader: Services.ILoader) { this.last = ""; }
+        constructor(
+            private Loader: Services.ILoader,
+            private Picture: Services.IPicture,
+            private SideMenu: Services.ISideMenu)
+        {
+            this.lastPhoto = "";
+            this.searchEngines = Loader.getEngines();
+            this.activeEngine = Loader.getActive();
+        }
 
-        get(library?: boolean)
+        selectEngine(engineIndex, setIndex)
+        {
+            this.Loader.setActive(engineIndex, setIndex);
+            //$scope.results = {};
+            this.SideMenu.toggle();
+        }
+
+        toggleSideMenu()
+        {
+            this.SideMenu.toggle();
+        }
+
+        getPhoto(library?: boolean)
         {
             let options: CameraOptions = {};
             options.correctOrientation = true;
@@ -42,7 +64,7 @@ module VisualSearch.Controllers
                 console.log("Image: " + image);
                 if (options.destinationType === Camera.DestinationType.DATA_URL)
                 {
-                    this.last = "data:image/jpeg;base64," + image;//adding header in order to display the img properly
+                    this.lastPhoto = "data:image/jpeg;base64," + image;//adding header in order to display the img properly
                 }
                 else
                 {
@@ -51,27 +73,27 @@ module VisualSearch.Controllers
                     {
                         image = image.substr(0, i);//removing ? after file name to work properly with API
                     }
-                    this.last = image;
+                    this.lastPhoto = image;
                 }
-                console.log("Last photo: " + this.last);
+                console.log("Last photo: " + this.lastPhoto);
                 console.log("START LOADING SCREEN...");
                 let result: Models.IResult;
-                this.Loader.getResults(this.last).then((promiseValue: Models.IResult) =>
+                this.Loader.getResults(this.lastPhoto).then((promiseValue: Models.IResult) =>
                 {
                     result = promiseValue;
                     console.log("Status: " + result.status);
                 }, (reason: any) =>
-                {
-                    console.log("FAIL: ");
-                }).finally(() =>
-                {
-                    console.log("STOP LOADING SCREEN...");
-                });
+                    {
+                        console.log("FAIL: ");
+                    }).finally(() =>
+                    {
+                        console.log("STOP LOADING SCREEN...");
+                    });
                 //console.log("Status: " + result.status);
             }, error =>
-            {
-                console.log("CAMERA ERROR: " + error);
-            });
+                {
+                    console.log("CAMERA ERROR: " + error);
+                });
         }
     }
 }
