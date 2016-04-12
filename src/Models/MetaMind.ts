@@ -43,11 +43,11 @@ module VisualSearch.Models
             let result: IResult;
             this.search(picture, set).then((promiseValue: any) =>
             {
-                result = { status: ResultStatus.SUCCESS, content: promiseValue.data };
+                result = { ok: true, content: promiseValue.data };
                 q.resolve(result);
             }, (reason: any) =>
                 {
-                    result = { status: ResultStatus.ERROR, content: reason };
+                    result = { ok: false, content: reason };
                     q.reject(result);
                 });
             return q.promise;

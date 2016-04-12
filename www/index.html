@@ -38,12 +38,19 @@
                         <div class="card">
                             <div class="item item-divider">{{m.activeEngine.engine}}: {{m.activeEngine.set}}</div>
                             <div class="item item-body" style="text-align:center;">
-                                <img ng-src="{{m.lastPhoto}}" style="max-width: 100%; max-height:300px">
+                                <img ng-show="m.photo !== ''" ng-src="{{m.photo}}" style="max-width: 100%; max-height:300px">
                                 <div class="button-bar">
                                     <button ng-click="m.getPhoto()" class="button button-clear button-positive">Take a picture...</button>
                                     <button ng-click="m.getPhoto(true)" class="button button-clear button-positive">or load it from the gallery!</button>
                                 </div>
                             </div>
+                        </div>
+                        <div class="card" ng-show="m.results.ok === true && m.activeEngine.engine === 'CloudSight'">
+                            <div class="item item-divider">
+                                Result status: {{m.results.content.status}}
+                                <span style="display:inline-block;float:right">Polling time: {{m.results.content.time.toFixed(1)}} sec</span>
+                            </div>
+                            <div class="item"><h2 style="text-transform:capitalize">{{m.results.content.name}}</h2></div>
                         </div>
                     </div>
                 </ion-content>

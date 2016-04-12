@@ -59,7 +59,7 @@ module VisualSearch.Controllers
                 this.Loader.getResults(this.last).then((promiseValue: Models.IResult) =>
                 {
                     result = promiseValue;
-                    console.log("Status: " + result.status);
+                    console.log("Status: " + result.ok);
                 }, (reason: any) =>
                 {
                     console.log("FAIL: ");

@@ -2,16 +2,10 @@
 
 module VisualSearch.Models
 {
-    export enum ResultStatus
-    {
-        SUCCESS = 0,
-        ERROR = 1
-    }
-
     export interface IResult//tipo risultato restituito dal motore, da implementare specificamente per ogni motore
     {
-        status: ResultStatus;
-        content: any//
+        ok?: boolean;
+        content?: any//
     }
 
     export interface ISearchEngineSet
