@@ -108,14 +108,14 @@
                             <p>{{m.results.content.responses[0].textAnnotations[0].description}}</p>
                         </div>
                     </div>
-                    <!--METAMIND RESULTS -->
-                    <div class="card" ng-show="m.results.ok === true && m.activeEngine.engine === 'xxx'">
+                    <!--METAMIND RESULTS https://www.metamind.io/auth/my_account -->
+                    <div class="card" ng-show="m.results.ok === true && m.activeEngine.engine === 'MetaMind'">
                         <div class="item item-divider">Results</div>
                         <div class="item item-text-wrap">
                             <ion-list>
-                                <ion-item ng-repeat="label in m.results.content.responses[0].labelAnnotations">
-                                    <span>{{label.description}}</span>
-                                    <span class="item-note">{{(label.score * 100).toFixed(1)}}%</span>
+                                <ion-item ng-repeat="prediction in m.results.content.predictions">
+                                    <span>{{prediction.class_name}}</span>
+                                    <span class="item-note">{{(prediction.prob * 100).toFixed(1)}}%</span>
                                 </ion-item>
                             </ion-list>
                         </div>
