@@ -40,8 +40,9 @@ module VisualSearch.Services
         alert(message: string): void
         {
             this.$ionicPopup.alert({
-                title: "An error occured",
-                template: message
+                title: "An error occured!",
+                template: message,
+                okType: "button-assertive"
             });
         }
     }

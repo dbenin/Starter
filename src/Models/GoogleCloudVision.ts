@@ -17,10 +17,16 @@ module VisualSearch.Models
             this.options = { destinationType: 0 };//Camera.DestinationType.DATA_URL//Camera is not defined?
         }
         search(picture: string, set: number): ng.IPromise<any>
-        {//picture in formato base64 SENZA header
+        {//necessita di picture in formato base64 SENZA header "data:image/jpeg;base64,"
+            let i: number = picture.indexOf(',');
+            if (i > 0)
+            {
+                picture = picture.substr(i + 1, picture.length - 1);//removing "data:image/jpeg;base64," to work properly with API
+            }
+            console.log("google picture: " + picture);
             return this.$http({
                 method: "POST",
-                data: '{"requests":[{"image":{"content":"' + picture + '"},"features":[{"type":"' + this.sets[set].value + '","maxResults":5}]}]}',
+                data: '{"requests":[{"image":{"content":"' + picture + '"},"features":[{"type":"' + this.sets[set].value + '","maxResults":10}]}]}',
                 url: "https://vision.googleapis.com/v1/images:annotate?key=" + this.key
             });
         }
@@ -30,13 +36,25 @@ module VisualSearch.Models
             let result: IResult;
             this.search(picture, set).then((promiseValue: any) =>
             {
-                result = { ok: true, content: promiseValue.data };
-                q.resolve(result);
-            }, (reason: any) =>
+                //console.log("SUCCESS: " + JSON.stringify(promiseValue));
+                //console.log("Responses: " + promiseValue.data.responses.length);
+                if (Object.getOwnPropertyNames(promiseValue.data.responses[0]).length === 0)
                 {
-                    result = { ok: false, content: reason };
+                    result = { ok: false, content: "No results found." };
                     q.reject(result);
-                });
+                }
+                else
+                {
+                    //console.log("SUCCESS: " + JSON.stringify(promiseValue));
+                    result = { ok: true, content: promiseValue.data };
+                    q.resolve(result);
+                }
+            }, (reason: any) =>
+            {
+                //console.log("FAIL: " + JSON.stringify(reason));
+                result = { ok: false, content: reason.data.error.message };
+                q.reject(result);
+            });
             return q.promise;
         }
     }

@@ -49,7 +49,7 @@ module VisualSearch.Models
                 else
                 {
                     result = { ok: true, content: JSON.parse(promiseValue.response) };
-                    console.log("SUCCESS :" + JSON.stringify(result.content));
+                    //console.log("SUCCESS :" + JSON.stringify(result.content));
                     q.resolve(result);
                 }
             }, (reason: any) =>

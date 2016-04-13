@@ -33,49 +33,91 @@
                     </button>
                     <h1 class="title">Visual Search App</h1>
                 </ion-header-bar>
-                <ion-content>
-                    <div class="padding">
-                        <div class="card">
-                            <div class="item item-divider">{{m.activeEngine.engine}}: {{m.activeEngine.set}}</div>
-                            <div class="item item-body" style="text-align:center;">
-                                <img ng-show="m.photo !== ''" ng-src="{{m.photo}}" style="max-width: 100%; max-height:300px">
-                                <div class="button-bar">
-                                    <button ng-click="m.getPhoto()" class="button button-clear button-positive">Take a picture...</button>
-                                    <button ng-click="m.getPhoto(true)" class="button button-clear button-positive">or load it from the gallery!</button>
-                                </div>
+                <ion-content class="padding">
+                    <div class="card">
+                        <div class="item item-divider">{{m.activeEngine.engine}}: {{m.activeEngine.set}}</div>
+                        <div class="item item-body" style="text-align:center;">
+                            <img ng-show="m.photo !== ''" ng-src="{{m.photo}}" style="max-width: 100%; max-height:300px">
+                            <div class="button-bar">
+                                <button ng-click="m.getPhoto()" class="button button-clear button-positive">Take a picture...</button>
+                                <button ng-click="m.getPhoto(true)" class="button button-clear button-positive">or load it from the gallery!</button>
                             </div>
                         </div>
-                        <!--CLOUDSIGHT RESULTS http://cloudsightapi.com/dashboard -->
-                        <div class="card" ng-show="m.results.ok === true && m.activeEngine.engine === 'CloudSight'">
-                            <div class="item item-divider">
-                                Result status: {{m.results.content.status}}
-                                <span style="display:inline-block;float:right">Polling time: {{m.results.content.time.toFixed(1)}} sec</span>
-                            </div>
-                            <div class="item" style="text-transform:capitalize">{{m.results.content.name}}</div>
+                    </div>
+                    <!--CLOUDSIGHT RESULTS http://cloudsightapi.com/dashboard -->
+                    <div class="card" ng-show="m.results.ok === true && m.activeEngine.engine === 'CloudSight'">
+                        <div class="item item-divider">
+                            Result status: {{m.results.content.status}}
+                            <span style="display:inline-block;float:right">Polling time: {{m.results.content.time.toFixed(1)}} sec</span>
                         </div>
-                        <!--IMAGGA RESULTS https://imagga.com/profile/dashboard bug: non visualizza correttamente la card con foto scattata-->
-                        <div class="card" ng-show="m.results.ok === true && m.activeEngine.engine === 'Imagga'">
-                            <div class="item item-divider">Results</div>
-                            <div class="item item-text-wrap">
-                                <ion-list>
-                                    <ion-item ng-repeat="tag in m.results.content.tags | limitTo: 10">
-                                        <span style="text-transform:capitalize">{{tag.tag}}</span>
-                                        <span class="item-note">{{tag.confidence.toFixed(1)}}%</span>
-                                    </ion-item>
-                                </ion-list>
-                            </div>
+                        <div class="item" style="text-transform:capitalize">{{m.results.content.name}}</div>
+                    </div>
+                    <!--IMAGGA RESULTS https://imagga.com/profile/dashboard -->
+                    <div class="card" ng-show="m.results.ok === true && m.activeEngine.engine === 'Imagga'">
+                        <div class="item item-divider">Results</div>
+                        <div class="item item-text-wrap">
+                            <ion-list>
+                                <ion-item ng-repeat="tag in m.results.content.tags | limitTo: 10">
+                                    <span style="text-transform:capitalize">{{tag.tag}}</span>
+                                    <span class="item-note">{{tag.confidence.toFixed(1)}}%</span>
+                                </ion-item>
+                            </ion-list>
                         </div>
-                        <!--JUSTVISUAL RESULTS bug: non visualizza correttamente la card con foto scattata-->
-                        <div class="card" ng-show="m.results.ok === true && m.activeEngine.engine === 'JustVisual'">
-                            <div class="item item-divider">Results</div>
-                            <div class="item item-text-wrap">
-                                <ion-list>
-                                    <ion-item ng-repeat="result in m.results.content.images" class="item-thumbnail-left">
-                                        <img ng-src="{{result.imageUrl}}">
-                                        <a ng-href="{{result.pageUrl}}">{{result.title}}</a>
-                                    </ion-item>
-                                </ion-list>
-                            </div>
+                    </div>
+                    <!--JUSTVISUAL RESULTS -->
+                    <div class="card" ng-show="m.results.ok === true && m.activeEngine.engine === 'JustVisual'">
+                        <div class="item item-divider">Results</div>
+                        <div class="item item-text-wrap">
+                            <ion-list>
+                                <ion-item ng-repeat="result in m.results.content.images" class="item-thumbnail-left">
+                                    <img ng-src="{{result.imageUrl}}">
+                                    <a ng-href="{{result.pageUrl}}">{{result.title}}</a>
+                                </ion-item>
+                            </ion-list>
+                        </div>
+                    </div>
+                    <!--GOOGLECLOUDVISION RESULTS -->
+                    <div class="card" ng-show="m.results.ok === true && m.activeEngine.engine === 'GoogleCloudVision'">
+                        <div class="item item-divider" ng-show="m.activeEngine.set != 'Text Detection'">Results</div>
+                        <div class="item item-divider" ng-show="m.activeEngine.set == 'Text Detection'">
+                            Language: {{m.results.content.responses[0].textAnnotations[0].locale}}
+                        </div>
+                        <div class="item item-text-wrap">
+                            <!--LABEL-->
+                            <ion-list>
+                                <ion-item ng-repeat="label in m.results.content.responses[0].labelAnnotations">
+                                    <span>{{label.description}}</span>
+                                    <span class="item-note">{{(label.score * 100).toFixed(1)}}%</span>
+                                </ion-item>
+                            </ion-list>
+                            <!--LANDMARK-->
+                            <ion-list>
+                                <ion-item ng-repeat="landmark in m.results.content.responses[0].landmarkAnnotations">
+                                    <span>{{landmark.description}}</span>
+                                    <span class="item-note">{{(landmark.score * 100).toFixed(1)}}%</span>
+                                </ion-item>
+                            </ion-list>
+                            <!--LOGO-->
+                            <ion-list>
+                                <ion-item ng-repeat="logo in m.results.content.responses[0].logoAnnotations">
+                                    <span>{{logo.description}}</span>
+                                    <span class="item-note">{{(logo.score * 100).toFixed(1)}}%</span>
+                                </ion-item>
+                            </ion-list>
+                            <!--TEXT-->
+                            <p>{{m.results.content.responses[0].textAnnotations[0].description}}</p>
+                        </div>
+                    </div>
+                    <!--METAMIND RESULTS -->
+                    <div class="card" ng-show="m.results.ok === true && m.activeEngine.engine === 'xxx'">
+                        <div class="item item-divider">Results</div>
+                        <div class="item item-text-wrap">
+                            <ion-list>
+                                <ion-item ng-repeat="label in m.results.content.responses[0].labelAnnotations">
+                                    <span>{{label.description}}</span>
+                                    <span class="item-note">{{(label.score * 100).toFixed(1)}}%</span>
+                                </ion-item>
+                            </ion-list>
                         </div>
                     </div>
                 </ion-content>
