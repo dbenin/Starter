@@ -68,9 +68,17 @@ module VisualSearch.Models
             let result: IResult;
             this.search(picture).then((promiseValue: any) =>
             {
-                result = { ok: true, content: promiseValue.data };
-                q.resolve(result);
-                //console.log("Status: " + result.content.status + "\nName: " + result.content.name + "\nPolling time: " + result.content.time + " seconds");
+                if (promiseValue.data.status !== "completed")
+                {
+                    result = { ok: false, content: promiseValue.data.status };
+                    q.reject(result);
+                }
+                else
+                {
+                    result = { ok: true, content: promiseValue.data };
+                    q.resolve(result);
+                    //console.log("Status: " + result.content.status + "\nName: " + result.content.name + "\nPolling time: " + result.content.time + " seconds");
+                }
             }, (reason: any) =>
             {
                 result = { ok: false, content: JSON.parse(reason.body).error };
