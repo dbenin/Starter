@@ -5,6 +5,8 @@ module VisualSearch.Services
     export interface ILayout
     {
         toggleSideMenu(): void;
+        showSettings(): void;
+        hideSettings(): void;
         showLoading(): void;
         hideLoading(): void;
         alert(message: string): void;
@@ -12,17 +14,38 @@ module VisualSearch.Services
 
     export class Layout implements ILayout
     {
-        static $inject = ["$ionicSideMenuDelegate", "$ionicLoading", "$ionicPopup"];
+        static $inject = ["$ionicSideMenuDelegate", "$ionicLoading", "$ionicPopup", "$ionicModal"];
+
+        settingsModal: ionic.modal.IonicModalController; 
 
         constructor(
             private $ionicSideMenuDelegate: ionic.sideMenu.IonicSideMenuDelegate,
             private $ionicLoading: ionic.loading.IonicLoadingService,
-            private $ionicPopup: ionic.popup.IonicPopupService
-        ) { }
+            private $ionicPopup: ionic.popup.IonicPopupService,
+            private $ionicModal: ionic.modal.IonicModalService
+        )
+        {
+            $ionicModal.fromTemplateUrl("templates/settings.html", {
+                animation: "slide-in-up"
+            }).then((modal) =>
+            {
+                this.settingsModal = modal;
+            });
+        }
 
         toggleSideMenu(): void
         {
             this.$ionicSideMenuDelegate.toggleLeft();
+        }
+
+        showSettings(): void
+        {
+            this.settingsModal.show();
+        }
+
+        hideSettings(): void
+        {
+            this.settingsModal.hide();
         }
 
         showLoading(): void

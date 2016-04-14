@@ -16,13 +16,7 @@ module VisualSearch.Models
             this.options = { destinationType: 0 };//Camera.DestinationType.DATA_URL//Camera is not defined?
         }
         search(picture: string, set: number): ng.IPromise<any>
-        {//necessita di picture in formato base64 SENZA header "data:image/jpeg;base64,"
-            /*let i: number = picture.indexOf(',');
-            if (i > 0)
-            {
-                picture = picture.substr(i + 1, picture.length - 1);//removing "data:image/jpeg;base64," to work properly with API
-            }
-            console.log("metamind picture: " + picture);*/
+        {//necessita di picture in formato base64 CON header "data:image/jpeg;base64,"
             let classifier: string = this.sets[set].value;
             if (set !== 2)
             {//aggiungo le virgolette al classifier se non e' custom (quindi non e' un numero ma una stringa)

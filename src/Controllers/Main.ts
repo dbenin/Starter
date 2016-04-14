@@ -30,11 +30,6 @@ module VisualSearch.Controllers
             this.Layout.toggleSideMenu();
         }
 
-        toggleSideMenu()//per la chiamata dalla view
-        {
-            this.Layout.toggleSideMenu();
-        }
-
         getPhoto(library?: boolean)
         {
             this.results = {};
