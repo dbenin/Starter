@@ -25,7 +25,7 @@
     <body ng-app="VisualSearch" ng-controller="Main as m">
         <ion-side-menus>
 
-            <!-- Center content -->
+            <!-- Pagina principale -->
             <ion-side-menu-content>
                 <ion-header-bar class="bar-positive">
                     <button class="button button-icon" ng-click="m.toggleSideMenu()">
@@ -123,18 +123,40 @@
                 </ion-content>
             </ion-side-menu-content>
 
-            <!-- Left menu -->
+            <!-- Menu laterale -->
             <ion-side-menu side="left">
                 <ion-header-bar class="bar-positive">
                     <h1 class="title">Search Engines</h1>
                 </ion-header-bar>
                 <ion-content>
                     <ion-list>
+                        <!-- nested
                         <ion-item class="item-divider" ng-repeat="engine in m.searchEngines" ng-init="engineIndex = $index">
                             {{engine.name}}
                             <ion-item ng-repeat="set in engine.sets" ng-click="m.selectEngine(engineIndex, $index)" ng-class="{active: m.activeEngine.set == set.name}">
                                 {{set.name}}
                             </ion-item>
+                        </ion-item>
+                        -->
+                        <ion-item class="item-divider">CloudSight</ion-item>
+                        <ion-item ng-repeat="set in m.searchEngines[0].sets" ng-click="m.selectEngine(0, $index)" ng-class="{active: m.activeEngine.set == set.name}">
+                            {{set.name}}
+                        </ion-item>
+                        <ion-item class="item-divider">Imagga</ion-item>
+                        <ion-item ng-repeat="set in m.searchEngines[1].sets" ng-click="m.selectEngine(1, $index)" ng-class="{active: m.activeEngine.set == set.name}">
+                            {{set.name}}
+                        </ion-item>
+                        <ion-item class="item-divider">Google Cloud Vision</ion-item>
+                        <ion-item ng-repeat="set in m.searchEngines[2].sets" ng-click="m.selectEngine(2, $index)" ng-class="{active: m.activeEngine.set == set.name}">
+                            {{set.name}}
+                        </ion-item>
+                        <ion-item class="item-divider">MetaMind</ion-item>
+                        <ion-item ng-repeat="set in m.searchEngines[3].sets" ng-click="m.selectEngine(3, $index)" ng-class="{active: m.activeEngine.set == set.name}">
+                            {{set.name}}
+                        </ion-item>
+                        <ion-item class="item-divider">JustVisual</ion-item>
+                        <ion-item ng-repeat="set in m.searchEngines[4].sets" ng-click="m.selectEngine(4, $index)" ng-class="{active: m.activeEngine.set == set.name}">
+                            {{set.name}}
                         </ion-item>
                     </ion-list>
                 </ion-content>

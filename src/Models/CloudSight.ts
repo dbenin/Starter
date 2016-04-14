@@ -38,10 +38,10 @@ module VisualSearch.Models
                             stop();
                         }
                     }, (reason: any) =>
-                        {
-                            q.reject(reason);
-                            stop();
-                        });
+                    {
+                        q.reject(reason);
+                        stop();
+                    });
                 }, 2000);
                 let stop: () => void = () => { this.$interval.cancel(polling) };
             };
