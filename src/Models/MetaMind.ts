@@ -33,7 +33,7 @@ module VisualSearch.Models
         {
             return this.$http({
                 method: "GET",
-                url: "http://172.16.82.56/test/api/Products?component=" + component
+                url: "http://172.16.82.56/test/api/Product?component=" + component
             });
         }
         searchStockDatabase(component: string): ng.IPromise<any>
@@ -69,6 +69,7 @@ module VisualSearch.Models
                         result.database.ok = false;
                         q.resolve(result);
                         console.log("Database non disponibile: " + reason.data.Message);
+                        alert("Database non disponibile:\n" + reason.data.Message);
                     });//.finally(() => { q.resolve(result); });
                 }
                 //q.resolve(result);

@@ -69,7 +69,7 @@
                             </ion-list>
                         </div>
                     </div>
-                    <!--JUSTVISUAL RESULTS -->
+                    <!--JUSTVISUAL RESULTS-->
                     <div class="card" ng-show="m.results.ok === true && m.activeEngine.engine === 'JustVisual'">
                         <div class="item item-divider">Results</div>
                         <div class="item item-text-wrap">
@@ -81,7 +81,7 @@
                             </ion-list>
                         </div>
                     </div>
-                    <!--GOOGLECLOUDVISION RESULTS -->
+                    <!--GOOGLECLOUDVISION RESULTS-->
                     <div class="card" ng-show="m.results.ok === true && m.activeEngine.engine === 'GoogleCloudVision'">
                         <div class="item item-divider" ng-show="m.activeEngine.set != 'Text Detection'">Results</div>
                         <div class="item item-divider" ng-show="m.activeEngine.set == 'Text Detection'">
@@ -121,6 +121,18 @@
                                 <ion-item ng-repeat="prediction in m.results.content.predictions">
                                     <span>{{prediction.class_name}}</span>
                                     <span class="item-note">{{(prediction.prob * 100).toFixed(1)}}%</span>
+                                </ion-item>
+                            </ion-list>
+                        </div>
+                    </div>
+                    <!--DATABASE-->
+                    <div class="card" ng-show="m.results.database.ok === true && m.activeEngine.set === 'Custom Classifier'">
+                        <div class="item item-divider">Stock quantity: {{m.results.database.stock}}</div>
+                        <div class="item item-text-wrap">
+                            <ion-list>
+                                <ion-item ng-repeat="product in m.results.database.products">
+                                    <span>{{product.Name}}</span>
+                                    <span class="item-note">{{product.Quantity}}</span>
                                 </ion-item>
                             </ion-list>
                         </div>
