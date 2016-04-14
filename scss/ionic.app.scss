@@ -19,10 +19,15 @@ $dark:                            #444 !default;
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Custom variables
-$PlainDarkBlueColor: #145494;
-$PlainRedColor: #C72635;
-$positive: $PlainDarkBlueColor !default;
-$assertive: $PlainRedColor !default;
+$PlainDarkBlueColor:        #145494;
+$PlainLightBlueColor:       #B7C0DD;
+$PlainGrayColor:            #DDDDDD;
+$PlainRedColor:             #C72635;
+
+$positive:                  $PlainDarkBlueColor !default;
+$assertive:                 $PlainRedColor !default;
+$item-default-active-bg:    $PlainGrayColor !default;
+
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
