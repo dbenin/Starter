@@ -5,7 +5,8 @@ module VisualSearch.Models
     export interface IResult//tipo risultato restituito dal motore, da implementare specificamente per ogni motore
     {
         ok?: boolean;
-        content?: any//
+        content?: any;//
+        database?: any;
     }
 
     export interface ISearchEngineSet

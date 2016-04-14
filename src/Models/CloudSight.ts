@@ -11,7 +11,7 @@ module VisualSearch.Models
         }
         search(picture: string): ng.IPromise<any>
         {
-            console.log("cloudsight " + picture);//formato picture dev'essere file uri senza ?... nel nome
+            console.log("cloudsight " + picture);//formato picture dev'essere file uri senza ?... dopo il nome
             let q: ng.IDeferred<any> = this.$q.defer();
 
             let successCallback: (result: FileUploadResult) => void = (result: FileUploadResult) =>

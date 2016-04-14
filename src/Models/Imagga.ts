@@ -12,7 +12,7 @@ module VisualSearch.Models
         }
         search(picture: string, set: number): ng.IPromise<any>
         {
-            console.log("imagga " + picture);//formato picture dev'essere file uri senza ?... nel nome
+            console.log("imagga " + picture);//formato picture dev'essere file uri senza ?... dopo il nome
             let q: ng.IDeferred<any> = this.$q.defer();
 
             let successCallback: (result: FileUploadResult) => void = (result: FileUploadResult) =>

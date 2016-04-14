@@ -29,12 +29,18 @@ module VisualSearch.Models
                 url: "https://www.metamind.io/vision/classify"
             });
         }
-        searchDatabase(component: string): ng.IPromise<any>
+        searchProductsDatabase(component: string): ng.IPromise<any>
         {
             return this.$http({
                 method: "GET",
                 url: "http://172.16.82.56/test/api/Products?component=" + component
-                //url: "http://172.16.82.56/test/api/Values"
+            });
+        }
+        searchStockDatabase(component: string): ng.IPromise<any>
+        {
+            return this.$http({
+                method: "GET",
+                url: "http://172.16.82.56/test/api/Stock?component=" + component
             });
         }
         getResult(picture: string, set: number): ng.IPromise<IResult>
@@ -44,8 +50,28 @@ module VisualSearch.Models
             this.search(picture, set).then((promiseValue: any) =>
             {
                 //console.log("SUCCESS: " + JSON.stringify(promiseValue));
-                result = { ok: true, content: promiseValue.data };
-                q.resolve(result);
+                result = { ok: true, content: promiseValue.data, database: { ok: true, products: {}, stock: 0 } };
+                if (set === 2)
+                {//custom, integro con database
+                    let component: string = result.content.predictions[0].class_name;
+                    console.log("CUSTOM component: " + component);
+                    this.searchProductsDatabase(component).then((promiseValue: any) =>
+                    {
+                        result.database.products = promiseValue.data;
+                        console.log("PRODUCTS: " + JSON.stringify(result.database.products));
+                        this.searchStockDatabase(component).then((promiseValue: any) =>
+                        {
+                            result.database.stock = promiseValue.data[0].Stock;
+                            console.log("STOCK: " + result.database.stock);
+                        }).finally(() => { q.resolve(result); });
+                    }, (reason: any) =>
+                    {
+                        result.database.ok = false;
+                        q.resolve(result);
+                        console.log("Database non disponibile: " + reason.data.Message);
+                    });//.finally(() => { q.resolve(result); });
+                }
+                //q.resolve(result);
             }, (reason: any) =>
             {
                 //console.log("FAIL: " + JSON.stringify(reason));
