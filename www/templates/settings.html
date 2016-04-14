@@ -1,9 +1,12 @@
 ﻿<ion-modal-view ng-controller="Main as m">
 
     <!-- Modal header bar -->
-    <ion-header-bar class="bar-secondary">
+    <ion-header-bar class="bar-positive">
         <h1 class="title">Settings</h1>
-        <button class="button button-clear button-positive" ng-click="m.Layout.hideSettings()">Back</button>
+        <!--<button class="button button-clear" ng-click="m.Layout.hideSettings()">Back</button>-->
+        <button class="button button-icon" ng-click="m.Layout.hideSettings()">
+            <i class="icon ion-close"></i>
+        </button>
     </ion-header-bar>
 
     <!-- Modal content area -->
