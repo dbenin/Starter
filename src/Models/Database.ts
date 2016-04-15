@@ -40,10 +40,27 @@ module VisualSearch.Models
             });
         }
 
-        public static getResults(component: string): ng.IPromise<any>
+        public static getResults(component: string): ng.IPromise<IDatabaseResult>
         {
             let q: ng.IDeferred<IResult> = this.$q.defer();
-            this.Layout.alert("Database getResults()");
+            let result: IDatabaseResult = { ok: true, products: {}, stock: 0 };
+            this.getProducts(component).then((promiseValue: any) =>
+            {
+                result.products = promiseValue.data;
+                console.log("PRODUCTS: " + JSON.stringify(result.products));
+                this.getStock(component).then((promiseValue: any) =>
+                {
+                    result.stock = promiseValue.data[0].Stock;
+                    console.log("STOCK: " + result.stock);
+                }).finally(() => { q.resolve(result); });
+            }, (reason: any) =>
+            {
+                result.ok = false;
+                q.resolve(result);
+                this.Layout.alert("Database non disponibile.");
+                //console.log("Database non disponibile: " + reason.data.Message);
+                //this.Layout.alert("Database non disponibile:\n" + reason.data.Message);
+            });
             return q.promise;
         }
     }

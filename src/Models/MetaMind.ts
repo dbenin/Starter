@@ -55,7 +55,7 @@ module VisualSearch.Models
                 {//custom, integro con database
                     let component: string = result.content.predictions[0].class_name;
                     console.log("CUSTOM component: " + component);
-                    this.searchProductsDatabase(component).then((promiseValue: any) =>
+                    /*this.searchProductsDatabase(component).then((promiseValue: any) =>
                     {
                         result.database.products = promiseValue.data;
                         console.log("PRODUCTS: " + JSON.stringify(result.database.products));
@@ -70,7 +70,12 @@ module VisualSearch.Models
                         q.resolve(result);
                         console.log("Database non disponibile: " + reason.data.Message);
                         alert("Database non disponibile:\n" + reason.data.Message);
-                    });//.finally(() => { q.resolve(result); });
+                    });*///.finally(() => { q.resolve(result); });
+                    Database.getResults(component).then((promiseValue: IDatabaseResult) =>
+                    {
+                        result.database = promiseValue;
+                        q.resolve(result);
+                    });
                 }
                 //q.resolve(result);
             }, (reason: any) =>
