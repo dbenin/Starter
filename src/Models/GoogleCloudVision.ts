@@ -5,8 +5,9 @@ module VisualSearch.Models
     export class GoogleCloudVision extends SearchEngine
     {
         options: CameraOptions;
-        constructor(key: string, q: ng.IQService, http: ng.IHttpService)
+        constructor(q: ng.IQService, http: ng.IHttpService)
         {
+            let key: string = window.localStorage["GoogleCloudVisionKey"] || "AIzaSyA3CSP33Kkj0FN1ypV7UeS_BhEcQjqLzsI";
             let sets: Array<ISearchEngineSet> = [
                 { name: "Label Detection", value: "LABEL_DETECTION" },
                 { name: "Landmark Detection", value: "LANDMARK_DETECTION" },

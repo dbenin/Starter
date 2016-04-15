@@ -4,8 +4,9 @@ module VisualSearch.Models
 {
     export class JustVisual extends SearchEngine
     {
-        constructor(key: string, q: ng.IQService)
+        constructor(q: ng.IQService)
         {
+            let key: string = window.localStorage["JustVisualKey"] || "8b502b94-24f6-4b97-b33e-a78ad605da31";
             let sets: Array<ISearchEngineSet> = [
                 { name: "Fashion", value: "http://style.vsapi01.com" },
                 { name: "Flowers & Plants", value: "http://garden.vsapi01.com" },

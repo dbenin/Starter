@@ -4,8 +4,9 @@ module VisualSearch.Models
 {
     export class CloudSight extends SearchEngine
     {
-        constructor(key: string, q: ng.IQService, http: ng.IHttpService, interval: ng.IIntervalService)
+        constructor(q: ng.IQService, http: ng.IHttpService, interval: ng.IIntervalService)
         {
+            let key: string = window.localStorage["CloudSightKey"] || "CloudSight Q-mo9tM_bf4fGlaJaAoZ8g";
             let sets: Array<ISearchEngineSet> = [{ name: "Product", value: "" }];
             super("CloudSight", key, sets, q, http, interval);
         }

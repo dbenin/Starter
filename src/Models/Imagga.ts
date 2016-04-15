@@ -4,11 +4,11 @@ module VisualSearch.Models
 {
     export class Imagga extends SearchEngine
     {
-        constructor(key: string, q: ng.IQService, http: ng.IHttpService)
+        constructor(q: ng.IQService, http: ng.IHttpService)
         {
+            let key: string = window.localStorage["ImaggaKey"] || "Basic YWNjX2YzMDMyOTkxNzUwODY1Mzo5N2U0YmI4ZjYxMDBlMjc2M2M4ZjNhOTg3YWM2ZDk0Zg==";
             let sets: Array<ISearchEngineSet> = [{ name: "Tagging", value: "tagging" }];
             super("Imagga", key, sets, q, http);
-
         }
         search(picture: string, set: number): ng.IPromise<any>
         {

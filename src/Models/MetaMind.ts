@@ -5,12 +5,13 @@ module VisualSearch.Models
     export class MetaMind extends SearchEngine
     {
         options: CameraOptions;
-        constructor(key: string, q: ng.IQService, http: ng.IHttpService)
+        constructor(q: ng.IQService, http: ng.IHttpService)
         {
+            let key: string = window.localStorage["MetaMindKey"] || "Basic T2e0GexSpnGDPmxU4xj6kktMx89yl3aGxSGOd9jljRTe19xFYW";
             let sets: Array<ISearchEngineSet> = [
                 { name: "General Classifier", value: "imagenet-1k-net" },
                 { name: "Food Classifier", value: "food-net" },
-                { name: "Custom Classifier", value: "41291" }
+                { name: "Custom Classifier", value: window.localStorage["MetaMindCustom"] || "41291" }
             ];
             super("MetaMind", key, sets, q, http);
             this.options = { destinationType: 0 };//Camera.DestinationType.DATA_URL//Camera is not defined?
@@ -74,10 +75,10 @@ module VisualSearch.Models
                     Database.getResults(component).then((promiseValue: IDatabaseResult) =>
                     {
                         result.database = promiseValue;
-                        q.resolve(result);
+                        //q.resolve(result);
                     });
                 }
-                //q.resolve(result);
+                q.resolve(result);
             }, (reason: any) =>
             {
                 //console.log("FAIL: " + JSON.stringify(reason));

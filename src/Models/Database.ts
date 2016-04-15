@@ -11,14 +11,13 @@ module VisualSearch.Models
 
     export class Database
     {
-        private static ip: string;
+        private static ip: string = window.localStorage["DatabaseIP"] || "172.16.82.56";
         private static $q: ng.IQService;
         private static $http: ng.IHttpService;
         private static Layout: Services.ILayout;
 
-        public static set(ip: string, $q: ng.IQService, $http: ng.IHttpService, Layout: Services.ILayout)
+        public static set($q: ng.IQService, $http: ng.IHttpService, Layout: Services.ILayout)
         {
-            this.ip = ip;
             this.$q = $q;
             this.$http = $http;
             this.Layout = Layout;
