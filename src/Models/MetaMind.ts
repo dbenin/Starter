@@ -33,7 +33,7 @@ module VisualSearch.Models
         {
             return this.$http({
                 method: "GET",
-                url: "http://172.16.82.56/test/api/Product?component=" + component
+                url: "http://172.16.82.56/test/api/Products?component=" + component
             });
         }
         searchStockDatabase(component: string): ng.IPromise<any>
