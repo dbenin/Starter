@@ -11,7 +11,24 @@
 
     <!-- Modal content area -->
     <ion-content>
+        <ion-list>
+            <ion-item class="item-divider">General</ion-item>
+            <ion-toggle ng-model="m.options.save">Save picture</ion-toggle>
+            <label class="item">
+                <div class="item-content">Image quality: {{m.options.quality}}</div>
+                <div class="range range-positive">
+                    <i class="icon ion-ios-minus-outline"></i>
+                    <input type="range" min="30" max="80" ng-model="m.options.quality">
+                    <i class="icon ion-ios-plus-outline"></i>
+                </div>
+            </label>
+            <ion-item class="item-divider">JustVisual</ion-item>
+            <label class="item item-input">
+                <span class="input-label">Key</span>
+                <input type="text" ng-model="m.searchEngines[4].key">
+            </label>
 
+        </ion-list>
     </ion-content>
 
 </ion-modal-view>
