@@ -2,40 +2,48 @@
 
 module VisualSearch.Models
 {
-    export interface IDatabase
+    export interface IDatabaseResult
     {
-        ip: string;
-        getResults(component: string): ng.IPromise<any>;
+        ok?: boolean;
+        products?: any;
+        stock?: number;
     }
 
-    export class Database implements IDatabase
+    export class Database
     {
-        constructor(
-            public ip: string,
-            private $q: ng.IQService,
-            private $http: ng.IHttpService,
-            private layout: VisualSearch.Services.ILayout
-        ) { }
+        private static ip: string;
+        private static $q: ng.IQService;
+        private static $http: ng.IHttpService;
+        private static Layout: Services.ILayout;
 
-        getProducts(component: string): ng.IPromise<any>
+        public static set(ip: string, $q: ng.IQService, $http: ng.IHttpService, Layout: Services.ILayout)
+        {
+            this.ip = ip;
+            this.$q = $q;
+            this.$http = $http;
+            this.Layout = Layout;
+        }
+
+        private static getProducts(component: string): ng.IPromise<any>
         {
             return this.$http({
                 method: "GET",
-                url: "http://172.16.82.56/test/api/Products?component=" + component
+                url: "http://" + this.ip + "/test/api/Products?component=" + component
             });
         }
 
-        getStock(component: string): ng.IPromise<any>
+        private static getStock(component: string): ng.IPromise<any>
         {
             return this.$http({
                 method: "GET",
-                url: "http://172.16.82.56/test/api/Stock?component=" + component
+                url: "http://" + this.ip + "/test/api/Stock?component=" + component
             });
         }
 
-        getResults(component: string): ng.IPromise<any>
+        public static getResults(component: string): ng.IPromise<any>
         {
             let q: ng.IDeferred<IResult> = this.$q.defer();
+            this.Layout.alert("Database getResults()");
             return q.promise;
         }
     }

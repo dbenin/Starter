@@ -13,14 +13,19 @@ module VisualSearch.Services
 
     export class Loader implements ILoader
     {
-        static $inject = ["$q", "$http", "$interval"];
+        static $inject = ["$q", "$http", "$interval", "Layout"];
 
         engines: Array<Models.ISearchEngine>;
         active: Models.IActiveSearchEngine;
 
-        constructor(private $q: ng.IQService, private $http: ng.IHttpService, private $interval: ng.IIntervalService)
+        constructor(
+            private $q: ng.IQService,
+            private $http: ng.IHttpService,
+            private $interval: ng.IIntervalService,
+            private Layout: Services.ILayout
+        )
         {
-            //console.log("CONSTRUCTOR");
+            Models.Database.set("172.16.82.56", this.$q, this.$http, this.Layout);
             this.engines = [//caricare e salvare key in locale
                 new Models.CloudSight("CloudSight Q-mo9tM_bf4fGlaJaAoZ8g", this.$q, this.$http, this.$interval),
                 new Models.Imagga("Basic YWNjX2YzMDMyOTkxNzUwODY1Mzo5N2U0YmI4ZjYxMDBlMjc2M2M4ZjNhOTg3YWM2ZDk0Zg==", this.$q, this.$http),
