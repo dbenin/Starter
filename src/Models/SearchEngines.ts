@@ -36,5 +36,9 @@ module VisualSearch.Models
             protected $http?: ng.IHttpService,
             protected $interval?: ng.IIntervalService
         ) { }
+        save(): void
+        {
+            window.localStorage[this.name + "Key"] = this.key;
+        }
     }
 }

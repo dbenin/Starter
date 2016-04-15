@@ -16,6 +16,11 @@ module VisualSearch.Models
             super("MetaMind", key, sets, q, http);
             this.options = { destinationType: 0 };//Camera.DestinationType.DATA_URL//Camera is not defined?
         }
+        save(): void
+        {
+            super.save();
+            window.localStorage["MetaMindCustom"] = this.sets[2].value;
+        }
         search(picture: string, set: number): ng.IPromise<any>
         {//necessita di picture in formato base64 CON header "data:image/jpeg;base64,"
             let classifier: string = this.sets[set].value;
@@ -56,27 +61,10 @@ module VisualSearch.Models
                 {//custom, integro con database
                     let component: string = result.content.predictions[0].class_name;
                     console.log("CUSTOM component: " + component);
-                    /*this.searchProductsDatabase(component).then((promiseValue: any) =>
-                    {
-                        result.database.products = promiseValue.data;
-                        console.log("PRODUCTS: " + JSON.stringify(result.database.products));
-                        this.searchStockDatabase(component).then((promiseValue: any) =>
-                        {
-                            result.database.stock = promiseValue.data[0].Stock;
-                            console.log("STOCK: " + result.database.stock);
-                        }).finally(() => { q.resolve(result); });
-                    }, (reason: any) =>
-                    {
-                        result.database.ok = false;
-                        q.resolve(result);
-                        console.log("Database non disponibile: " + reason.data.Message);
-                        alert("Database non disponibile:\n" + reason.data.Message);
-                    });*///.finally(() => { q.resolve(result); });
                     Database.getResults(component).then((promiseValue: IDatabaseResult) =>
                     {
                         result.database = promiseValue;
-                        //q.resolve(result);
-                    });
+                    });//never rejected so no need error callback
                 }
                 q.resolve(result);
             }, (reason: any) =>
