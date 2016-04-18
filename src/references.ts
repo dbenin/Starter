@@ -6,5 +6,5 @@
 ///<reference path="Models/JustVisual.ts"/>
 ///<reference path="Services/Picture.ts"/>
 ///<reference path="Services/Layout.ts"/>
-///<reference path="Services/SearchEngines.ts"/>
+///<reference path="Services/Loader.ts"/>
 ///<reference path="Controllers/Main.ts"/>

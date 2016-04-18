@@ -22,12 +22,15 @@
                     <i class="icon ion-ios-plus-outline"></i>
                 </div>
             </label>
-            <ion-item class="item-divider">JustVisual</ion-item>
+            <ion-item class="item-divider">{{m.Loader.active.engine.name}}</ion-item>
             <label class="item item-input">
                 <span class="input-label">Key</span>
-                <input type="text" ng-model="m.searchEngines[4].key" ng-model-options="{ updateOn: 'blur' }" ng-change="m.Layout.alert('ng-change')">
+                <input type="text" ng-model="m.Loader.active.engine.key" ng-model-options="{ updateOn: 'blur' }" ng-change="m.Loader.active.engine.save()">
             </label>
-
+            <label class="item item-input" ng-show="m.Loader.active.engine.name === 'MetaMind'">
+                <span class="input-label">Custom Classifier ID</span>
+                <input type="text" ng-model="m.Loader.active.engine.sets[2].value" ng-model-options="{ updateOn: 'blur' }" ng-change="m.Loader.active.engine.save()">
+            </label>
         </ion-list>
     </ion-content>
 
