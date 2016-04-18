@@ -140,36 +140,7 @@
                 </ion-content>
             </ion-side-menu-content>
 
-            <!-- Side menu -->
-            <ion-side-menu side="left">
-                <ion-header-bar class="bar-positive">
-                    <h1 class="title">Search Engines</h1>
-                </ion-header-bar>
-                <ion-content>
-                    <ion-list>
-                        <ion-item class="item-divider">CloudSight</ion-item>
-                        <ion-item ng-repeat="set in m.Loader.engines[0].sets" ng-click="m.selectEngine(0, $index)" ng-class="{active: m.Loader.active.names.set == set.name}">
-                            {{set.name}}
-                        </ion-item>
-                        <ion-item class="item-divider">Imagga</ion-item>
-                        <ion-item ng-repeat="set in m.Loader.engines[1].sets" ng-click="m.selectEngine(1, $index)" ng-class="{active: m.Loader.active.names.set == set.name}">
-                            {{set.name}}
-                        </ion-item>
-                        <ion-item class="item-divider">Google Cloud Vision</ion-item>
-                        <ion-item ng-repeat="set in m.Loader.engines[2].sets" ng-click="m.selectEngine(2, $index)" ng-class="{active: m.Loader.active.names.set == set.name}">
-                            {{set.name}}
-                        </ion-item>
-                        <ion-item class="item-divider">MetaMind</ion-item>
-                        <ion-item ng-repeat="set in m.Loader.engines[3].sets" ng-click="m.selectEngine(3, $index)" ng-class="{active: m.Loader.active.names.set == set.name}">
-                            {{set.name}}
-                        </ion-item>
-                        <ion-item class="item-divider">JustVisual</ion-item>
-                        <ion-item ng-repeat="set in m.Loader.engines[4].sets" ng-click="m.selectEngine(4, $index)" ng-class="{active: m.Loader.active.names.set == set.name}">
-                            {{set.name}}
-                        </ion-item>
-                    </ion-list>
-                </ion-content>
-            </ion-side-menu>
+            <vs-side-menu></vs-side-menu>
 
         </ion-side-menus>
     </body>

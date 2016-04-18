@@ -23,14 +23,6 @@
                     <i class="icon ion-ios-plus-outline"></i>
                 </div>
             </label>
-            <!--DATABASE-->
-            <div ng-show="m.Loader.active.names.set === 'Custom Classifier' || m.Loader.active.names.set === 'Custom Index'">
-                <ion-item class="item-divider">Database</ion-item>
-                <label class="item item-input">
-                    <span class="input-label">Server IP</span>
-                    <input type="text" ng-model="m.database.ip" ng-model-options="{ updateOn: 'blur' }" ng-change="m.database.save()">
-                </label>
-            </div>
             <!--OPZIONI SPECIFICHE PER OGNI MOTORE DI RICERCA-->
             <ion-item class="item-divider">{{m.Loader.active.engine.name}}</ion-item>
             <label class="item item-input">
@@ -51,6 +43,14 @@
                 <label class="item item-input">
                     <span class="input-label">Index Name</span>
                     <input type="text" ng-model="m.Loader.active.engine.sets[4].index" ng-model-options="{ updateOn: 'blur' }" ng-change="m.Loader.active.engine.save()">
+                </label>
+            </div>
+            <!--DATABASE-->
+            <div ng-show="m.Loader.active.names.set === 'Custom Classifier' || m.Loader.active.names.set === 'Custom Index'">
+                <ion-item class="item-divider">Products and Components Service</ion-item>
+                <label class="item item-input">
+                    <span class="input-label">Address</span>
+                    <input type="text" ng-model="m.database.address" ng-model-options="{ updateOn: 'blur' }" ng-change="m.database.save()">
                 </label>
             </div>
         </ion-list>

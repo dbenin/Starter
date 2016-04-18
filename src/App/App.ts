@@ -7,5 +7,6 @@ module VisualSearch.App
         .controller("Main", Controllers.Main)
         .service("Picture", Services.Picture)
         .service("Layout", Services.Layout)
-        .service("Loader", Services.Loader);
+        .service("Loader", Services.Loader)
+        .directive("vsSideMenu", Directives.SideMenu);
 }

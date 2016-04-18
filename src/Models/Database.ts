@@ -11,7 +11,7 @@ module VisualSearch.Models
 
     export class Database
     {
-        private static ip: string = window.localStorage["DatabaseIP"] || "172.16.82.56";
+        private static address: string = window.localStorage["Database"] || "http://172.16.82.56";
         private static $q: ng.IQService;
         private static $http: ng.IHttpService;
         private static Layout: Services.Layout;
@@ -27,7 +27,7 @@ module VisualSearch.Models
         {
             return this.$http({
                 method: "GET",
-                url: "http://" + this.ip + "/test/api/Products?component=" + component
+                url: this.address + "/test/api/Products?component=" + component
             });
         }
 
@@ -35,7 +35,7 @@ module VisualSearch.Models
         {
             return this.$http({
                 method: "GET",
-                url: "http://" + this.ip + "/test/api/Stock?component=" + component
+                url: this.address + "/test/api/Stock?component=" + component
             });
         }
 
@@ -56,7 +56,7 @@ module VisualSearch.Models
             {
                 result.ok = false;
                 q.resolve(result);
-                this.Layout.alert("Database non disponibile.");
+                this.Layout.alert("Service not available.");
                 //console.log("Database non disponibile: " + reason.data.Message);
                 //this.Layout.alert("Database non disponibile:\n" + reason.data.Message);
             });
@@ -65,7 +65,7 @@ module VisualSearch.Models
 
         public static save(): void
         {
-            window.localStorage["DatabaseIP"] = this.ip;
+            window.localStorage["Database"] = this.address;
         }
     }
 }

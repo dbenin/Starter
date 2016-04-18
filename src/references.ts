@@ -8,3 +8,4 @@
 ///<reference path="Services/Layout.ts"/>
 ///<reference path="Services/Loader.ts"/>
 ///<reference path="Controllers/Main.ts"/>
+///<reference path="Directives/SideMenu.ts"/>
