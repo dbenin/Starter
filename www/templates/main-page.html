@@ -1,15 +1,7 @@
 ﻿<ion-side-menu-content>
-    <ion-header-bar class="bar-positive">
-        <!-- Menu button -->
-        <button class="button button-icon" ng-click="m.Layout.toggleSideMenu()">
-            <i class="icon ion-navicon"></i>
-        </button>
-        <h1 class="title">Visual Search App</h1>
-        <!-- Settings button -->
-        <button class="button button-icon" ng-click="m.Layout.showSettings()">
-            <i class="icon ion-gear-a"></i>
-        </button>
-    </ion-header-bar>
+    
+    <vs-header></vs-header>
+
     <ion-content class="padding">
         <div class="card">
             <div class="item item-divider">{{m.Loader.active.names.engine}}: {{m.Loader.active.names.set}}</div>
