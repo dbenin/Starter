@@ -10,7 +10,6 @@ module VisualSearch.Controllers
         searchEngines: Array<Models.ISearchEngine>;
         activeEngine: Models.IActiveNames;
         results: Models.IResult;
-        options: any = { save: true, quality: 50 };
 
         constructor(
             private Loader: Services.ILoader,

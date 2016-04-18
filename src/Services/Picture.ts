@@ -5,16 +5,27 @@ module VisualSearch.Services
     export interface IPicture
     {
         take(library: boolean, specifics: CameraOptions): ng.IPromise<string>;
+        saveSettings(): void;
     }
 
     export class Picture implements IPicture
     {
         static $inject = ["$q"];
+
+        settings: any = { save: false, quality: 50 };//da definire il tipo
         
-        constructor(private $q: ng.IQService) { }
+        constructor(private $q: ng.IQService)
+        {
+            let settings: string = window.localStorage["Settings"];
+            if (settings)
+            {
+                this.settings = angular.fromJson(settings);
+            }
+        }
 
         take(library: boolean, specifics: CameraOptions): ng.IPromise<string>
         {
+            console.log("TAKE " + this.settings.save + " " + this.settings.quality);
             let options: CameraOptions = {};
             options.correctOrientation = true;
             options.targetWidth = 640;
@@ -26,10 +37,10 @@ module VisualSearch.Services
             }
             else
             {
-                options.quality = 50;
+                options.quality = this.settings.quality;
                 options.sourceType = Camera.PictureSourceType.CAMERA;
                 options.encodingType = Camera.EncodingType.JPEG;
-                options.saveToPhotoAlbum = false;
+                options.saveToPhotoAlbum = this.settings.save;
             }
             options.destinationType = Camera.DestinationType.FILE_URI;
             if (specifics)
@@ -64,6 +75,12 @@ module VisualSearch.Services
             }, options);
 
             return q.promise;
+        }
+
+        saveSettings(): void
+        {
+            console.log("SAVE " + this.settings.save + " " + this.settings.quality);
+            window.localStorage["Settings"] = angular.toJson(this.settings);
         }
     }
 }

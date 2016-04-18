@@ -13,19 +13,19 @@
     <ion-content>
         <ion-list>
             <ion-item class="item-divider">General</ion-item>
-            <ion-toggle ng-model="m.options.save">Save picture</ion-toggle>
+            <ion-toggle ng-model="m.Picture.settings.save" ng-model-options="{ debounce: 1000 }" ng-change="m.Picture.saveSettings()">Save picture</ion-toggle>
             <label class="item">
-                <div class="item-content">Image quality: {{m.options.quality}}</div>
+                <div class="item-content">Image quality: {{m.Picture.settings.quality}}</div>
                 <div class="range range-positive">
                     <i class="icon ion-ios-minus-outline"></i>
-                    <input type="range" min="30" max="80" ng-model="m.options.quality">
+                    <input type="range" min="30" max="80" ng-model="m.Picture.settings.quality" ng-model-options="{ debounce: 1000 }" ng-change="m.Picture.saveSettings()">
                     <i class="icon ion-ios-plus-outline"></i>
                 </div>
             </label>
             <ion-item class="item-divider">JustVisual</ion-item>
             <label class="item item-input">
                 <span class="input-label">Key</span>
-                <input type="text" ng-model="m.searchEngines[4].key">
+                <input type="text" ng-model="m.searchEngines[4].key" ng-model-options="{ updateOn: 'blur' }" ng-change="m.Layout.alert('ng-change')">
             </label>
 
         </ion-list>
