@@ -2,11 +2,11 @@
 
 module VisualSearch.Directives
 {
-    export function SideMenu(): ng.IDirective
+    export function MainPage(): ng.IDirective
     {
         return {
             restrict: 'E',
-            templateUrl: "templates/side-menu.html"
+            templateUrl: "templates/main-page.html"
         };
     }
 }

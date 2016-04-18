@@ -8,5 +8,6 @@ module VisualSearch.App
         .service("Picture", Services.Picture)
         .service("Layout", Services.Layout)
         .service("Loader", Services.Loader)
-        .directive("vsSideMenu", Directives.SideMenu);
+        .directive("vsSideMenu", Directives.SideMenu)
+        .directive("vsMainPage", Directives.MainPage);
 }
