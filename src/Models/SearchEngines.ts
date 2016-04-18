@@ -13,6 +13,7 @@ module VisualSearch.Models
     {
         name: string;
         value: string;
+        index?: string;
     }
 
     export interface ISearchEngine//interfaccia per campi e metodi pubblici

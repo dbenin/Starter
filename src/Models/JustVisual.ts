@@ -11,9 +11,20 @@ module VisualSearch.Models
                 { name: "Fashion", value: "http://style.vsapi01.com" },
                 { name: "Flowers & Plants", value: "http://garden.vsapi01.com" },
                 { name: "Furniture", value: "http://decor.vsapi01.com" },
-                { name: "Pet", value: "http://pets.vsapi01.com" }
+                { name: "Pet", value: "http://pets.vsapi01.com" },
+                {
+                    name: "Custom Index",
+                    value: window.localStorage["JustVisualServer"] || "api.vsapi01.com",
+                    index: window.localStorage["JustVisualIndex"] || "index_name"
+                }
             ];
             super("JustVisual", key, sets, q);
+        }
+        save(): void
+        {
+            super.save();
+            window.localStorage["JustVisualServer"] = this.sets[4].value;
+            window.localStorage["JustVisualIndex"] = this.sets[4].index;
         }
         search(picture: string, set: number): ng.IPromise<any>
         {
@@ -32,7 +43,16 @@ module VisualSearch.Models
             };
 
             let fileTransfer: FileTransfer = new FileTransfer();
-            fileTransfer.upload(picture, encodeURI(this.sets[set].value + "/api-search?apikey=" + this.key), successCallback, errorCallback, options, true);
+            let uri: string;
+            if (set === 4)//custom: http://[API_server]/search?apikey=[YOUR_API_KEY]&index=[INDEX_NAME]
+            {
+                uri = "http://" + this.sets[set].value + "/search?apikey=" + this.key + "&index=" + this.sets[set].index;
+            }
+            else
+            {
+                uri = this.sets[set].value + "/api-search?apikey=" + this.key;
+            }
+            fileTransfer.upload(picture, encodeURI(uri), successCallback, errorCallback, options, true);
 
             return q.promise;
         }
@@ -48,14 +68,27 @@ module VisualSearch.Models
                     q.reject(result);
                 }
                 else
-                {
-                    result = { ok: true, content: JSON.parse(promiseValue.response) };
+                {//aggiungo db
+                    result = { ok: true, content: JSON.parse(promiseValue.response), database: { ok: true, products: {}, stock: 0 } };
                     //console.log("SUCCESS :" + JSON.stringify(result.content));
-                    q.resolve(result);
+                    if (set === 4)
+                    {//custom, integro con database
+                        let component: string = result.content.images[0].title;
+                        console.log("CUSTOM component: " + component);
+                        Database.getResults(component).then((promiseValue: IDatabaseResult) =>
+                        {
+                            result.database = promiseValue;
+                            q.resolve(result);
+                        });//never rejected so no need error callback
+                    }
+                    else
+                    {
+                        q.resolve(result);
+                    }
                 }
             }, (reason: any) =>
             {
-                //console.log("FAIL :" + JSON.stringify(reason));
+                console.log("FAIL :" + JSON.stringify(reason));
                 result = { ok: false, content: JSON.parse(reason.body).errorMessage };
                 q.reject(result);
             });

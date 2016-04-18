@@ -35,20 +35,6 @@ module VisualSearch.Models
                 url: "https://www.metamind.io/vision/classify"
             });
         }
-        searchProductsDatabase(component: string): ng.IPromise<any>
-        {
-            return this.$http({
-                method: "GET",
-                url: "http://172.16.82.56/test/api/Products?component=" + component
-            });
-        }
-        searchStockDatabase(component: string): ng.IPromise<any>
-        {
-            return this.$http({
-                method: "GET",
-                url: "http://172.16.82.56/test/api/Stock?component=" + component
-            });
-        }
         getResult(picture: string, set: number): ng.IPromise<IResult>
         {
             let q: ng.IDeferred<IResult> = this.$q.defer();
