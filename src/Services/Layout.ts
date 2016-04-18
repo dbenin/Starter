@@ -2,7 +2,7 @@
 
 module VisualSearch.Services
 {
-    export interface ILayout
+    /*export interface ILayout
     {
         toggleSideMenu(): void;
         showSettings(): void;
@@ -10,9 +10,9 @@ module VisualSearch.Services
         showLoading(): void;
         hideLoading(): void;
         alert(message: string): void;
-    }
+    }*/
 
-    export class Layout implements ILayout
+    export class Layout// implements ILayout
     {
         static $inject = ["$ionicSideMenuDelegate", "$ionicLoading", "$ionicPopup", "$ionicModal"];
 

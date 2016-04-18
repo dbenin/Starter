@@ -2,16 +2,16 @@
 
 module VisualSearch.Services
 {
-    export interface ILoader
+    /*export interface ILoader
     {
-        getEngines(): Array<Models.ISearchEngine>;
-        getActive(): Models.IActiveNames;
-        getActiveOptions(): CameraOptions;
+        //getEngines(): Array<Models.ISearchEngine>;
+        //getActive(): Models.IActiveNames;
+        //getActiveOptions(): CameraOptions;
         setActive(engineIndex: number, setIndex: number): void;
         getResults(picture: string): ng.IPromise<Models.IResult>;
-    }
+    }*/
 
-    export class Loader implements ILoader
+    export class Loader// implements ILoader
     {
         static $inject = ["$q", "$http", "$interval", "Layout"];
 
@@ -22,7 +22,7 @@ module VisualSearch.Services
             private $q: ng.IQService,
             private $http: ng.IHttpService,
             private $interval: ng.IIntervalService,
-            private Layout: Services.ILayout
+            private Layout: Services.Layout
         )
         {
             Models.Database.set(this.$q, this.$http, this.Layout);
@@ -43,20 +43,20 @@ module VisualSearch.Services
             //console.log("SET: "+ this.active.indexes.set);
         }
 
-        getEngines(): Array<Models.ISearchEngine>
+        /*getEngines(): Array<Models.ISearchEngine>
         {
             return this.engines;
-        }
+        }*/
 
-        getActive(): Models.IActiveNames
+        /*getActive(): Models.IActiveNames
         {
             return this.active.names;
-        }
+        }*/
 
-        getActiveOptions(): CameraOptions
+        /*getActiveOptions(): CameraOptions
         {
             return this.active.engine.options;
-        }
+        }*/
 
         setActive(engineIndex: number, setIndex: number): void
         {

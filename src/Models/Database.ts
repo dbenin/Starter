@@ -14,9 +14,9 @@ module VisualSearch.Models
         private static ip: string = window.localStorage["DatabaseIP"] || "172.16.82.56";
         private static $q: ng.IQService;
         private static $http: ng.IHttpService;
-        private static Layout: Services.ILayout;
+        private static Layout: Services.Layout;
 
-        public static set($q: ng.IQService, $http: ng.IHttpService, Layout: Services.ILayout)
+        public static set($q: ng.IQService, $http: ng.IHttpService, Layout: Services.Layout)
         {
             this.$q = $q;
             this.$http = $http;

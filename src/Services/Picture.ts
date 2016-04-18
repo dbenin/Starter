@@ -2,13 +2,13 @@
 
 module VisualSearch.Services
 {
-    export interface IPicture
+    /*export interface IPicture
     {
         take(library: boolean, specifics: CameraOptions): ng.IPromise<string>;
         saveSettings(): void;
-    }
+    }*/
 
-    export class Picture implements IPicture
+    export class Picture// implements IPicture
     {
         static $inject = ["$q"];
 

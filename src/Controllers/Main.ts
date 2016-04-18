@@ -7,19 +7,19 @@ module VisualSearch.Controllers
         static $inject = ["Loader", "Picture", "Layout"];
 
         photo: string;
-        searchEngines: Array<Models.ISearchEngine>;
-        activeEngine: Models.IActiveNames;
+        //searchEngines: Array<Models.ISearchEngine>;
+        //activeEngine: Models.IActiveNames;
         results: Models.IResult;
         database: Models.Database;
 
         constructor(
-            private Loader: Services.ILoader,
-            private Picture: Services.IPicture,
-            private Layout: Services.ILayout)
+            private Loader: Services.Loader,
+            private Picture: Services.Picture,
+            private Layout: Services.Layout)
         {
             this.photo = "";
-            this.searchEngines = Loader.getEngines();
-            this.activeEngine = Loader.getActive();
+            //this.searchEngines = Loader.getEngines();//Loader.engines
+            //this.activeEngine = Loader.getActive();//Loader.active.names
             this.results = {};
             this.database = Models.Database;
         }
@@ -35,7 +35,7 @@ module VisualSearch.Controllers
         getPhoto(library?: boolean)
         {
             this.results = {};
-            this.Picture.take(library, this.Loader.getActiveOptions()).then(image =>
+            this.Picture.take(library, this.Loader.active.engine.options).then(image =>
             {
                 this.photo = image;//formato immagine base64 con header oppure file uri senza ?
                 this.Layout.showLoading();

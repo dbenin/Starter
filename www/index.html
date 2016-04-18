@@ -40,7 +40,7 @@
                 </ion-header-bar>
                 <ion-content class="padding">
                     <div class="card">
-                        <div class="item item-divider">{{m.activeEngine.engine}}: {{m.activeEngine.set}}</div>
+                        <div class="item item-divider">{{m.Loader.active.names.engine}}: {{m.Loader.active.names.set}}</div>
                         <div class="item item-body" style="text-align:center;">
                             <img ng-show="m.photo !== ''" ng-src="{{m.photo}}" style="max-width: 100%; max-height:300px">
                             <div class="button-bar">
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <!--CLOUDSIGHT RESULTS http://cloudsightapi.com/dashboard -->
-                    <div class="card" ng-show="m.results.ok === true && m.activeEngine.engine === 'CloudSight'">
+                    <div class="card" ng-show="m.results.ok === true && m.Loader.active.names.engine === 'CloudSight'">
                         <div class="item item-divider">
                             Result status: {{m.results.content.status}}
                             <span style="display:inline-block;float:right">Polling time: {{m.results.content.time.toFixed(1)}} sec</span>
@@ -58,7 +58,7 @@
                         <div class="item" style="text-transform:capitalize">{{m.results.content.name}}</div>
                     </div>
                     <!--IMAGGA RESULTS https://imagga.com/profile/dashboard -->
-                    <div class="card" ng-show="m.results.ok === true && m.activeEngine.engine === 'Imagga'">
+                    <div class="card" ng-show="m.results.ok === true && m.Loader.active.names.engine === 'Imagga'">
                         <div class="item item-divider">Results</div>
                         <div class="item item-text-wrap">
                             <ion-list>
@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     <!--JUSTVISUAL RESULTS-->
-                    <div class="card" ng-show="m.results.ok === true && m.activeEngine.engine === 'JustVisual'">
+                    <div class="card" ng-show="m.results.ok === true && m.Loader.active.names.engine === 'JustVisual'">
                         <div class="item item-divider">Results</div>
                         <div class="item item-text-wrap">
                             <ion-list>
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                     <!--GOOGLECLOUDVISION RESULTS-->
-                    <div class="card" ng-show="m.results.ok === true && m.activeEngine.engine === 'GoogleCloudVision'">
+                    <div class="card" ng-show="m.results.ok === true && m.Loader.active.names.engine === 'GoogleCloudVision'">
                         <div class="item item-divider" ng-show="m.activeEngine.set != 'Text Detection'">Results</div>
                         <div class="item item-divider" ng-show="m.activeEngine.set == 'Text Detection'">
                             Language: {{m.results.content.responses[0].textAnnotations[0].locale}}
@@ -114,7 +114,7 @@
                         </div>
                     </div>
                     <!--METAMIND RESULTS https://www.metamind.io/auth/my_account -->
-                    <div class="card" ng-show="m.results.ok === true && m.activeEngine.engine === 'MetaMind'">
+                    <div class="card" ng-show="m.results.ok === true && m.Loader.active.names.engine === 'MetaMind'">
                         <div class="item item-divider">Results</div>
                         <div class="item item-text-wrap">
                             <ion-list>
@@ -126,7 +126,7 @@
                         </div>
                     </div>
                     <!--DATABASE-->
-                    <div class="card" ng-show="m.results.database.ok === true && m.activeEngine.set === 'Custom Classifier'">
+                    <div class="card" ng-show="m.results.database.ok === true && (m.Loader.active.names.set === 'Custom Classifier' || m.Loader.active.names.set === 'Custom Index')">
                         <div class="item item-divider">Stock quantity: {{m.results.database.stock}}</div>
                         <div class="item item-text-wrap">
                             <ion-list>
@@ -147,32 +147,24 @@
                 </ion-header-bar>
                 <ion-content>
                     <ion-list>
-                        <!-- nested (brutto)
-                        <ion-item class="item-divider" ng-repeat="engine in m.searchEngines" ng-init="engineIndex = $index">
-                            {{engine.name}}
-                            <ion-item ng-repeat="set in engine.sets" ng-click="m.selectEngine(engineIndex, $index)" ng-class="{active: m.activeEngine.set == set.name}">
-                                {{set.name}}
-                            </ion-item>
-                        </ion-item>
-                        -->
                         <ion-item class="item-divider">CloudSight</ion-item>
-                        <ion-item ng-repeat="set in m.searchEngines[0].sets" ng-click="m.selectEngine(0, $index)" ng-class="{active: m.activeEngine.set == set.name}">
+                        <ion-item ng-repeat="set in m.Loader.engines[0].sets" ng-click="m.selectEngine(0, $index)" ng-class="{active: m.Loader.active.names.set == set.name}">
                             {{set.name}}
                         </ion-item>
                         <ion-item class="item-divider">Imagga</ion-item>
-                        <ion-item ng-repeat="set in m.searchEngines[1].sets" ng-click="m.selectEngine(1, $index)" ng-class="{active: m.activeEngine.set == set.name}">
+                        <ion-item ng-repeat="set in m.Loader.engines[1].sets" ng-click="m.selectEngine(1, $index)" ng-class="{active: m.Loader.active.names.set == set.name}">
                             {{set.name}}
                         </ion-item>
                         <ion-item class="item-divider">Google Cloud Vision</ion-item>
-                        <ion-item ng-repeat="set in m.searchEngines[2].sets" ng-click="m.selectEngine(2, $index)" ng-class="{active: m.activeEngine.set == set.name}">
+                        <ion-item ng-repeat="set in m.Loader.engines[2].sets" ng-click="m.selectEngine(2, $index)" ng-class="{active: m.Loader.active.names.set == set.name}">
                             {{set.name}}
                         </ion-item>
                         <ion-item class="item-divider">MetaMind</ion-item>
-                        <ion-item ng-repeat="set in m.searchEngines[3].sets" ng-click="m.selectEngine(3, $index)" ng-class="{active: m.activeEngine.set == set.name}">
+                        <ion-item ng-repeat="set in m.Loader.engines[3].sets" ng-click="m.selectEngine(3, $index)" ng-class="{active: m.Loader.active.names.set == set.name}">
                             {{set.name}}
                         </ion-item>
                         <ion-item class="item-divider">JustVisual</ion-item>
-                        <ion-item ng-repeat="set in m.searchEngines[4].sets" ng-click="m.selectEngine(4, $index)" ng-class="{active: m.activeEngine.set == set.name}">
+                        <ion-item ng-repeat="set in m.Loader.engines[4].sets" ng-click="m.selectEngine(4, $index)" ng-class="{active: m.Loader.active.names.set == set.name}">
                             {{set.name}}
                         </ion-item>
                     </ion-list>
