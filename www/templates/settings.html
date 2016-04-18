@@ -13,6 +13,7 @@
     <ion-content>
         <ion-list>
             <ion-item class="item-divider">General</ion-item>
+            <!--OPZIONI GENERALI-->
             <ion-toggle ng-model="m.Picture.settings.save" ng-model-options="{ debounce: 1000 }" ng-change="m.Picture.saveSettings()">Save picture</ion-toggle>
             <label class="item">
                 <div class="item-content">Image quality: {{m.Picture.settings.quality}}</div>
@@ -22,15 +23,23 @@
                     <i class="icon ion-ios-plus-outline"></i>
                 </div>
             </label>
+            <!--OPZIONI SPECIFICHE PER OGNI MOTORE DI RICERCA-->
             <ion-item class="item-divider">{{m.Loader.active.engine.name}}</ion-item>
             <label class="item item-input">
                 <span class="input-label">Key</span>
                 <input type="text" ng-model="m.Loader.active.engine.key" ng-model-options="{ updateOn: 'blur' }" ng-change="m.Loader.active.engine.save()">
             </label>
-            <label class="item item-input" ng-show="m.Loader.active.engine.name === 'MetaMind'">
-                <span class="input-label">Custom Classifier ID</span>
-                <input type="text" ng-model="m.Loader.active.engine.sets[2].value" ng-model-options="{ updateOn: 'blur' }" ng-change="m.Loader.active.engine.save()">
-            </label>
+            <!--OPZIONI SPECIFICHE METAMIND CUSTOM-->
+            <div ng-show="m.Loader.active.names.set === 'Custom Classifier'">
+                <label class="item item-input">
+                    <span class="input-label">Custom Classifier ID</span>
+                    <input type="text" ng-model="m.Loader.active.engine.sets[2].value" ng-model-options="{ updateOn: 'blur' }" ng-change="m.Loader.active.engine.save()">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Database IP</span>
+                    <input type="text" ng-model="m.database.ip" ng-model-options="{ updateOn: 'blur' }" ng-change="m.database.save()">
+                </label>
+            </div>
         </ion-list>
     </ion-content>
 

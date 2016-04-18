@@ -64,9 +64,13 @@ module VisualSearch.Models
                     Database.getResults(component).then((promiseValue: IDatabaseResult) =>
                     {
                         result.database = promiseValue;
+                        q.resolve(result);
                     });//never rejected so no need error callback
                 }
-                q.resolve(result);
+                else
+                {
+                    q.resolve(result);
+                }
             }, (reason: any) =>
             {
                 //console.log("FAIL: " + JSON.stringify(reason));

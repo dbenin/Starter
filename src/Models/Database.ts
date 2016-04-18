@@ -62,6 +62,7 @@ module VisualSearch.Models
             });
             return q.promise;
         }
+
         public static save(): void
         {
             window.localStorage["DatabaseIP"] = this.ip;

@@ -10,6 +10,7 @@ module VisualSearch.Controllers
         searchEngines: Array<Models.ISearchEngine>;
         activeEngine: Models.IActiveNames;
         results: Models.IResult;
+        database: Models.Database;
 
         constructor(
             private Loader: Services.ILoader,
@@ -20,6 +21,7 @@ module VisualSearch.Controllers
             this.searchEngines = Loader.getEngines();
             this.activeEngine = Loader.getActive();
             this.results = {};
+            this.database = Models.Database;
         }
 
         selectEngine(engineIndex, setIndex)
