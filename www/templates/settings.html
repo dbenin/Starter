@@ -2,8 +2,7 @@
 
     <!-- Modal header bar -->
     <ion-header-bar class="bar-positive">
-        <h1 class="title">Settings</h1>
-        <!--<button class="button button-clear" ng-click="m.Layout.hideSettings()">Back</button>-->
+        <h1 class="title">Impostazioni</h1>
         <button class="button button-icon" ng-click="m.Layout.hideSettings()">
             <i class="icon ion-close"></i>
         </button>
@@ -12,11 +11,11 @@
     <!-- Modal content area -->
     <ion-content>
         <ion-list>
-            <ion-item class="item-divider">General</ion-item>
+            <ion-item class="item-divider">Generali</ion-item>
             <!--OPZIONI GENERALI-->
-            <ion-toggle ng-model="m.Picture.settings.save" ng-model-options="{ debounce: 1000 }" ng-change="m.Picture.saveSettings()">Save picture</ion-toggle>
+            <ion-toggle ng-model="m.Picture.settings.save" ng-model-options="{ debounce: 1000 }" ng-change="m.Picture.saveSettings()">Salva foto</ion-toggle>
             <label class="item">
-                <div class="item-content">Image quality: {{m.Picture.settings.quality}}</div>
+                <div class="item-content">Qualità immagine: {{m.Picture.settings.quality}}</div>
                 <div class="range range-positive">
                     <i class="icon ion-ios-minus-outline"></i>
                     <input type="range" min="30" max="80" ng-model="m.Picture.settings.quality" ng-model-options="{ debounce: 1000 }" ng-change="m.Picture.saveSettings()">
@@ -26,7 +25,7 @@
             <!--OPZIONI SPECIFICHE PER OGNI MOTORE DI RICERCA-->
             <ion-item class="item-divider">{{m.Loader.active.engine.name}}</ion-item>
             <label class="item item-input">
-                <span class="input-label">Key</span>
+                <span class="input-label">API Key</span>
                 <input type="text" ng-model="m.Loader.active.engine.key" ng-model-options="{ updateOn: 'blur' }" ng-change="m.Loader.active.engine.save()">
             </label>
             <!--OPZIONI SPECIFICHE METAMIND CUSTOM-->
@@ -47,9 +46,9 @@
             </div>
             <!--DATABASE-->
             <div ng-show="m.Loader.active.names.set === 'Custom Classifier' || m.Loader.active.names.set === 'Custom Index'">
-                <ion-item class="item-divider">Products and Components Service</ion-item>
+                <ion-item class="item-divider">Servizio Prodotti e Componenti</ion-item>
                 <label class="item item-input">
-                    <span class="input-label">Address</span>
+                    <span class="input-label">Indirizzo</span>
                     <input type="text" ng-model="m.database.address" ng-model-options="{ updateOn: 'blur' }" ng-change="m.database.save()">
                 </label>
             </div>
