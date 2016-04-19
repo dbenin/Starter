@@ -12,3 +12,4 @@
 ///<reference path="Directives/Header.ts"/>
 ///<reference path="Directives/Footer.ts"/>
 ///<reference path="Directives/Info.ts"/>
+///<reference path="Directives/Results.ts"/>

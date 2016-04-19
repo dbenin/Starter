@@ -11,5 +11,6 @@ module VisualSearch.App
         .directive("vsSideMenu", Directives.SideMenu)
         .directive("vsHeader", Directives.Header)
         .directive("vsFooter", Directives.Footer)
-        .directive("vsInfo", Directives.Info);
+        .directive("vsInfo", Directives.Info)
+        .directive("vsResults", Directives.Results);
 }
