@@ -6,11 +6,12 @@
         <div class="card">
             <div class="item item-divider">{{m.Loader.active.names.engine}}: {{m.Loader.active.names.set}}</div>
             <div class="item item-body" style="text-align:center;">
-                <img ng-show="m.photo !== ''" ng-src="{{m.photo}}" style="max-width: 100%; max-height:300px">
-                <div class="button-bar">
-                    <button ng-click="m.getPhoto()" class="button button-clear button-positive">TAKE</button>
-                    <button ng-click="m.getPhoto(true)" class="button button-clear button-positive">LOAD</button>
-                </div>
+                <img class="vs-photo" ng-show="m.photo !== ''" ng-src="{{m.photo}}">
+                <!--<img class="vs-logo" src="images/imagga.svg">
+                <img class="vs-logo" src="images/cloudsight.svg">
+                <img class="vs-logo" src="images/google.png">
+                <img class="vs-logo" src="images/metamind.png">
+                <img class="vs-logo" src="images/justvisual.jpg">-->
             </div>
         </div>
         <!--CLOUDSIGHT RESULTS http://cloudsightapi.com/dashboard -->
