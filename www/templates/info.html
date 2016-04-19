@@ -3,18 +3,27 @@
     <div class="item item-body" ng-show="m.photo !== ''">
         <img class="vs-photo" ng-src="{{m.photo}}">
     </div>
+    <!--CLOUDSIGHT INFO-->
     <div class="item item-body" ng-show="m.Loader.active.names.engine === 'CloudSight' && m.photo === ''">
         <img class="vs-logo" src="images/cloudsight.svg">
+        <p>Il servizio permette l'identificazione generale dell'oggetto fotografato, restituendo una descrizione appropriata nel 100% dei casi, anche se i tempi di attesa sono maggiori rispetto agli altri servizi implementati.</p>
+        <p>Per utilizzare il servizio è necessario ottenere una chiave di ricerca da inserire nelle impostazioni dell'applicazione (pulsante in alto a destra, inserire il valore "API Key" e non "Secret").</p>
+        <p>&Egrave; possibile ottenere una chiave di ricerca gratuita (valida per un totale di 500 ricerche) iscrivendosi al seguente indirizzo: <a href="http://cloudsightapi.com/api_client_users/new">http://cloudsightapi.com/api_client_users/new</a>.</p>
+        <p>&Egrave; possibile monitorare l'utilizzo della propria chiave di ricerca al seguente indirizzo: <a href="https://cloudsightapi.com/dashboard">https://cloudsightapi.com/dashboard</a>.</p>
     </div>
+    <!--IMAGGA INFO-->
     <div class="item item-body" ng-show="m.Loader.active.names.engine === 'Imagga' && m.photo === ''">
         <img class="vs-logo" src="images/imagga.svg">
     </div>
+    <!--JUSTVISUAL INFO-->
     <div class="item item-body" ng-show="m.Loader.active.names.engine === 'JustVisual' && m.photo === ''">
         <img class="vs-logo" src="images/justvisual.jpg">
     </div>
+    <!--GOOGLECLOUDSIGHT INFO-->
     <div class="item item-body" ng-show="m.Loader.active.names.engine === 'GoogleCloudVision' && m.photo === ''">
         <img class="vs-logo" src="images/google.png">
     </div>
+    <!--METAMIND INFO-->
     <div class="item item-body" ng-show="m.Loader.active.names.engine === 'MetaMind' && m.photo === ''">
         <img class="vs-logo" src="images/metamind.png">
     </div>

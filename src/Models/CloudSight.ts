@@ -6,7 +6,7 @@ module VisualSearch.Models
     {
         constructor(q: ng.IQService, http: ng.IHttpService, interval: ng.IIntervalService)
         {
-            let key: string = window.localStorage["CloudSightKey"] || "CloudSight Q-mo9tM_bf4fGlaJaAoZ8g";
+            let key: string = window.localStorage["CloudSightKey"] || "Q-mo9tM_bf4fGlaJaAoZ8g";
             let sets: Array<ISearchEngineSet> = [{ name: "Product", value: "" }];
             super("CloudSight", key, sets, q, http, interval);
         }
@@ -22,7 +22,7 @@ module VisualSearch.Models
                 console.log("token: " + token);
                 let polling: ng.IPromise<any> = this.$interval(() =>
                 {
-                    this.$http.defaults.headers.common.Authorization = this.key;
+                    this.$http.defaults.headers.common.Authorization = "CloudSight " + this.key;
                     this.$http({
                         method: "GET",
                         url: "https://api.cloudsightapi.com/image_responses/" + token
@@ -55,7 +55,7 @@ module VisualSearch.Models
                 mimeType: "image/jpeg",
                 httpMethod: "POST",
                 params: { "image_request[locale]": "en-US" },
-                headers: { "Authorization": this.key }
+                headers: { "Authorization": "CloudSight " + this.key }
             };
 
             let fileTransfer: FileTransfer = new FileTransfer();
