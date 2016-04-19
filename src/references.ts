@@ -11,3 +11,4 @@
 ///<reference path="Directives/SideMenu.ts"/>
 ///<reference path="Directives/Header.ts"/>
 ///<reference path="Directives/Footer.ts"/>
+///<reference path="Directives/Info.ts"/>
