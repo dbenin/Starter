@@ -10,3 +10,4 @@
 ///<reference path="Controllers/Main.ts"/>
 ///<reference path="Directives/SideMenu.ts"/>
 ///<reference path="Directives/Header.ts"/>
+///<reference path="Directives/Footer.ts"/>
