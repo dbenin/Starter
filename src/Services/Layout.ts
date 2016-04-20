@@ -16,7 +16,8 @@ module VisualSearch.Services
     {
         static $inject = ["$ionicSideMenuDelegate", "$ionicLoading", "$ionicPopup", "$ionicModal"];
 
-        settingsModal: ionic.modal.IonicModalController; 
+        settingsModal: ionic.modal.IonicModalController;
+        aboutModal: ionic.modal.IonicModalController;
 
         constructor(
             private $ionicSideMenuDelegate: ionic.sideMenu.IonicSideMenuDelegate,
@@ -30,6 +31,12 @@ module VisualSearch.Services
             }).then((modal) =>
             {
                 this.settingsModal = modal;
+            });
+            $ionicModal.fromTemplateUrl("templates/about.html", {
+                animation: "slide-in-up"
+            }).then((modal) =>
+            {
+                this.aboutModal = modal;
             });
         }
 
@@ -46,6 +53,16 @@ module VisualSearch.Services
         hideSettings(): void
         {
             this.settingsModal.hide();
+        }
+
+        showAbout(): void
+        {
+            this.aboutModal.show();
+        }
+
+        hideAbout(): void
+        {
+            this.aboutModal.hide();
         }
 
         showLoading(): void

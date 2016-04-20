@@ -7,21 +7,22 @@ module VisualSearch.Controllers
         static $inject = ["Loader", "Picture", "Layout"];
 
         photo: string;
-        //searchEngines: Array<Models.ISearchEngine>;
-        //activeEngine: Models.IActiveNames;
         results: Models.IResult;
-        database: Models.Database;
 
         constructor(
             private Loader: Services.Loader,
             private Picture: Services.Picture,
             private Layout: Services.Layout)
         {
+            ionic.Platform.ready((): void =>
+            {
+                if (this.Loader.first === true)
+                {
+                    this.Layout.showAbout();
+                }
+            });
             this.photo = "";
-            //this.searchEngines = Loader.getEngines();//Loader.engines
-            //this.activeEngine = Loader.getActive();//Loader.active.names
             this.results = {};
-            this.database = Models.Database;
         }
 
         selectEngine(engineIndex, setIndex)

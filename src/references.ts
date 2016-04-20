@@ -8,6 +8,8 @@
 ///<reference path="Services/Layout.ts"/>
 ///<reference path="Services/Loader.ts"/>
 ///<reference path="Controllers/Main.ts"/>
+///<reference path="Controllers/About.ts"/>
+///<reference path="Controllers/Settings.ts"/>
 ///<reference path="Directives/SideMenu.ts"/>
 ///<reference path="Directives/Header.ts"/>
 ///<reference path="Directives/Footer.ts"/>

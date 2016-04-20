@@ -1,9 +1,9 @@
-﻿<ion-modal-view ng-controller="Main as m">
+﻿<ion-modal-view ng-controller="Settings as s">
 
     <!-- Modal header bar -->
     <ion-header-bar class="bar-assertive">
         <h1 class="title">Impostazioni</h1>
-        <button class="button button-icon" ng-click="m.Layout.hideSettings()">
+        <button class="button button-icon" ng-click="s.Layout.hideSettings()">
             <i class="icon ion-close"></i>
         </button>
     </ion-header-bar>
@@ -13,43 +13,43 @@
         <ion-list>
             <ion-item class="item-divider">Generali</ion-item>
             <!--OPZIONI GENERALI-->
-            <ion-toggle ng-model="m.Picture.settings.save" ng-model-options="{ debounce: 1000 }" ng-change="m.Picture.saveSettings()">Salva foto</ion-toggle>
+            <ion-toggle ng-model="s.Picture.settings.save" ng-model-options="{ debounce: 1000 }" ng-change="s.Picture.saveSettings()">Salva foto</ion-toggle>
             <label class="item">
-                <div class="item-content">Qualità immagine: {{m.Picture.settings.quality}}</div>
+                <div class="item-content">Qualità immagine: {{s.Picture.settings.quality}}</div>
                 <div class="range range-positive">
                     <i class="icon ion-ios-minus-outline"></i>
-                    <input type="range" min="30" max="80" ng-model="m.Picture.settings.quality" ng-model-options="{ debounce: 1000 }" ng-change="m.Picture.saveSettings()">
+                    <input type="range" min="30" max="80" ng-model="s.Picture.settings.quality" ng-model-options="{ debounce: 1000 }" ng-change="s.Picture.saveSettings()">
                     <i class="icon ion-ios-plus-outline"></i>
                 </div>
             </label>
             <!--OPZIONI SPECIFICHE PER OGNI MOTORE DI RICERCA-->
-            <ion-item class="item-divider">{{m.Loader.active.engine.name}}</ion-item>
+            <ion-item class="item-divider">{{s.Loader.active.engine.name}}</ion-item>
             <label class="item item-input">
                 <span class="input-label">API Key</span>
-                <input type="text" ng-model="m.Loader.active.engine.key" ng-model-options="{ updateOn: 'blur' }" ng-change="m.Loader.active.engine.save()">
+                <input type="text" ng-model="s.Loader.active.engine.key" ng-model-options="{ updateOn: 'blur' }" ng-change="s.Loader.active.engine.save()">
             </label>
             <!--OPZIONI SPECIFICHE METAMIND CUSTOM-->
-            <label class="item item-input" ng-show="m.Loader.active.names.set === 'Custom Classifier'">
+            <label class="item item-input" ng-show="s.Loader.active.names.set === 'Custom Classifier'">
                 <span class="input-label">Custom Classifier ID</span>
-                <input type="text" ng-model="m.Loader.active.engine.sets[2].value" ng-model-options="{ updateOn: 'blur' }" ng-change="m.Loader.active.engine.save()">
+                <input type="text" ng-model="s.Loader.active.engine.sets[2].value" ng-model-options="{ updateOn: 'blur' }" ng-change="s.Loader.active.engine.save()">
             </label>
             <!--OPZIONI SPECIFICHE JUSTVISUAL CUSTOM-->
-            <div ng-show="m.Loader.active.names.set === 'Custom Index'">
+            <div ng-show="s.Loader.active.names.set === 'Custom Index'">
                 <label class="item item-input">
                     <span class="input-label">API Server</span>
-                    <input type="text" ng-model="m.Loader.active.engine.sets[4].value" ng-model-options="{ updateOn: 'blur' }" ng-change="m.Loader.active.engine.save()">
+                    <input type="text" ng-model="s.Loader.active.engine.sets[4].value" ng-model-options="{ updateOn: 'blur' }" ng-change="s.Loader.active.engine.save()">
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Index Name</span>
-                    <input type="text" ng-model="m.Loader.active.engine.sets[4].index" ng-model-options="{ updateOn: 'blur' }" ng-change="m.Loader.active.engine.save()">
+                    <input type="text" ng-model="s.Loader.active.engine.sets[4].index" ng-model-options="{ updateOn: 'blur' }" ng-change="s.Loader.active.engine.save()">
                 </label>
             </div>
             <!--DATABASE-->
-            <div ng-show="m.Loader.active.names.set === 'Custom Classifier' || m.Loader.active.names.set === 'Custom Index'">
+            <div ng-show="s.Loader.active.names.set === 'Custom Classifier' || s.Loader.active.names.set === 'Custom Index'">
                 <ion-item class="item-divider">Servizio Prodotti e Componenti</ion-item>
                 <label class="item item-input">
                     <span class="input-label">Indirizzo</span>
-                    <input type="text" ng-model="m.database.address" ng-model-options="{ updateOn: 'blur' }" ng-change="m.database.save()">
+                    <input type="text" ng-model="s.Loader.database.address" ng-model-options="{ updateOn: 'blur' }" ng-change="s.Loader.database.save()">
                 </label>
             </div>
         </ion-list>

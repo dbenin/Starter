@@ -1,0 +1,14 @@
+﻿<ion-modal-view ng-controller="About as a">
+
+    <!-- Modal header bar -->
+    <ion-header-bar class="bar-positive">
+        <h1 class="title"><span ng-show="a.Loader.first === true">Benvenuto in </span>Visual Search App</h1>
+        <button class="button button-clear" ng-click="a.Layout.hideAbout()">OK</button>
+    </ion-header-bar>
+
+    <!-- Modal content area -->
+    <ion-content>
+        <img class="vs-logo" src="images/logo.png">
+    </ion-content>
+
+</ion-modal-view>
