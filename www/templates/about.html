@@ -1,14 +1,21 @@
 ﻿<ion-modal-view ng-controller="About as a">
 
     <!-- Modal header bar -->
-    <ion-header-bar class="bar-positive">
+    <ion-header-bar align-title="center" class="bar-positive">
         <h1 class="title"><span ng-show="a.Loader.first === true">Benvenuto in </span>Visual Search App</h1>
-        <button class="button button-clear" ng-click="a.Layout.hideAbout()">OK</button>
     </ion-header-bar>
 
     <!-- Modal content area -->
-    <ion-content>
-        <img class="vs-logo" src="images/logo.png">
+    <ion-content overflow-scroll="false">
+        <div class="card">
+            <div class="item item-divider">Informazioni</div>
+            <div class="item item-body">
+                <img class="vs-logo" src="images/logo.png">
+                <p>Seleziona un servizio di ricerca visuale dal menù a sinstra.</p>
+                <p>L'appicazione permette di scattare una foto, o di caricarla dalla libreria.</p>
+            </div>
+        </div>
+        <button class="button button-full button-positive" ng-click="a.Layout.hideAbout()">OK</button>
     </ion-content>
 
 </ion-modal-view>

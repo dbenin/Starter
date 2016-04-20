@@ -1,88 +1,71 @@
-﻿<!--CLOUDSIGHT RESULTS http://cloudsightapi.com/dashboard -->
-<div class="card" ng-show="m.results.ok === true && m.Loader.active.names.engine === 'CloudSight'">
-    <div class="item item-divider">
-        Result status: {{m.results.content.status}}
-        <span style="display:inline-block;float:right">Polling time: {{m.results.content.time.toFixed(1)}} sec</span>
+﻿<ion-list>
+    <!--CLOUDSIGHT RESULTS http://cloudsightapi.com/dashboard -->
+    <div ng-show="m.results.ok === true && m.Loader.active.names.engine === 'CloudSight'">
+        <ion-item class="item-divider">
+            Stato: {{m.results.content.status}}
+            <span style="display:inline-block;float:right">Tempo di ricerca: {{m.results.content.time.toFixed(1)}} sec</span>
+        </ion-item>
+        <ion-item class="item" style="text-transform:capitalize">{{m.results.content.name}}</ion-item>
     </div>
-    <div class="item" style="text-transform:capitalize">{{m.results.content.name}}</div>
-</div>
-<!--IMAGGA RESULTS https://imagga.com/profile/dashboard -->
-<div class="card" ng-show="m.results.ok === true && m.Loader.active.names.engine === 'Imagga'">
-    <div class="item item-divider">Results</div>
-    <div class="item item-text-wrap">
-        <ion-list>
-            <ion-item ng-repeat="tag in m.results.content.tags | limitTo: 10">
-                <span style="text-transform:capitalize">{{tag.tag}}</span>
-                <span class="item-note">{{tag.confidence.toFixed(1)}}%</span>
-            </ion-item>
-        </ion-list>
+    <!--IMAGGA RESULTS https://imagga.com/profile/dashboard -->
+    <div ng-show="m.results.ok === true && m.Loader.active.names.engine === 'Imagga'">
+        <ion-item class="item-divider">Risultati</ion-item>
+        <ion-item ng-repeat="tag in m.results.content.tags | limitTo: 10">
+            <span style="text-transform:capitalize">{{tag.tag}}</span>
+            <span class="item-note">{{tag.confidence.toFixed(1)}}%</span>
+        </ion-item>
     </div>
-</div>
-<!--JUSTVISUAL RESULTS-->
-<div class="card" ng-show="m.results.ok === true && m.Loader.active.names.engine === 'JustVisual'">
-    <div class="item item-divider">Results</div>
-    <div class="item item-text-wrap">
-        <ion-list>
-            <ion-item ng-repeat="result in m.results.content.images" class="item-thumbnail-left">
-                <img ng-src="{{result.imageUrl}}">
-                <a ng-href="{{result.pageUrl}}">{{result.title}}</a>
-            </ion-item>
-        </ion-list>
+    <!--JUSTVISUAL RESULTS-->
+    <div ng-show="m.results.ok === true && m.Loader.active.names.engine === 'JustVisual'">
+        <ion-item class="item-divider">Risultati</ion-item>
+        <ion-item ng-repeat="result in m.results.content.images" class="item-thumbnail-left">
+            <img ng-src="{{result.imageUrl}}">
+            <a ng-href="{{result.pageUrl}}">{{result.title}}</a>
+        </ion-item>
     </div>
-</div>
-<!--GOOGLECLOUDVISION RESULTS-->
-<div class="card" ng-show="m.results.ok === true && m.Loader.active.names.engine === 'GoogleCloudVision'">
-    <div class="item item-divider" ng-show="m.activeEngine.set != 'Text Detection'">Results</div>
-    <div class="item item-divider" ng-show="m.activeEngine.set == 'Text Detection'">
-        Language: {{m.results.content.responses[0].textAnnotations[0].locale}}
-    </div>
-    <div class="item item-text-wrap">
+    <!--GOOGLECLOUDVISION RESULTS-->
+    <div ng-show="m.results.ok === true && m.Loader.active.names.engine === 'GoogleCloudVision'">
+        <ion-item class="item-divider" ng-show="m.Loader.active.names.set !== 'Text Detection'">Risultati</ion-item>
+        <ion-item class="item-divider" ng-show="m.Loader.active.names.set === 'Text Detection'">
+            Lingua: {{m.results.content.responses[0].textAnnotations[0].locale}}
+        </ion-item>
         <!--LABEL-->
-        <ion-list>
-            <ion-item ng-repeat="label in m.results.content.responses[0].labelAnnotations">
-                <span>{{label.description}}</span>
-                <span class="item-note">{{(label.score * 100).toFixed(1)}}%</span>
-            </ion-item>
-        </ion-list>
+        <ion-item ng-repeat="label in m.results.content.responses[0].labelAnnotations">
+            <span>{{label.description}}</span>
+            <span class="item-note">{{(label.score * 100).toFixed(1)}}%</span>
+        </ion-item>
         <!--LANDMARK-->
-        <ion-list>
-            <ion-item ng-repeat="landmark in m.results.content.responses[0].landmarkAnnotations">
-                <span>{{landmark.description}}</span>
-                <span class="item-note">{{(landmark.score * 100).toFixed(1)}}%</span>
-            </ion-item>
-        </ion-list>
+        <ion-item ng-repeat="landmark in m.results.content.responses[0].landmarkAnnotations">
+            <span>{{landmark.description}}</span>
+            <span class="item-note">{{(landmark.score * 100).toFixed(1)}}%</span>
+        </ion-item>
         <!--LOGO-->
-        <ion-list>
-            <ion-item ng-repeat="logo in m.results.content.responses[0].logoAnnotations">
-                <span>{{logo.description}}</span>
-                <span class="item-note">{{(logo.score * 100).toFixed(1)}}%</span>
-            </ion-item>
-        </ion-list>
+        <ion-item ng-repeat="logo in m.results.content.responses[0].logoAnnotations">
+            <span>{{logo.description}}</span>
+            <span class="item-note">{{(logo.score * 100).toFixed(1)}}%</span>
+        </ion-item>
         <!--TEXT-->
-        <p>{{m.results.content.responses[0].textAnnotations[0].description}}</p>
+        <p class="padding">{{m.results.content.responses[0].textAnnotations[0].description}}</p>
     </div>
-</div>
-<!--METAMIND RESULTS https://www.metamind.io/auth/my_account -->
-<div class="card" ng-show="m.results.ok === true && m.Loader.active.names.engine === 'MetaMind'">
-    <div class="item item-divider">Results</div>
-    <div class="item item-text-wrap">
-        <ion-list>
-            <ion-item ng-repeat="prediction in m.results.content.predictions">
-                <span>{{prediction.class_name}}</span>
-                <span class="item-note">{{(prediction.prob * 100).toFixed(1)}}%</span>
-            </ion-item>
-        </ion-list>
+    <!--METAMIND RESULTS https://www.metamind.io/auth/my_account -->
+    <div ng-show="m.results.ok === true && m.Loader.active.names.engine === 'MetaMind'">
+        <ion-item class="item-divider">Risultati</ion-item>
+        <ion-item ng-repeat="prediction in m.results.content.predictions">
+            <span>{{prediction.class_name}}</span>
+            <span class="item-note">{{(prediction.prob * 100).toFixed(1)}}%</span>
+        </ion-item>
     </div>
-</div>
-<!--DATABASE-->
-<div class="card" ng-show="m.results.database.ok === true && (m.Loader.active.names.set === 'Custom Classifier' || m.Loader.active.names.set === 'Custom Index')">
-    <div class="item item-divider">Stock quantity: {{m.results.database.stock}}</div>
-    <div class="item item-text-wrap">
-        <ion-list>
-            <ion-item ng-repeat="product in m.results.database.products">
-                <span>{{product.Name}}</span>
-                <span class="item-note">{{product.Quantity}}</span>
-            </ion-item>
-        </ion-list>
+    <!--DATABASE-->
+    <div ng-show="m.results.database.ok === true && (m.Loader.active.names.set === 'Custom Classifier' || m.Loader.active.names.set === 'Custom Index')">
+        <ion-item class="item-divider" ng-show="m.results.database.ok === true && m.Loader.active.names.set === 'Custom Classifier'">
+            Giacenza del componente "{{m.results.content.predictions[0].class_name}}": {{m.results.database.stock}}
+        </ion-item>
+        <ion-item class="item-divider" ng-show="m.results.database.ok === true && m.Loader.active.names.set === 'Custom Index'">
+            Giacenza del componente "{{m.results.content.images[0].title}}": {{m.results.database.stock}}
+        </ion-item>
+        <ion-item ng-repeat="product in m.results.database.products">
+            <span>{{product.Name}}</span>
+            <span class="item-note">{{product.Quantity}}</span>
+        </ion-item>
     </div>
-</div>
+</ion-list>
