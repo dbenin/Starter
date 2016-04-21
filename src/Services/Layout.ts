@@ -16,43 +16,13 @@ module VisualSearch.Services
             private $ionicModal: ionic.modal.IonicModalService
         )
         {
-            $ionicModal.fromTemplateUrl("templates/settings.html", {
-                animation: "slide-in-up"
-            }).then((modal) =>
-            {
-                this.settingsModal = modal;
-            });
-            $ionicModal.fromTemplateUrl("templates/about.html", {
-                animation: "slide-in-up"
-            }).then((modal) =>
-            {
-                this.aboutModal = modal;
-            });
+            $ionicModal.fromTemplateUrl("templates/settings.html", { animation: "slide-in-up" }).then((modal) => { this.settingsModal = modal; });
+            $ionicModal.fromTemplateUrl("templates/about.html", { animation: "slide-in-up" }).then((modal) => { this.aboutModal = modal; });
         }
 
         toggleSideMenu(): void
         {
             this.$ionicSideMenuDelegate.toggleLeft();
-        }
-
-        showSettings(): void
-        {
-            this.settingsModal.show();
-        }
-
-        hideSettings(): void
-        {
-            this.settingsModal.hide();
-        }
-
-        showAbout(): void
-        {
-            this.aboutModal.show();
-        }
-
-        hideAbout(): void
-        {
-            this.aboutModal.hide();
         }
 
         showLoading(): void

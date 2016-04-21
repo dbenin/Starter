@@ -18,7 +18,7 @@ module VisualSearch.Controllers
             {
                 if (this.Loader.first === true)
                 {
-                    this.Layout.showAbout();
+                    this.Layout.aboutModal.show();
                 }
             });
             this.photo = "";
