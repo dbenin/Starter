@@ -2,7 +2,7 @@
 
 module VisualSearch.Services
 {
-    export class Layout// implements ILayout
+    export class Layout
     {
         static $inject = ["$ionicSideMenuDelegate", "$ionicLoading", "$ionicPopup", "$ionicModal"];
 

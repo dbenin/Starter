@@ -2,7 +2,7 @@
 
 module VisualSearch.Services
 {
-    export class Loader// implements ILoader
+    export class Loader
     {
         static $inject = ["$q", "$http", "$interval", "Layout"];
         

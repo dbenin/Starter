@@ -2,17 +2,11 @@
 
 module VisualSearch.Services
 {
-    /*export interface IPicture
-    {
-        take(library: boolean, specifics: CameraOptions): ng.IPromise<string>;
-        saveSettings(): void;
-    }*/
-
-    export class Picture// implements IPicture
+    export class Picture
     {
         static $inject = ["$q"];
 
-        settings: any = { save: false, quality: 50 };//da definire il tipo
+        settings: Models.ISettings = { save: false, quality: 50 };
         
         constructor(private $q: ng.IQService)
         {
