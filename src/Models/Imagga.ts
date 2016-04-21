@@ -6,7 +6,7 @@ module VisualSearch.Models
     {
         constructor(q: ng.IQService, http: ng.IHttpService)
         {
-            let key: string = window.localStorage["ImaggaKey"] || "Basic YWNjX2YzMDMyOTkxNzUwODY1Mzo5N2U0YmI4ZjYxMDBlMjc2M2M4ZjNhOTg3YWM2ZDk0Zg==";
+            let key: string = window.localStorage["Imagga Key"] || "Basic YWNjX2YzMDMyOTkxNzUwODY1Mzo5N2U0YmI4ZjYxMDBlMjc2M2M4ZjNhOTg3YWM2ZDk0Zg==";
             let sets: Array<ISearchEngineSet> = [{ name: "Tagging", value: "tagging" }];
             super("Imagga", key, sets, q, http);
         }

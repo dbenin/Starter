@@ -6,7 +6,7 @@ module VisualSearch.Models
     {
         constructor(q: ng.IQService, http: ng.IHttpService, interval: ng.IIntervalService)
         {
-            let key: string = window.localStorage["CloudSightKey"] || "Q-mo9tM_bf4fGlaJaAoZ8g";
+            let key: string = window.localStorage["CloudSight Key"] || "Q-mo9tM_bf4fGlaJaAoZ8g";
             let sets: Array<ISearchEngineSet> = [{ name: "Product", value: "" }];
             super("CloudSight", key, sets, q, http, interval);
         }

@@ -6,7 +6,7 @@ module VisualSearch.Models
     {
         constructor(q: ng.IQService)
         {
-            let key: string = window.localStorage["JustVisualKey"] || "8b502b94-24f6-4b97-b33e-a78ad605da31";
+            let key: string = window.localStorage["JustVisual Key"] || "8b502b94-24f6-4b97-b33e-a78ad605da31";
             //let key: string = window.localStorage["JustVisualKey"] || "d5355a2f-a602-43d2-bedd-3a8ffcf286f2";
             let sets: Array<ISearchEngineSet> = [
                 { name: "Fashion", value: "http://style.vsapi01.com" },

@@ -39,7 +39,7 @@ module VisualSearch.Models
         ) { }
         save(): void
         {
-            window.localStorage[this.name + "Key"] = this.key;
+            window.localStorage[this.name + " Key"] = this.key;
         }
     }
 }

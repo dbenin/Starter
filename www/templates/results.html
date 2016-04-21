@@ -24,7 +24,7 @@
         </ion-item>
     </div>
     <!--GOOGLECLOUDVISION RESULTS-->
-    <div ng-show="m.results.ok === true && m.Loader.active.names.engine === 'GoogleCloudVision'">
+    <div ng-show="m.results.ok === true && m.Loader.active.names.engine === 'Google Cloud Vision'">
         <ion-item class="item-divider" ng-show="m.Loader.active.names.set !== 'Text Detection'">Risultati</ion-item>
         <ion-item class="item-divider" ng-show="m.Loader.active.names.set === 'Text Detection'">
             Lingua: {{m.results.content.responses[0].textAnnotations[0].locale}}

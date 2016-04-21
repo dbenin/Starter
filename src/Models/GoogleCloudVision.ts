@@ -7,14 +7,14 @@ module VisualSearch.Models
         options: CameraOptions;
         constructor(q: ng.IQService, http: ng.IHttpService)
         {
-            let key: string = window.localStorage["GoogleCloudVisionKey"] || "AIzaSyA3CSP33Kkj0FN1ypV7UeS_BhEcQjqLzsI";
+            let key: string = window.localStorage["Google Cloud Vision Key"] || "AIzaSyA3CSP33Kkj0FN1ypV7UeS_BhEcQjqLzsI";
             let sets: Array<ISearchEngineSet> = [
                 { name: "Label Detection", value: "LABEL_DETECTION" },
                 { name: "Landmark Detection", value: "LANDMARK_DETECTION" },
                 { name: "Logo Detection", value: "LOGO_DETECTION" },
                 { name: "Text Detection", value: "TEXT_DETECTION" }
             ];
-            super("GoogleCloudVision", key, sets, q, http);
+            super("Google Cloud Vision", key, sets, q, http);
             this.options = { destinationType: 0 };//Camera.DestinationType.DATA_URL//Camera is not defined?
         }
         search(picture: string, set: number): ng.IPromise<any>
