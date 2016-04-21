@@ -1,3 +1,12 @@
+.vs-title {
+    font-weight: bold;
+}
+
+.item-assertive.active,
+.item-assertive.activated {
+    color: #fff;
+}
+
 .vs-header-logo {
     height: 20px;
     margin-top: 13px;
@@ -15,7 +24,7 @@
 .vs-logo {
     width: 100%;
 }
-
+/*
 .button-fixed {
     position: absolute;
     bottom: 5vh;
@@ -36,3 +45,4 @@
     right: 4vw;
     width: 44vw;
 }
+*/

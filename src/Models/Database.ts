@@ -56,7 +56,7 @@ module VisualSearch.Models
             {
                 result.ok = false;
                 q.resolve(result);
-                this.Layout.alert("Service not available.");
+                this.Layout.alert("Servizio prodotti e componenti non disponibile.");
                 //console.log("Database non disponibile: " + reason.data.Message);
                 //this.Layout.alert("Database non disponibile:\n" + reason.data.Message);
             });

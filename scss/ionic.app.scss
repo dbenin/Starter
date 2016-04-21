@@ -20,16 +20,14 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Custom variables
 $PlainDarkBlueColor:        #145494;
-//$PlainLightBlueColor:       #B7C0DD;
-//$PlainGrayColor:            #DDDDDD;
 $PlainRedColor:             #C72635;
+$PlainWhiteColor:           #FFFFFF;
 
 $positive:                  $PlainDarkBlueColor !default;
 $assertive:                 $PlainRedColor !default;
-//$item-default-active-bg:    $PlainGrayColor !default;
-
-//$bar-footer-height:         56px !default;//44px !default;
-//$bar-title-font-size:       56px !default;//17px !default;
+$item-assertive-bg:         $PlainWhiteColor !default;
+$item-assertive-border:     #ddd !default;
+$item-assertive-text:       #444 !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";

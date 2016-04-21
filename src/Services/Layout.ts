@@ -2,16 +2,6 @@
 
 module VisualSearch.Services
 {
-    /*export interface ILayout
-    {
-        toggleSideMenu(): void;
-        showSettings(): void;
-        hideSettings(): void;
-        showLoading(): void;
-        hideLoading(): void;
-        alert(message: string): void;
-    }*/
-
     export class Layout// implements ILayout
     {
         static $inject = ["$ionicSideMenuDelegate", "$ionicLoading", "$ionicPopup", "$ionicModal"];
@@ -68,7 +58,7 @@ module VisualSearch.Services
         showLoading(): void
         {
             this.$ionicLoading.show({
-                template: '<p>Searching...</p><ion-spinner icon="circles" class="spinner-dark"></ion-spinner>'
+                template: '<p>Ricerca in corso...</p><ion-spinner icon="circles" class="spinner-dark"></ion-spinner>'
             });
         }
 
@@ -80,7 +70,7 @@ module VisualSearch.Services
         alert(message: string): void
         {
             this.$ionicPopup.alert({
-                title: "An error occured!",
+                title: "Si è verificato un errore!",
                 template: message,
                 okType: "button-assertive"
             });
