@@ -20,7 +20,7 @@ module VisualSearch.Models
             this.Layout = Layout;
 
             //testing
-            this.translate("Use pixels to express measurements for padding and margins.", "en");
+            this.translate("Fuck off you fucking piece of shit!", "en");
         }
 
         private static getToken(): ng.IPromise<any>
@@ -80,6 +80,12 @@ module VisualSearch.Models
             }, () => { q.reject(); });
             
             return q.promise;
+        }
+
+        public static save(): void
+        {
+            window.localStorage["Translator ID"] = this.id;
+            window.localStorage["Translator Secret"] = this.secret;
         }
     }
 }

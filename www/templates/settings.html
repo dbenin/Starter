@@ -52,6 +52,18 @@
                     <input type="text" ng-model="s.Loader.database.address" ng-model-options="{ updateOn: 'blur' }" ng-change="s.Loader.database.save()">
                 </label>
             </div>
+            <!--TRANSLATOR-->
+            <div ng-show="s.Loader.active.names.set === 'Text Detection'">
+                <ion-item class="item-divider">Microsoft Translator</ion-item>
+                <label class="item item-input">
+                    <span class="input-label">Client ID</span>
+                    <input type="text" ng-model="s.Loader.translator.id" ng-model-options="{ updateOn: 'blur' }" ng-change="s.Loader.translator.save()">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Client Secret</span>
+                    <input type="text" ng-model="s.Loader.translator.secret" ng-model-options="{ updateOn: 'blur' }" ng-change="s.Loader.translator.save()">
+                </label>
+            </div>
         </ion-list>
     </ion-content>
 
