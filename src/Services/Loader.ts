@@ -10,6 +10,7 @@ module VisualSearch.Services
         engines: Array<Models.ISearchEngine>;
         active: Models.IActiveSearchEngine;
         database: Models.Database;
+        //translator: Models.Translator;
 
         constructor(
             private $q: ng.IQService,
@@ -19,6 +20,9 @@ module VisualSearch.Services
         )
         {
             Models.Database.set(this.$q, this.$http, this.Layout);
+            this.database = Models.Database;
+            Models.Translator.set(this.$q, this.$http, this.Layout);
+            //this.translator = Models.Translator;
             this.engines = [
                 new Models.CloudSight(this.$q, this.$http, this.$interval),
                 new Models.Imagga(this.$q, this.$http),
@@ -39,7 +43,6 @@ module VisualSearch.Services
             {
                 window.localStorage["First"] = false;
             }
-            this.database = Models.Database;
         }
 
         setActive(engineIndex: number, setIndex: number): void
