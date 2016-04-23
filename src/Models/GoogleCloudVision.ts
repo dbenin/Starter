@@ -25,6 +25,7 @@ module VisualSearch.Models
                 picture = picture.substr(i + 1, picture.length - 1);//removing "data:image/jpeg;base64," to work properly with API
             }
             console.log("google picture: " + picture);
+            //console.log("key: " + this.key);
             return this.$http({
                 method: "POST",
                 data: '{"requests":[{"image":{"content":"' + picture + '"},"features":[{"type":"' + this.sets[set].value + '","maxResults":10}]}]}',
@@ -47,12 +48,23 @@ module VisualSearch.Models
                 else
                 {
                     //console.log("SUCCESS: " + JSON.stringify(promiseValue));
-                    result = { ok: true, content: promiseValue.data };
+                    result = { ok: true, content: promiseValue.data, translator: { ok: false, text: "" } };
+                    if (set === 3)
+                    {//Text detection
+                        let text: string = promiseValue.data.responses[0].textAnnotations[0].description;
+                        let lang: string = promiseValue.data.responses[0].textAnnotations[0].locale;
+                        //console.log(text + " " + lang);
+                        Translator.translate(text, lang).then((promiseValue: ITranslatorResult) =>
+                        {
+                            result.translator = promiseValue;
+                            console.log(result.translator.text);
+                        });
+                    }
                     q.resolve(result);
                 }
             }, (reason: any) =>
             {
-                //console.log("FAIL: " + JSON.stringify(reason));
+                console.log("FAIL: " + JSON.stringify(reason));
                 result = { ok: false, content: reason.data.error.message };
                 q.reject(result);
             });

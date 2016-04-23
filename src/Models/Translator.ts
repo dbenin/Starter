@@ -2,6 +2,13 @@
 
 module VisualSearch.Models
 {
+    export interface ITranslatorResult
+    {
+        ok?: boolean;
+        text?: string;
+        lang?: string;
+    }
+
     export class Translator
     {
         private static id: string = window.localStorage["Translator ID"] || "visualsearchapp";
@@ -20,7 +27,7 @@ module VisualSearch.Models
             this.Layout = Layout;
 
             //testing
-            this.translate("Fuck off you fucking piece of shit!", "en");
+            //this.translate("Fuck off you fucking piece of shit!", "en");
         }
 
         private static getToken(): ng.IPromise<any>
@@ -58,26 +65,42 @@ module VisualSearch.Models
             return q.promise;
         }
 
-        public static translate(text: string, lang: string): ng.IPromise<any>
+        public static translate(text: string, lang: string): ng.IPromise<ITranslatorResult>
         {
             let q: ng.IDeferred<IResult> = this.$q.defer();
 
+            let result: ITranslatorResult = { ok: false, text: "", lang: "" };
+            let target: string = "it";
+            if (lang === "it")
+            {
+                target = "en";
+            }
             this.getToken().then(() =>
             {//token valido
                 this.$http.defaults.headers.common.Authorization = "Bearer " + this.token;
                 this.$http({
                     method: "GET",
-                    url: "http://api.microsofttranslator.com/v2/Http.svc/Translate?text=" + text + "&from=" + lang + "&to=it"
+                    url: "http://api.microsofttranslator.com/v2/Http.svc/Translate?text=" + text + "&from=" + lang + "&to=" + target
                 }).then((promiseValue: any) =>
                 {
                     console.log("SUCCESS: " + JSON.stringify(promiseValue));
-                    q.resolve();//
+                    let value: string = promiseValue.data;
+                    value = value.substr(value.indexOf('>') + 1);
+                    value = value.substr(0, value.lastIndexOf('<'));
+                    result.ok = true;
+                    result.text = value;
+                    result.lang = target;
+                    console.log(value);
+                    q.resolve(result);//
                 }, (reason: any) =>
                 {
                     console.log("FAIL: " + JSON.stringify(reason));
-                    q.reject();
+                    q.reject(result);
                 });
-            }, () => { q.reject(); });
+            }, () =>
+            {
+                q.reject(result);
+            });
             
             return q.promise;
         }

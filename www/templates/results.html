@@ -46,6 +46,8 @@
         </ion-item>
         <!--TEXT-->
         <p class="padding">{{m.results.content.responses[0].textAnnotations[0].description}}</p>
+        <ion-item class="item-divider" ng-show="m.results.translator.ok === true">Traduzione: {{m.results.translator.lang}}</ion-item>
+        <p class="padding">{{m.results.translator.text}}</p>
     </div>
     <!--METAMIND RESULTS https://www.metamind.io/auth/my_account -->
     <div ng-show="m.results.ok === true && m.Loader.active.names.engine === 'MetaMind'">

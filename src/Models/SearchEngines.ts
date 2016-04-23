@@ -6,7 +6,8 @@ module VisualSearch.Models
     {
         ok?: boolean;
         content?: any;//
-        database?: any;
+        database?: IDatabaseResult;
+        translator?: ITranslatorResult;
     }
 
     export interface ISearchEngineSet
