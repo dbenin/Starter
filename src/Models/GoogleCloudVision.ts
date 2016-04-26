@@ -101,10 +101,10 @@ module VisualSearch.Models
                 }
             }, (reason: any) =>
             {
-                // In caso di errore
                 console.log("FAIL: " + JSON.stringify(reason));//debug
-                // Allego il messaggio di errore al risultato
+                // In caso di errore allego il messaggio al risultato
                 result = { ok: false, content: reason.data.error.message };
+                // Creo una promise di errore allegando il risultato
                 q.reject(result);
             });
             return q.promise;

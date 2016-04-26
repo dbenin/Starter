@@ -26,12 +26,12 @@ module VisualSearch.Models
          */
         search(picture: string): ng.IPromise<any>
         {
-            console.log("cloudsight " + picture);
+            console.log("cloudsight " + picture);//debug
             let q: ng.IDeferred<any> = this.$q.defer();
 
             /**
-             * Funzione chiamata in caso di successo nell'invio della foto ai server CloudSight
-             * @param result L'oggetto ritornato dai server ClouSight contenente il token identificativo della foto caricata
+             * Funzione chiamata in caso di successo nell'invio della foto al server CloudSight
+             * @param result L'oggetto ritornato da CloudSight contenente il token identificativo della foto caricata
              */
             let successCallback: (result: FileUploadResult) => void = (result: FileUploadResult) =>
             {
@@ -84,8 +84,8 @@ module VisualSearch.Models
             };
 
             /**
-             * Funzione chiamata in caso di errore nell'invio della foto ai server CloudSight
-             * @param error L'oggetto ritornato dai server ClouSight contenente il messaggio di errore
+             * Funzione chiamata in caso di errore nell'invio della foto al server CloudSight
+             * @param error L'oggetto ritornato dal server ClouSight contenente il messaggio di errore
              */
             let errorCallback: (error: FileTransferError) => void = (error: FileTransferError) =>
             {
@@ -103,8 +103,8 @@ module VisualSearch.Models
                 headers: { "Authorization": "CloudSight " + this.key }
             };
 
-            let fileTransfer: FileTransfer = new FileTransfer();
             // Invio della foto a CloudSight tramite il plugin FileTransfer di Cordova
+            let fileTransfer: FileTransfer = new FileTransfer();
             fileTransfer.upload(picture, "https://api.cloudsightapi.com/image_requests", successCallback, errorCallback, options, true);
 
             // Torno la promise creata
@@ -140,8 +140,9 @@ module VisualSearch.Models
                 }
             }, (reason: any) =>
             {
-                // In caso di errore creo una promise di errore passando l'oggetto ritornato
+                // In caso di errore allego il messaggio al risultato
                 result = { ok: false, content: JSON.parse(reason.body).error };
+                // Creo una promise di errore allegando il risultato
                 q.reject(result);
             });
 
