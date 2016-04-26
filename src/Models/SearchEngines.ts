@@ -56,11 +56,12 @@ module VisualSearch.Models
     // Classe base astratta per i motori di ricerca visuale, implementa l'interfaccia ISearchEngine
     export abstract class SearchEngine implements ISearchEngine
     {
-        // Dichiarazione del metodo "search" che effettua la chiamata al server del motore di ricerca visuale per la
-        // ricerca di un'immagine in un determinato set e torna una promise (è usato dal metodo pubblico "getResult")
+        // Dichiarazione del metodo "search" che effettua la chiamata al server del motore di ricerca visuale per la ricerca di
+        // un'immagine in un determinato set e torna una promise con l'oggeto restituito dal server (è usato dal metodo pubblico "getResult")
         abstract search(picture: string, set?: number): ng.IPromise<any>;
 
-        // Dichiarazione del metodo pubblico "getResult"
+        // Dichiarazione del metodo pubblico "getResult" che gestisce il risultato ottenuto dal server del motore tramite il metodo "search" 
+        // per la restituzione al chiamante di una promise con il risultato di tipo IResult
         abstract getResult(picture: string, set: number): ng.IPromise<IResult>;
 
         // Costruttore, chiamato tramite "super()" dalle classi derivate

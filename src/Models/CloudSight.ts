@@ -22,7 +22,7 @@ module VisualSearch.Models
         /**
          * Implementazione del metodo "search"
          * @param picture La foto da cercare in formato file URI (senza ?... dopo il nome)
-         * @returns Una promise
+         * @returns Una promise con l'oggetto ritornato da CloudSight
          */
         search(picture: string): ng.IPromise<any>
         {
@@ -114,7 +114,8 @@ module VisualSearch.Models
         /**
          * Implementazione del metodo "getResult"
          * @param picture La foto da cercare in formato file URI (senza ?... dopo il nome)
-         * @param set
+         * @param set L'indice del set in cui cercare, sempre 0 nel caso di CloudSight
+         * @returns Una promise con l'oggetto di tipo IResult
          */
         getResult(picture: string, set: number): ng.IPromise<IResult>
         {
