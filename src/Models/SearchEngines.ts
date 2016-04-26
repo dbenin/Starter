@@ -3,7 +3,7 @@
 // Modulo VisualSearch.Models in cui sono definiti i modelli dei dati dell'applicazione
 module VisualSearch.Models
 {
-    // Definizione dell'interfaccia "IResult" che rappresenta il tipo risultato restituito dal motore di ricerca visuale
+    // Definizione dell'interfaccia "IResult" che rappresenta il risultato restituito dal motore di ricerca visuale
     // Tutti i campi dati sono opzionali per permettere l'inizializzazione ad oggetto vuoto {} nel controller "Main"
     export interface IResult
     {
@@ -20,7 +20,7 @@ module VisualSearch.Models
         translator?: ITranslatorResult;
     }
 
-    // Definizione dell'interfaccia "ISearchEngineSet" che rappresenta un set di un motore di ricerca visuale (esempio: Text Detecton di Google Cloud Vision)
+    // Definizione dell'interfaccia "ISearchEngineSet" che rappresenta il set di un motore di ricerca visuale (esempio: Text Detecton di Google Cloud Vision)
     export interface ISearchEngineSet
     {
         // Nome del set (esempio: "Text Detection")
@@ -33,7 +33,7 @@ module VisualSearch.Models
         index?: string;
     }
 
-    // Definizione dell'interfaccia "ISearchEngine" che rappresenta il tipo motore di ricerca visuale
+    // Definizione dell'interfaccia "ISearchEngine" che rappresenta il motore di ricerca visuale
     // Espone i campi dati e metodi pubblici
     export interface ISearchEngine
     {
@@ -63,13 +63,13 @@ module VisualSearch.Models
         // Dichiarazione del metodo pubblico "getResult"
         abstract getResult(picture: string, set: number): ng.IPromise<IResult>;
 
-        // Costruttore della classe base astratta dei motori di ricerca visuale, chiamato tramite "super()" nelle classi derivate
+        // Costruttore, chiamato tramite "super()" dalle classi derivate
         constructor(
             // Inizializzazione dei campi dati
             public name: string,
             public key: string,
             public sets: Array<ISearchEngineSet>,
-            // Inizializzazione dei servizi utilizzati
+            // Inizializzazione dei servizi Angular utilizzati
             protected $q: ng.IQService,
             protected $http?: ng.IHttpService,
             protected $interval?: ng.IIntervalService
