@@ -1,11 +1,12 @@
-﻿///<reference path="../../typings/tsd.d.ts"/>
-///<reference path="../references.ts"/>
+﻿///<reference path="../references.ts"/>
+
 /**
- * Definizione del modulo Angular principale "VisualSearch" con dipendenza "ionic" e ne vengono associati tutti i
- * componenti dell'applicazione (controller, servizi e direttive) con i relativi nomi e classi in cui sono definiti.
+ * Modulo VisualSearch.App che contiene l'inizializzazione dell'applicazione AngularJS
  */
 module VisualSearch.App
 {
+    // Definizione del modulo Angular principale "VisualSearch" con dipendenza "ionic" e ne vengono associati tutti i
+    // componenti dell'applicazione (controller, servizi e direttive) con i relativi nomi e classi in cui sono definiti.
     angular.module("VisualSearch", ["ionic"])
         .controller("Main", Controllers.Main)
         .controller("About", Controllers.About)

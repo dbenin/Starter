@@ -1,14 +1,15 @@
-﻿///<reference path="../../typings/tsd.d.ts"/>
-
+﻿/**
+ * Modulo VisualSearch.Controllers in cui sono definiti i controller dell'applicazione
+ */
 module VisualSearch.Controllers
 {
     /**
-     * Definizione del controller principale "Main"
-     * Vengono esposti i metodi ed i dati usati dalla view HTML
+     * Definizione del controller "Main"
+     * Espone i metodi, servizi e dati usati dall'applicazione principale nella view
      */
     export class Main
     {
-        // Definizione dei servizi usati dal controller tramite dependency injection
+        // Dichiarazione dei servizi usati tramite dependency injection
         static $inject = ["Loader", "Picture", "Layout"];
 
         // L'ultima foto scattata (o caricata), in formato file URI o dati codificati in Base64
@@ -22,7 +23,7 @@ module VisualSearch.Controllers
          * Costruttore della classe del controller "Main"
          */
         constructor(
-            // Dependency injection dei servizi usati dal controller
+            // Dependency injection dei servizi
             private Loader: Services.Loader,
             private Picture: Services.Picture,
             private Layout: Services.Layout)
