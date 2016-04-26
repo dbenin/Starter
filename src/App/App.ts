@@ -1,9 +1,7 @@
 ﻿///<reference path="../../typings/tsd.d.ts"/>
 ///<reference path="../references.ts"/>
 
-/**
- * Modulo VisualSearch.App che contiene l'inizializzazione dell'applicazione AngularJS
- */
+// Modulo VisualSearch.App che contiene l'inizializzazione dell'applicazione AngularJS
 module VisualSearch.App
 {
     // Definizione del modulo Angular principale "VisualSearch" con dipendenza "ionic" e ne vengono associati tutti i

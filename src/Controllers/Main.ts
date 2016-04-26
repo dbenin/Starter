@@ -1,14 +1,10 @@
 ﻿///<reference path="../../typings/tsd.d.ts"/>
 
-/**
- * Modulo VisualSearch.Controllers in cui sono definiti i controller dell'applicazione
- */
+// Modulo VisualSearch.Controllers in cui sono definiti i controller dell'applicazione
 module VisualSearch.Controllers
 {
-    /**
-     * Definizione del controller "Main"
-     * Espone i metodi, servizi e dati usati dall'applicazione principale nella view
-     */
+    // Definizione del controller "Main"
+    // Espone i metodi, servizi e dati usati dall'applicazione principale nella view
     export class Main
     {
         // Dichiarazione dei servizi usati tramite dependency injection
@@ -21,9 +17,7 @@ module VisualSearch.Controllers
         // Ultimi risultati ottenuti
         results: Models.IResult;
 
-        /**
-         * Costruttore della classe del controller "Main"
-         */
+        // Costruttore della classe del controller "Main"
         constructor(
             // Dependency injection dei servizi
             private Loader: Services.Loader,
@@ -41,7 +35,7 @@ module VisualSearch.Controllers
                 }
             });
 
-            //Inizializzazione dei campi dati
+            // Inizializzazione dei campi dati
             this.photo = "";
             this.results = {};
         }
