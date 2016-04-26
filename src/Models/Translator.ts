@@ -25,9 +25,6 @@ module VisualSearch.Models
             this.$q = $q;
             this.$http = $http;
             this.Layout = Layout;
-
-            //testing
-            //this.translate("Fuck off you fucking piece of shit!", "en");
         }
 
         private static getToken(): ng.IPromise<any>
