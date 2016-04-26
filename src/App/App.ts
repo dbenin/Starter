@@ -1,4 +1,5 @@
-﻿///<reference path="../references.ts"/>
+﻿///<reference path="../../typings/tsd.d.ts"/>
+///<reference path="../references.ts"/>
 
 /**
  * Modulo VisualSearch.App che contiene l'inizializzazione dell'applicazione AngularJS

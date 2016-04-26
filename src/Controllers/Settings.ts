@@ -1,4 +1,6 @@
-﻿/**
+﻿///<reference path="../../typings/tsd.d.ts"/>
+
+/**
  * Modulo VisualSearch.Controllers in cui sono definiti i controller dell'applicazione
  */
 module VisualSearch.Controllers
