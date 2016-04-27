@@ -18,16 +18,23 @@ $dark:                            #444 !default;
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
-// Custom variables
+/************************** Personalizzazioni ******************************/
+
+// Colori plain usati
 $PlainDarkBlueColor:        #145494;
 $PlainRedColor:             #C72635;
 $PlainWhiteColor:           #FFFFFF;
 
+// Associazione dei colori plain ai tag dei colori ionic
 $positive:                  $PlainDarkBlueColor !default;
 $assertive:                 $PlainRedColor !default;
+
+// Rimetto a default gli item-assertive (usati nel menù laterale per la selezione del set attivo)
 $item-assertive-bg:         $PlainWhiteColor !default;
 $item-assertive-border:     #ddd !default;
 $item-assertive-text:       #444 !default;
+
+/***************************************************************************/
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";

@@ -1,26 +1,35 @@
+/* File degli stili personalizzati usati nell'applicazione */
+
+/* Stile per i nomi dei motori di ricerca nel menù laterale */
 .vs-title {
     font-weight: bold;
 }
 
+/* Colore del testo bianco per i set selezionati nel menù laterale */
 .item-assertive.active,
 .item-assertive.activated {
     color: #fff;
 }
 
+/* Stile per il logo plain nell'header */
 .vs-header-logo {
     height: 20px;
     margin-top: 13px;
     float: right;
 }
 
+/* Stile per la visualizzazione delle foto */
 .vs-photo {
+    /* Utilizzo tutta la larghezza in orizzontale */
     max-width: 100%;
+    /* Per centrare le foto verticali */
     max-height: 300px;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
+/* Stile per la visualizzazione dei loghi dei motori di ricerca */
 .vs-logo {
     width: 100%;
 }
