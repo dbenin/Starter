@@ -26,18 +26,19 @@ module VisualSearch.Models
             // Chiamata al costruttore della classe base
             super("Google Cloud Vision", key, sets, q, http);
 
-            // Inizializzazione delle opzioni specifiche, Google Cloud Vision necessita dell'immagine in formato data Base64 (invece che file URI)
+            // Inizializzazione delle opzioni specifiche, Google Cloud Vision necessita dell'immagine in formato dati Base64 (invece che il default file URI)
             this.options = { destinationType: 0 };//Camera.DestinationType.DATA_URL//Camera is not defined?
         }
 
         /**
          * Implementazione del metodo "search"
-         * @param picture La foto da cercare in formato dati Base64
+         * @param picture La foto da cercare in formato dati Base64 (con header "data:image/jpeg;base64,")
          * @param set L'indice del set in cui cercare
          * @returns Una promise con l'oggetto ritornato da Google
          */
         search(picture: string, set: number): ng.IPromise<any>
-        {//necessita di picture in formato dati Base64 SENZA l'header "data:image/jpeg;base64,"
+        {   
+            // Necessita di picture in formato dati Base64 SENZA l'header "data:image/jpeg;base64,"
             let i: number = picture.indexOf(',');
             if (i > 0)
             {

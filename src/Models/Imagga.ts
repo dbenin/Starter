@@ -32,7 +32,7 @@ module VisualSearch.Models
 
             /**
              * Funzione chiamata in caso di successo nell'invio della foto al server Imagga
-             * @param result L'oggetto ritornato da Imagga contenente l'id della foto caricata
+             * @param result L'oggetto ritornato da Imagga contenente l'id della foto caricata da utilizzare per la richiesta del risultato
              */
             let successCallback: (result: FileUploadResult) => void = (result: FileUploadResult) =>
             {
