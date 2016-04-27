@@ -15,7 +15,7 @@ module VisualSearch.Services
         settings: Models.ISettings = { save: false, quality: 50 };
         
         // Costruttore della classe del servizio "Picture"
-        constructor(private $q: ng.IQService)
+        constructor(private $q: ng.IQService)// Dependency injection del servizio
         {
             // Prende le impostazioni dallo storage locale se disponibili
             let settings: string = window.localStorage["Settings"];
