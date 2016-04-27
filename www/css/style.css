@@ -5,6 +5,12 @@
     font-weight: bold;
 }
 
+/* Stile per evidenziare dei termini all'interno di un paragrafo */
+p > i {
+    font-style: oblique;
+    color: black;
+}
+
 /* Colore del testo bianco per i set selezionati nel menù laterale */
 .item-assertive.active,
 .item-assertive.activated {
