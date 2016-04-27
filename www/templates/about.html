@@ -1,12 +1,13 @@
-﻿<ion-modal-view ng-controller="About as a">
+﻿<!-- Modal About -->
+<ion-modal-view ng-controller="About as a">
 
-    <!-- Modal header bar -->
+    <!-- Header -->
     <ion-header-bar align-title="center" class="bar-positive">
         <h1 class="title"><span ng-show="a.Loader.first === true">Benvenuto in </span>Visual Search App</h1>
     </ion-header-bar>
 
-    <!-- Modal content area -->
-    <ion-content overflow-scroll="false">
+    <!-- Contenuto -->
+    <ion-content overflow-scroll="false" scrollbar-y="false">
         <div class="card">
             <div class="item item-divider">Informazioni</div>
             <div class="item item-body">

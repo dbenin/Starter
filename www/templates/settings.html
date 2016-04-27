@@ -1,6 +1,7 @@
-﻿<ion-modal-view ng-controller="Settings as s">
+﻿<!-- Modal Settings -->
+<ion-modal-view ng-controller="Settings as s">
 
-    <!-- Modal header bar -->
+    <!-- Header -->
     <ion-header-bar class="bar-positive">
         <h1 class="title">Impostazioni</h1>
         <button class="button button-icon" ng-click="s.Layout.settingsModal.hide()">
@@ -8,11 +9,11 @@
         </button>
     </ion-header-bar>
 
-    <!-- Modal content area -->
-    <ion-content>
+    <!-- Contenuto -->
+    <ion-content overflow-scroll="false" scrollbar-y="false">
         <ion-list>
+            <!-- Impostazioni generali -->
             <ion-item class="item-divider">Generali</ion-item>
-            <!--OPZIONI GENERALI-->
             <ion-toggle ng-model="s.Picture.settings.save" ng-model-options="{ debounce: 1000 }" ng-change="s.Picture.saveSettings()">Salva foto</ion-toggle>
             <label class="item">
                 <div class="item-content">Qualità immagine: {{s.Picture.settings.quality}}</div>
@@ -22,18 +23,19 @@
                     <i class="icon ion-ios-plus-outline"></i>
                 </div>
             </label>
-            <!--OPZIONI SPECIFICHE PER OGNI MOTORE DI RICERCA-->
+            <!-- Impostazioni specifiche per ogni motore di ricerca, visualizzate solo se il motore è selezionato -->
             <ion-item class="item-divider">{{s.Loader.active.engine.name}}</ion-item>
+            <!-- Chiave API per tutti i motori di ricerca -->
             <label class="item item-input">
-                <span class="input-label">API Key</span>
+                <span class="input-label">Chiave API</span>
                 <input type="text" ng-model="s.Loader.active.engine.key" ng-model-options="{ updateOn: 'blur' }" ng-change="s.Loader.active.engine.save()">
             </label>
-            <!--OPZIONI SPECIFICHE METAMIND CUSTOM-->
+            <!-- Impostazioni specifiche per MetaMind personalizzato -->
             <label class="item item-input" ng-show="s.Loader.active.names.set === 'Custom Classifier'">
                 <span class="input-label">Custom Classifier ID</span>
                 <input type="text" ng-model="s.Loader.active.engine.sets[2].value" ng-model-options="{ updateOn: 'blur' }" ng-change="s.Loader.active.engine.save()">
             </label>
-            <!--OPZIONI SPECIFICHE JUSTVISUAL CUSTOM-->
+            <!-- Impostazioni specifiche per JustVisual personalizzato -->
             <div ng-show="s.Loader.active.names.set === 'Custom Index'">
                 <label class="item item-input">
                     <span class="input-label">API Server</span>
@@ -44,7 +46,7 @@
                     <input type="text" ng-model="s.Loader.active.engine.sets[4].index" ng-model-options="{ updateOn: 'blur' }" ng-change="s.Loader.active.engine.save()">
                 </label>
             </div>
-            <!--DATABASE-->
+            <!-- Impostazioni per il database -->
             <div ng-show="s.Loader.active.names.set === 'Custom Classifier' || s.Loader.active.names.set === 'Custom Index'">
                 <ion-item class="item-divider">Servizio Prodotti e Componenti</ion-item>
                 <label class="item item-input">
@@ -52,7 +54,7 @@
                     <input type="text" ng-model="s.Loader.database.address" ng-model-options="{ updateOn: 'blur' }" ng-change="s.Loader.database.save()">
                 </label>
             </div>
-            <!--TRANSLATOR-->
+            <!-- Impostazioni per il traduttore -->
             <div ng-show="s.Loader.active.names.set === 'Text Detection'">
                 <ion-item class="item-divider">Microsoft Translator</ion-item>
                 <label class="item item-input">

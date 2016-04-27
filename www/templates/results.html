@@ -1,5 +1,5 @@
 ﻿<ion-list>
-    <!--CLOUDSIGHT RESULTS http://cloudsightapi.com/dashboard -->
+    <!-- Risultati CloudSight -->
     <div ng-show="m.results.ok === true && m.Loader.active.names.engine === 'CloudSight'">
         <ion-item class="item-divider">
             Stato: {{m.results.content.status}}
@@ -7,7 +7,7 @@
         </ion-item>
         <ion-item class="item" style="text-transform:capitalize">{{m.results.content.name}}</ion-item>
     </div>
-    <!--IMAGGA RESULTS https://imagga.com/profile/dashboard -->
+    <!-- Risultati Imagga -->
     <div ng-show="m.results.ok === true && m.Loader.active.names.engine === 'Imagga'">
         <ion-item class="item-divider">Risultati</ion-item>
         <ion-item ng-repeat="tag in m.results.content.tags | limitTo: 10">
@@ -15,7 +15,7 @@
             <span class="item-note">{{tag.confidence.toFixed(1)}}%</span>
         </ion-item>
     </div>
-    <!--JUSTVISUAL RESULTS-->
+    <!-- Risultati JustVisual -->
     <div ng-show="m.results.ok === true && m.Loader.active.names.engine === 'JustVisual'">
         <ion-item class="item-divider">Risultati</ion-item>
         <ion-item ng-repeat="result in m.results.content.images" class="item-thumbnail-left">
@@ -23,33 +23,33 @@
             <a ng-href="{{result.pageUrl}}">{{result.title}}</a>
         </ion-item>
     </div>
-    <!--GOOGLECLOUDVISION RESULTS-->
+    <!-- Risultati Google Cloud Vision -->
     <div ng-show="m.results.ok === true && m.Loader.active.names.engine === 'Google Cloud Vision'">
         <ion-item class="item-divider" ng-show="m.Loader.active.names.set !== 'Text Detection'">Risultati</ion-item>
-        <ion-item class="item-divider" ng-show="m.Loader.active.names.set === 'Text Detection'">
-            Lingua: {{m.results.content.responses[0].textAnnotations[0].locale}}
-        </ion-item>
-        <!--LABEL-->
+        <!-- Label Detection -->
         <ion-item ng-repeat="label in m.results.content.responses[0].labelAnnotations">
             <span>{{label.description}}</span>
             <span class="item-note">{{(label.score * 100).toFixed(1)}}%</span>
         </ion-item>
-        <!--LANDMARK-->
+        <!-- Landmark Detection -->
         <ion-item ng-repeat="landmark in m.results.content.responses[0].landmarkAnnotations">
             <span>{{landmark.description}}</span>
             <span class="item-note">{{(landmark.score * 100).toFixed(1)}}%</span>
         </ion-item>
-        <!--LOGO-->
+        <!-- Logo Detection -->
         <ion-item ng-repeat="logo in m.results.content.responses[0].logoAnnotations">
             <span>{{logo.description}}</span>
             <span class="item-note">{{(logo.score * 100).toFixed(1)}}%</span>
         </ion-item>
-        <!--TEXT-->
+        <!-- Text Detection -->
+        <ion-item class="item-divider" ng-show="m.Loader.active.names.set === 'Text Detection'">
+            Lingua: {{m.results.content.responses[0].textAnnotations[0].locale}}
+        </ion-item>
         <p class="padding">{{m.results.content.responses[0].textAnnotations[0].description}}</p>
         <ion-item class="item-divider" ng-show="m.results.translator.ok === true">Traduzione: {{m.results.translator.lang}}</ion-item>
         <p class="padding">{{m.results.translator.text}}</p>
     </div>
-    <!--METAMIND RESULTS https://www.metamind.io/auth/my_account -->
+    <!-- Risultati MetaMind -->
     <div ng-show="m.results.ok === true && m.Loader.active.names.engine === 'MetaMind'">
         <ion-item class="item-divider">Risultati</ion-item>
         <ion-item ng-repeat="prediction in m.results.content.predictions">
@@ -57,7 +57,7 @@
             <span class="item-note">{{(prediction.prob * 100).toFixed(1)}}%</span>
         </ion-item>
     </div>
-    <!--DATABASE-->
+    <!-- Database -->
     <div ng-show="m.results.database.ok === true && (m.Loader.active.names.set === 'Custom Classifier' || m.Loader.active.names.set === 'Custom Index')">
         <ion-item class="item-divider" ng-show="m.results.database.ok === true && m.Loader.active.names.set === 'Custom Classifier'">
             Giacenza del componente "{{m.results.content.predictions[0].class_name}}": {{m.results.database.stock}}
