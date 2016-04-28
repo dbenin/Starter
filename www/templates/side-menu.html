@@ -24,6 +24,10 @@
             <ion-item class="item-assertive" ng-repeat="set in m.Loader.engines[4].sets" ng-click="m.selectEngine(4, $index)" ng-class="{active: m.Loader.active.names.set == set.name}">
                 {{set.name}}
             </ion-item>
+            <ion-item class="item-divider vs-title">Microsoft Computer Vision</ion-item>
+            <ion-item class="item-assertive" ng-repeat="set in m.Loader.engines[5].sets" ng-click="m.selectEngine(5, $index)" ng-class="{active: m.Loader.active.names.set == set.name}">
+                {{set.name}}
+            </ion-item>
         </ion-list>
     </ion-content>
 </ion-side-menu>

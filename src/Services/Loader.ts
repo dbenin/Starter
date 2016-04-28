@@ -47,7 +47,8 @@ module VisualSearch.Services
                 new Models.Imagga(this.$q, this.$http),
                 new Models.GoogleCloudVision(this.$q, this.$http),
                 new Models.MetaMind(this.$q, this.$http),
-                new Models.JustVisual(this.$q)
+                new Models.JustVisual(this.$q),
+                new Models.MicrosoftComputerVision(this.$q, this.$http)
             ];
             
             // Prende l'ultimo motore attivo dallo storage locale altrimenti viene inizializzato al primo set del primo motore

@@ -70,4 +70,12 @@
             <span class="item-note">{{product.Quantity}}</span>
         </ion-item>
     </div>
+    <!-- Microsoft Computer Vision -->
+    <div ng-show="m.results.ok === true && m.Loader.active.names.engine === 'Microsoft Computer Vision'">
+        <ion-item class="item-divider">Risultati</ion-item>
+        <ion-item ng-repeat="prediction in m.results.content.predictions">
+            <span>{{prediction.class_name}}</span>
+            <span class="item-note">{{(prediction.prob * 100).toFixed(1)}}%</span>
+        </ion-item>
+    </div>
 </ion-list>
