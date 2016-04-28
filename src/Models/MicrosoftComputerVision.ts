@@ -28,7 +28,8 @@ module VisualSearch.Models
             {
                 //{"bytesSent":23890,"responseCode":200,"response":"{\"categories\":[{\"name\":\"food_fastfood\",\"score\":0.71484375}],\"adult\":{\"isAdultContent\":false,\"isRacyContent\":false,\"adultScore\":0.032451242208480835,\"racyScore\":0.033728186041116714},\"tags\":[{\"name\":\"table\",\"confidence\":0.99268251657485962},{\"name\":\"food\",\"confidence\":0.96375185251235962},{\"name\":\"plate\",\"confidence\":0.95749586820602417},{\"name\":\"sandwich\",\"confidence\":0.86936056613922119,\"hint\":\"food\"},{\"name\":\"snack food\",\"confidence\":0.55466645956039429,\"hint\":\"food\"},{\"name\":\"meat\",\"confidence\":0.30502858757972717}],\"description\":{\"tags\":[\"table\",\"food\",\"plate\",\"sandwich\",\"sitting\",\"cup\",\"top\",\"coffee\",\"bun\",\"paper\",\"meat\",\"large\",\"topped\",\"white\",\"eating\",\"cake\",\"red\",\"cheese\"],\"captions\":[{\"text\":\"a sandwich on a plate\",\"confidence\":0.882921187827322}]},\"requestId\":\"64e9d60b-0d47-4f5d-9007-644be263e636\",\"metadata\":{\"width\":640,\"height\":360,\"format\":\"Jpeg\"},\"faces\":[],\"color\":{\"dominantColorForeground\":\"Brown\",\"dominantColorBackground\":\"Brown\",\"dominantColors\":[\"Brown\",\"Grey\"],\"accentColor\":\"966235\",\"isBWImg\":false},\"imageType\":{\"clipArtType\":0,\"lineDrawingType\":0}}","objectId":""}
                 console.log("success: " + JSON.stringify(result));//debug
-                res = { ok: true, content: result.response };
+                res = { ok: true, content: JSON.parse(result.response) };
+                console.log("description: " + res.content.description.captions[0].text);
                 q.resolve(res);
             };
 

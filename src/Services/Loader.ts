@@ -42,6 +42,7 @@ module VisualSearch.Services
             this.translator = Models.Translator;
 
             // Inizializzazione dei motori di ricerca visuale
+            // L'ordine deve essere congruente con il file templates/side-menu.html
             this.engines = [
                 new Models.CloudSight(this.$q, this.$http, this.$interval),
                 new Models.Imagga(this.$q, this.$http),

@@ -42,12 +42,14 @@
             <span class="item-note">{{(logo.score * 100).toFixed(1)}}%</span>
         </ion-item>
         <!-- Text Detection -->
-        <ion-item class="item-divider" ng-show="m.Loader.active.names.set === 'Text Detection'">
-            Lingua: {{m.results.content.responses[0].textAnnotations[0].locale}}
-        </ion-item>
-        <p class="padding">{{m.results.content.responses[0].textAnnotations[0].description}}</p>
-        <ion-item class="item-divider" ng-show="m.results.translator.ok === true">Traduzione: {{m.results.translator.lang}}</ion-item>
-        <p class="padding">{{m.results.translator.text}}</p>
+        <div ng-show="m.Loader.active.names.set === 'Text Detection'">
+            <ion-item class="item-divider">Lingua: {{m.results.content.responses[0].textAnnotations[0].locale}}</ion-item>
+            <ion-item class="item-text-wrap">{{m.results.content.responses[0].textAnnotations[0].description}}</ion-item>
+            <div ng-show="m.results.translator.ok === true">
+                <ion-item class="item-divider">Traduzione: {{m.results.translator.lang}}</ion-item>
+                <ion-item class="item-text-wrap">{{m.results.translator.text}}</ion-item>
+            </div>
+        </div>
     </div>
     <!-- Risultati MetaMind -->
     <div ng-show="m.results.ok === true && m.Loader.active.names.engine === 'MetaMind'">
@@ -72,10 +74,29 @@
     </div>
     <!-- Microsoft Computer Vision -->
     <div ng-show="m.results.ok === true && m.Loader.active.names.engine === 'Microsoft Computer Vision'">
-        <ion-item class="item-divider">Risultati</ion-item>
-        <ion-item ng-repeat="prediction in m.results.content.predictions">
-            <span>{{prediction.class_name}}</span>
-            <span class="item-note">{{(prediction.prob * 100).toFixed(1)}}%</span>
+
+        <ion-item class="item-divider">Descrizione</ion-item>
+        <ion-item class="item-text-wrap" ng-repeat="caption in m.results.content.description.captions">
+            {{caption.text}}
+            <span class="item-note">{{(caption.confidence * 100).toFixed(1)}}%</span>
+        </ion-item>
+
+        <ion-item class="item-divider">Tag</ion-item>
+        <ion-item ng-repeat="tag in m.results.content.tags">
+            {{tag.name}}
+            <span class="item-note">{{(tag.confidence * 100).toFixed(1)}}%</span>
+        </ion-item>
+
+        <ion-item class="item-divider">Adulti</ion-item>
+        <ion-item>Per adulti: 
+            <span ng-show="m.results.content.adult.isAdultContent === true">si</span>
+            <span ng-show="m.results.content.adult.isAdultContent === false">no</span>
+            <span class="item-note">{{(m.results.content.adult.adultScore * 100).toFixed(1)}}%</span>
+        </ion-item>
+        <ion-item>Razzista: 
+            <span ng-show="m.results.content.adult.isRacyContent === true">si</span>
+            <span ng-show="m.results.content.adult.isRacyContent === false">no</span>
+            <span class="item-note">{{(m.results.content.adult.racyScore * 100).toFixed(1)}}%</span>
         </ion-item>
     </div>
 </ion-list>
