@@ -103,13 +103,13 @@
             <span ng-show="m.results.content.color.isBWImg === true">si</span>
             <span ng-show="m.results.content.color.isBWImg === false">no</span>
         </ion-item>
-        <ion-item class="item-divider">Rating</ion-item>
+        <ion-item class="item-divider">Contenuto esplicito</ion-item>
         <ion-item>Per adulti: 
             <span ng-show="m.results.content.adult.isAdultContent === true">si</span>
             <span ng-show="m.results.content.adult.isAdultContent === false">no</span>
             <span class="item-note">{{(m.results.content.adult.adultScore * 100).toFixed(1)}}%</span>
         </ion-item>
-        <ion-item>Razzista: 
+        <ion-item>Razzismo: 
             <span ng-show="m.results.content.adult.isRacyContent === true">si</span>
             <span ng-show="m.results.content.adult.isRacyContent === false">no</span>
             <span class="item-note">{{(m.results.content.adult.racyScore * 100).toFixed(1)}}%</span>
