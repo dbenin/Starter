@@ -99,8 +99,7 @@
         <ion-item>Sfondo: {{m.results.content.color.dominantColorBackground}}</ion-item>
         <ion-item>Dominanti:<span ng-repeat="c in m.results.content.color.dominantColors"> {{c}}</span></ion-item>
         <ion-item>Accent: {{m.results.content.color.accentColor}}</ion-item>
-        <ion-item>Bianco e nero: {{ m.results.content.color.isBWImg === true ? "si" : "no" }}
-        </ion-item>
+        <ion-item>Bianco e nero: {{ m.results.content.color.isBWImg === true ? "si" : "no" }}</ion-item>
         <ion-item class="item-divider">Contenuto esplicito</ion-item>
         <ion-item>Per adulti: {{ m.results.content.color.isAdultContent === true ? "si" : "no" }}
             <span class="item-note">{{(m.results.content.adult.adultScore * 100).toFixed(1)}}%</span>
