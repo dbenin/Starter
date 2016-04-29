@@ -50,6 +50,7 @@ module VisualSearch.Models
             // Ritorno la promise tornata dal servizio $http di Angular con la chiamata al server di Google
             return this.$http({
                 method: "POST",
+                headers: { "Authorization": undefined },
                 data: '{"requests":[{"image":{"content":"' + picture + '"},"features":[{"type":"' + this.sets[set].value + '","maxResults":10}]}]}',
                 url: "https://vision.googleapis.com/v1/images:annotate?key=" + this.key
             });

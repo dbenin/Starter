@@ -56,7 +56,7 @@ module VisualSearch.Models
                 this.$http({
                     method: "POST",
                     url: "https://datamarket.accesscontrol.windows.net/v2/OAuth2-13",
-                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    headers: { "Content-Type": "application/x-www-form-urlencoded", "Authorization": undefined },
                     data: "client_id=" + this.id + "&client_secret=" + this.secret + "&scope=http://api.microsofttranslator.com/" + "&grant_type=client_credentials"
                 }).then((promiseValue: any) =>
                 {

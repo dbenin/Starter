@@ -49,7 +49,7 @@ module VisualSearch.Services
                 new Models.GoogleCloudVision(this.$q, this.$http),
                 new Models.MetaMind(this.$q, this.$http),
                 new Models.JustVisual(this.$q),
-                new Models.MicrosoftComputerVision(this.$q, this.$http)
+                new Models.MicrosoftComputerVision(this.$q)
             ];
             
             // Prende l'ultimo motore attivo dallo storage locale altrimenti viene inizializzato al primo set del primo motore

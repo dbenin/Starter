@@ -4,14 +4,14 @@ module VisualSearch.Models
 {
     export class MicrosoftComputerVision extends SearchEngine
     {
-        constructor(q: ng.IQService, http: ng.IHttpService)//$http SERVE???
+        constructor(q: ng.IQService)
         {
             let key: string = window.localStorage["Microsoft Computer Vision Key"] || "98b676305b654a239d9e868d9a95c08c";
             let sets: Array<ISearchEngineSet> = [
                 { name: "Analyse", value: "analyze?visualFeatures=Categories,Tags,Description,Faces,ImageType,Color,Adult" },
                 { name: "OCR", value: "ocr" }
             ];
-            super("Microsoft Computer Vision", key, sets, q, http);
+            super("Microsoft Computer Vision", key, sets, q);
         }
 
         search(picture: string): ng.IPromise<any>

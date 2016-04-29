@@ -44,6 +44,7 @@ module VisualSearch.Models
         {
             return this.$http({
                 method: "GET",
+                headers: { "Authorization": undefined },
                 url: this.address + "/test/api/Products?component=" + component
             });
         }
