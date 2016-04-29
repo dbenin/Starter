@@ -72,7 +72,7 @@
             <span class="item-note">{{product.Quantity}}</span>
         </ion-item>
     </div>
-    <!-- Microsoft Computer Vision -->
+    <!-- Microsoft Computer Vision Analyse -->
     <div ng-show="m.results.ok === true && m.Loader.active.names.set === 'Analyse'">
         <div ng-show="m.results.content.description.captions.length > 0">
             <ion-item class="item-divider">Descrizione</ion-item>
@@ -115,6 +115,7 @@
             <span class="item-note">{{(m.results.content.adult.racyScore * 100).toFixed(1)}}%</span>
         </ion-item>
     </div>
+    <!-- Microsoft Computer Vision OCR -->
     <div ng-show="m.results.ok === true && m.Loader.active.names.set === 'OCR'">
         <ion-item class="item-divider">Lingua: {{m.results.content.lang}}</ion-item>
         <ion-item class="item-text-wrap">{{m.results.content.text}}</ion-item>
