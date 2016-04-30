@@ -124,7 +124,7 @@ module VisualSearch.Models
             {
                 //{"code":1,"source":"file:///storage/emulated/0/Android/data/io.cordova.myapp46c7f9/cache/DSC_0202.JPG","target":"https://api.projectoxford.ai/vision/v1.0/analyze?visualFeatures=Categories,Tags,Description,Faces,ImageType,Color,Adult","http_status":401,"body":"{ \"statusCode\": 401, \"message\": \"Access denied due to invalid subscription key. Make sure to provide a valid key for an active subscription.\" }","exception":"https://api.projectoxford.ai/vision/v1.0/analyze?visualFeatures=Categories,Tags,Description,Faces,ImageType,Color,Adult"}
                 console.log("fail: " + JSON.stringify(error));//debug
-                res = { ok: false, content: JSON.parse(error.body).message };
+                res = { ok: false, content: JSON.parse(error.body).message || error };
                 q.reject(res);
             };
 

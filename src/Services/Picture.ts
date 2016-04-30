@@ -41,6 +41,7 @@ module VisualSearch.Services
             // Impostazioni comuni
             options.quality = this.settings.quality;
             options.correctOrientation = true;
+            options.encodingType = Camera.EncodingType.JPEG;
             options.targetWidth = 640;
             options.targetHeight = 640;
             if (library)
@@ -53,7 +54,6 @@ module VisualSearch.Services
             {
                 // Impostazioni per scattare una foto con la fotocamera del telefono
                 options.sourceType = Camera.PictureSourceType.CAMERA;
-                options.encodingType = Camera.EncodingType.JPEG;
                 options.saveToPhotoAlbum = this.settings.save;
             }
             options.destinationType = Camera.DestinationType.FILE_URI;
@@ -104,7 +104,7 @@ module VisualSearch.Services
         // Metodo che salva le impostazioni nello storage locale
         saveSettings(): void
         {
-            console.log("SAVE " + this.settings.save + " " + this.settings.quality);
+            console.log("SAVE " + this.settings.save + " " + this.settings.quality);//debug
             window.localStorage["Settings"] = angular.toJson(this.settings);
         }
     }
