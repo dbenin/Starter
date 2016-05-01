@@ -4,30 +4,37 @@
     </ion-header-bar>
     <ion-content overflow-scroll="false" scrollbar-y="false">
         <ion-list>
+
             <ion-item class="item-divider vs-title">CloudSight</ion-item>
             <ion-item class="item-assertive" ng-repeat="set in m.Loader.engines[0].sets" ng-click="m.selectEngine(0, $index)" ng-class="{active: m.Loader.active.names.set == set.name}">
                 {{set.name}}
             </ion-item>
-            <ion-item class="item-divider vs-title">Imagga</ion-item>
+
+            <ion-item class="item-divider vs-title">Microsoft Computer Vision</ion-item>
             <ion-item class="item-assertive" ng-repeat="set in m.Loader.engines[1].sets" ng-click="m.selectEngine(1, $index)" ng-class="{active: m.Loader.active.names.set == set.name}">
                 {{set.name}}
             </ion-item>
+
             <ion-item class="item-divider vs-title">Google Cloud Vision</ion-item>
             <ion-item class="item-assertive" ng-repeat="set in m.Loader.engines[2].sets" ng-click="m.selectEngine(2, $index)" ng-class="{active: m.Loader.active.names.set == set.name}">
                 {{set.name}}
             </ion-item>
-            <ion-item class="item-divider vs-title">MetaMind</ion-item>
+
+            <ion-item class="item-divider vs-title">Imagga</ion-item>
             <ion-item class="item-assertive" ng-repeat="set in m.Loader.engines[3].sets" ng-click="m.selectEngine(3, $index)" ng-class="{active: m.Loader.active.names.set == set.name}">
                 {{set.name}}
             </ion-item>
+
             <ion-item class="item-divider vs-title">JustVisual</ion-item>
             <ion-item class="item-assertive" ng-repeat="set in m.Loader.engines[4].sets" ng-click="m.selectEngine(4, $index)" ng-class="{active: m.Loader.active.names.set == set.name}">
                 {{set.name}}
             </ion-item>
-            <ion-item class="item-divider vs-title">Microsoft Computer Vision</ion-item>
+
+            <ion-item class="item-divider vs-title">MetaMind</ion-item>
             <ion-item class="item-assertive" ng-repeat="set in m.Loader.engines[5].sets" ng-click="m.selectEngine(5, $index)" ng-class="{active: m.Loader.active.names.set == set.name}">
                 {{set.name}}
             </ion-item>
+
         </ion-list>
     </ion-content>
 </ion-side-menu>

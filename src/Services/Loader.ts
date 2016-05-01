@@ -45,11 +45,11 @@ module VisualSearch.Services
             // L'ordine deve essere congruente con il file templates/side-menu.html
             this.engines = [
                 new Models.CloudSight(this.$q, this.$http, this.$interval),
-                new Models.Imagga(this.$q, this.$http),
+                new Models.MicrosoftComputerVision(this.$q),
                 new Models.GoogleCloudVision(this.$q, this.$http),
-                new Models.MetaMind(this.$q, this.$http),
+                new Models.Imagga(this.$q, this.$http),
                 new Models.JustVisual(this.$q),
-                new Models.MicrosoftComputerVision(this.$q)
+                new Models.MetaMind(this.$q, this.$http)
             ];
             
             // Prende l'ultimo motore attivo dallo storage locale altrimenti viene inizializzato al primo set del primo motore
