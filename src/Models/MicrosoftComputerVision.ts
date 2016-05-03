@@ -22,7 +22,7 @@ module VisualSearch.Models
             super("Microsoft Computer Vision", key, sets, q);
         }
 
-        // Non usata
+        // Non usato
         search(picture: string): ng.IPromise<any>
         {
             let q: ng.IDeferred<any> = this.$q.defer();
