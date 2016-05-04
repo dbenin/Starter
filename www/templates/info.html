@@ -6,18 +6,20 @@
     <!-- Informazioni CloudSight -->
     <div class="item item-body" ng-show="m.Loader.active.names.engine === 'CloudSight' && m.photo === ''">
         <img class="vs-logo" src="images/cloudsight.svg">
-        <p>Il servizio permette l'identificazione generale dell'oggetto fotografato, restituendo una descrizione appropriata nel 100% dei casi, anche se i tempi di attesa sono maggiori rispetto agli altri servizi implementati.</p>
+        <p>Il servizio permette l'identificazione generica dell'oggetto fotografato, restituendo una descrizione appropriata nel 100% dei casi, anche se i tempi di attesa sono maggiori rispetto agli altri servizi implementati.</p>
         <p>Per utilizzare il servizio è necessario ottenere una chiave di accesso da inserire nelle impostazioni dell'applicazione (inserire il valore <i>API Key</i> fornito da CloudSight).</p>
         <p>&Egrave; possibile ottenere una chiave di accesso gratuita (valida per un totale di 500 richieste) iscrivendosi al seguente indirizzo: <a href="http://cloudsightapi.com/api_client_users/new">http://cloudsightapi.com/api_client_users/new</a>.</p>
         <p>&Egrave; possibile monitorare l'utilizzo della propria chiave di accesso dalla dashboard al seguente indirizzo: <a href="https://cloudsightapi.com/dashboard">https://cloudsightapi.com/dashboard</a>.</p>
+        <p>Informazioni dettagliate sulla procedura per ottenere una chiave di accesso gratuita sono presenti nel manuale utente fornito con l'applicazione.</p>
     </div>
     <!-- Informazioni Imagga -->
     <div class="item item-body" ng-show="m.Loader.active.names.engine === 'Imagga' && m.photo === ''">
         <img class="vs-logo" src="images/imagga.svg">
-        <p>Il servizio permette l'identificazione generale dell'oggetto fotografato, restituendo un insieme di tag con il relativo livello di accuratezza in percentuale.</p>
+        <p>Il servizio permette l'identificazione generica dell'oggetto fotografato, restituendo un insieme di tag con il relativo livello di accuratezza in percentuale.</p>
         <p>Per utilizzare il servizio è necessario ottenere una chiave di accesso da inserire nelle impostazioni dell'applicazione (inserire il valore <i>Authorization</i> fornito da Imagga).</p>
         <p>&Egrave; possibile ottenere una chiave di accesso gratuita (limitata a 2000 richieste mensili) iscrivendosi al seguente indirizzo: <a href="https://imagga.com/auth/signup/hacker">https://imagga.com/auth/signup/hacker</a>.</p>
         <p>&Egrave; possibile monitorare l'utilizzo della propria chiave di accesso dalla dashboard al seguente indirizzo: <a href="https://imagga.com/profile/dashboard">https://imagga.com/profile/dashboard</a>.</p>
+        <p>Informazioni dettagliate sulla procedura per ottenere una chiave di accesso gratuita sono presenti nel manuale d'uso fornito con l'applicazione.</p>
     </div>
     <!-- Informazioni JustVisual -->
     <div class="item item-body" ng-show="m.Loader.active.names.engine === 'JustVisual' && m.photo === ''">
@@ -26,35 +28,34 @@
         <p>Per utilizzare il servizio è necessario ottenere una chiave di accesso da inserire nelle impostazioni dell'applicazione.</p>
         <p>&Egrave; possibile ottenere una chiave di accesso gratuita (valida per un periodo di tempo limitato) iscrivendosi al seguente indirizzo: <a href="http://justvisual.com/contact/">http://justvisual.com/contact/</a>.</p>
         <p>L'applicazione implementa la possibilità offerta dal servizio (a pagamento) di definire un repository personalizzato, per maggiori informazioni fare riferimento al seguente indirizzo: <a href="http://justvisual.com/custom-search-api/">http://justvisual.com/custom-search-api/</a>.</p>
+        <p>Informazioni dettagliate sulla procedura per ottenere una chiave di accesso gratuita sono presenti nel manuale utente fornito con l'applicazione.</p>
     </div>
     <!-- Informazioni Google Cloud Vision -->
     <div class="item item-body" ng-show="m.Loader.active.names.engine === 'Google Cloud Vision' && m.photo === ''">
         <img class="vs-logo" src="images/google.png">
-        <p>Il servizio permette l'identificazione generale (label), luoghi o monumenti (landmark), loghi e testo, restituendo un insieme di tag con il relativo livello di accuratezza in percentuale.</p>
+        <p>Il servizio permette l'identificazione generica (label), luoghi o monumenti (landmark), loghi e testo, restituendo un insieme di tag con il relativo livello di accuratezza in percentuale.</p>
         <p>Per utilizzare il servizio è necessario ottenere una chiave di accesso da inserire nelle impostazioni dell'applicazione (inserire una <i>API key</i> di tipo <i>Browser key</i>).</p>
-        <p>&Egrave; possibile ottenere una chiave di accesso (previo inserimento dei dati di pagamento, con quota gratuita fino a 1000 richieste mensili) seguendo le istruzioni al seguente indirizzo: <a href="https://cloud.google.com/vision/docs/getting-started">https://cloud.google.com/vision/docs/getting-started</a>.</p>
-        <p>&Egrave; possibile monitorare l'utilizzo della propria chiave di accesso dalla dashboard al seguente indirizzo: <a href="https://console.cloud.google.com/home/dashboard">https://console.cloud.google.com/home/dashboard</a>.</p>
+        <p>&Egrave; possibile ottenere una chiave di accesso (previo inserimento dei dati di pagamento, con quota gratuita fino a 1000 richieste mensili) seguendo le istruzioni riportate nel manuale d'uso (sezione 4.3).</p>
         <p>Insieme al riconoscimento del testo, l'applicazione offre il servizio di traduzione in Italiano (il testo già in Italiano verrà tradotto in Inglese) grazie alle API Microsoft Translator (è necessario inserire il <i>client ID</i> e il <i>client secret</i> nelle impostazioni).</p>
-        <p>&Egrave; possibile ottenere delle credenziali di accesso gratuite al servizio di traduzione (limitate a 2 milioni di caratteri mensili) seguendo le istruzioni al seguente indirizzo: <a href="https://www.microsoft.com/en-us/translator/getstarted.aspx">https://www.microsoft.com/en-us/translator/getstarted.aspx</a></p>
+        <p>&Egrave; possibile ottenere delle credenziali di accesso gratuite al servizio di traduzione (limitate a 2 milioni di caratteri mensili) seguendo le istruzioni riportate nel manuale d'uso (sezione 4.2.1).</p>
     </div>
     <!-- Informazioni MetaMind -->
     <div class="item item-body" ng-show="m.Loader.active.names.engine === 'MetaMind' && m.photo === ''">
         <img class="vs-logo" src="images/metamind.png">
         <p>Il servizio permette la definizione di <i>classifier</i> personalizzati oltre alla ricerca nei <i>classifier</i> preimpostati <i>general</i> e <i>food</i>, restituendo un insieme di tag con il relativo livello di accuratezza in percentuale.</p>
-        <p>Per utilizzare il servizio è necessario ottenere una chiave di accesso da inserire nelle impostazioni dell'applicazione (inserire la chiave nel formato <i>Basic chiave</i>).</p>
+        <p>Per utilizzare il servizio è necessario ottenere una chiave di accesso da inserire nelle impostazioni dell'applicazione (inserire la chiave nel formato <i>Basic valore-chiave</i>).</p>
         <p>&Egrave; possibile ottenere una chiave di accesso gratuita (limitata a 3000 richieste mensili) iscrivendosi al seguente indirizzo: <a href="https://www.metamind.io/">https://www.metamind.io/</a>.</p>
         <p>&Egrave; possibile monitorare l'utilizzo della propria chiave di accesso dalla dashboard al seguente indirizzo: <a href="https://www.metamind.io/auth/my_account">https://www.metamind.io/auth/my_account</a>.</p>
         <p>&Egrave; possibile definire classifier personalizzati dalla pagina al seguente indirizzo: <a href="https://www.metamind.io/my_stuff">https://www.metamind.io/my_stuff</a>.</p>
-        <p><i>Nota:</i> MetaMind è stata acquisita da un'altra società durante il periodo di svilippo di questo software e termina la propria attività dal 4 maggio 2016. Ne viene mantenuta l'implementazione nel caso di una futura riapertura.</p>
+        <p><i>Nota:</i> MetaMind è stata acquisita da un'altra società durante il periodo di svilippo di questo software e termina la propria attività dal 4 maggio 2016. Ne viene mantenuta l'implementazione in caso di una futura riapertura.</p>
     </div>
     <!-- Informazioni Microsoft Computer Vision -->
     <div class="item item-body" ng-show="m.Loader.active.names.engine === 'Microsoft Computer Vision' && m.photo === ''">
         <img class="vs-logo" src="images/microsoft.png">
-        <p>Il servizio permette l'identificazione generale dell'immagine (analyse), restituendo un risultato ricco di contenuti di dettaglio: descrizione, tag, facce con stima età e sesso, personaggi famosi, colori, contenuto esplicito. Viene inoltre fornito il servizio di riconoscimento del testo (OCR) con traduzione.</p>
+        <p>Il servizio permette l'identificazione generica dell'immagine (analyse), restituendo un risultato ricco di contenuti di dettaglio: descrizione, tag, facce con stima età e sesso, personaggi famosi, colori, contenuto esplicito. Viene inoltre fornito il servizio di riconoscimento del testo (OCR) con traduzione.</p>
         <p>Per utilizzare il servizio è necessario ottenere una chiave di accesso da inserire nelle impostazioni dell'applicazione.</p>
-        <p>&Egrave; possibile ottenere una chiave di accesso gratuita (limitata a 5000 richieste mensili) iscrivendosi al seguente indirizzo: <a href="https://www.microsoft.com/cognitive-services/en-us/sign-up">https://www.microsoft.com/cognitive-services/en-us/sign-up</a>.</p>
-        <p>&Egrave; possibile monitorare l'utilizzo della propria chiave di accesso dalla pagina al seguente indirizzo: <a href="https://www.microsoft.com/cognitive-services/en-us/subscriptions">https://www.microsoft.com/cognitive-services/en-us/subscriptions</a>.</p>
+        <p>&Egrave; possibile ottenere una chiave di accesso gratuita (limitata a 5000 richieste mensili) seguendo le istruzioni riportate nel manuale d'uso (sezione 4.2).</p>
         <p>Insieme al riconoscimento del testo, l'applicazione offre il servizio di traduzione in Italiano (il testo già in Italiano verrà tradotto in Inglese) grazie alle API Microsoft Translator (è necessario inserire il <i>client ID</i> e il <i>client secret</i> nelle impostazioni).</p>
-        <p>&Egrave; possibile ottenere delle credenziali di accesso gratuite al servizio di traduzione (limitate a 2 milioni di caratteri mensili) seguendo le istruzioni al seguente indirizzo: <a href="https://www.microsoft.com/en-us/translator/getstarted.aspx">https://www.microsoft.com/en-us/translator/getstarted.aspx</a></p>
+        <p>&Egrave; possibile ottenere delle credenziali di accesso gratuite al servizio di traduzione (limitate a 2 milioni di caratteri mensili) seguendo le istruzioni riportate nel manuale d'uso (sezione 4.2.1).</p>
     </div>
 </div>

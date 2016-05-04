@@ -13,7 +13,7 @@ module VisualSearch.Models
         constructor(q: ng.IQService, http: ng.IHttpService)
         {
             // Prende la chiave dallo storage locale, se non è presente viene fornito un valore di default
-            let key: string = window.localStorage["Google Cloud Vision Key"] || "AIzaSyA3CSP33Kkj0FN1ypV7UeS_BhEcQjqLzsI";
+            let key: string = window.localStorage["Google Cloud Vision Key"] || "";
 
             // Definizione dei set utilizzati da Google Cloud Vision
             let sets: Array<ISearchEngineSet> = [

@@ -10,7 +10,7 @@ module VisualSearch.Models
         constructor(q: ng.IQService)
         {
             // Prende la chiave dallo storage locale, se non è presente viene fornito un valore di default
-            let key: string = window.localStorage["JustVisual Key"] || "8b502b94-24f6-4b97-b33e-a78ad605da31";
+            let key: string = window.localStorage["JustVisual Key"] || "d5355a2f-a602-43d2-bedd-3a8ffcf286f2";
 
             // Definizione dei set utilizzati da JustVisual
             let sets: Array<ISearchEngineSet> = [

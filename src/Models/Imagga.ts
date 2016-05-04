@@ -10,8 +10,8 @@ module VisualSearch.Models
         constructor(q: ng.IQService, http: ng.IHttpService)
         {
             // Prende la chiave dallo storage locale, se non è presente viene fornito un valore di default
-            let key: string = window.localStorage["Imagga Key"] || "Basic YWNjX2YzMDMyOTkxNzUwODY1Mzo5N2U0YmI4ZjYxMDBlMjc2M2M4ZjNhOTg3YWM2ZDk0Zg==";
-
+            let key: string = window.localStorage["Imagga Key"] || "Basic YWNjXzE5NDZjMTE0Y2Y4NWM2YTpjOGY4MGFmODg0YjA0OGVjZWYwYzNkYjVlZTk0ZWJlMA==";
+            
             // Definizione dei set utilizzati da Imagga
             let sets: Array<ISearchEngineSet> = [{ name: "Tagging", value: "tagging" }];
 

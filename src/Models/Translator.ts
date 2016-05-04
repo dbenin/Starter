@@ -20,10 +20,10 @@ module VisualSearch.Models
     export class Translator
     {
         // Il client ID per l'utilizzo del traduttore, se non è presente viene fornito un valore di default
-        private static id: string = window.localStorage["Translator ID"] || "visualsearchapp";
+        private static id: string = window.localStorage["Translator ID"] || "myapp1645";
 
         // Il client secret per l'utilizzo del traduttore, se non è presente viene fornito un valore di default
-        private static secret: string = window.localStorage["Translator Secret"] || "F0Clr0fv2s4QyKUTOyfuQ4wAHFDMKrznCRKh46o5VZ8";
+        private static secret: string = window.localStorage["Translator Secret"] || "qwertyuiopasdfghjklz";
 
         // L'ultimo token ottenuto, necesserio per l'utilizzo delle API, deve essere rinnovato dopo 10 minuti
         private static token: string = "";
@@ -70,8 +70,8 @@ module VisualSearch.Models
                 }, (reason: any) =>
                 {
                     this.time = 0;
-                    q.reject();
-
+                    q.reject(reason.data.error_description);
+                    // {"data":{"error":"invalid_request","error_description":"ACS90004: The request is not properly formatted.\r\nTrace ID: 87717b10-c00e-4531-b64c-c0a920099ab3\r\nCorrelation ID: 7726471c-f716-4acf-8735-12397d7c90c0\r\nTimestamp: 2016-05-04 10:14:56Z"},"status":400,"config":{"method":"POST","transformRequest":[null],"transformResponse":[null],"url":"https://datamarket.accesscontrol.windows.net/v2/OAuth2-13","headers":{"Content-Type":"application/x-www-form-urlencoded","Accept":"application/json, text/plain, */*"},"data":"client_id=myapp1645&client_secret=ZxTXjTxp1eYJpHucFYIuuSAkdVNXgr/Kb0nF0wT4pqI=&scope=http://api.microsofttranslator.com/&grant_type=client_credentials"},"statusText":"Bad Request"}
                     console.log("FAIL: " + JSON.stringify(reason));//debug
                 });
             }
@@ -133,9 +133,10 @@ module VisualSearch.Models
                     console.log("FAIL: " + JSON.stringify(reason));//debug
                     q.reject(result);
                 });
-            }, () =>
+            }, (reason: string) =>
             {
-                q.reject(result);
+                this.Layout.alert("Microsoft Translator. " + reason);
+                q.resolve(result);
             });
             
             return q.promise;

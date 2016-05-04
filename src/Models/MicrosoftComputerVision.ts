@@ -10,7 +10,7 @@ module VisualSearch.Models
         constructor(q: ng.IQService)
         {
             // Prende la chiave dallo storage locale, se non è presente viene fornito un valore di default
-            let key: string = window.localStorage["Microsoft Computer Vision Key"] || "98b676305b654a239d9e868d9a95c08c";
+            let key: string = window.localStorage["Microsoft Computer Vision Key"] || "3bde3872f4d34f38bb2ee6757ceadc52";
 
             // Definizione dei set utilizzati da Microsoft Computer Vision
             let sets: Array<ISearchEngineSet> = [

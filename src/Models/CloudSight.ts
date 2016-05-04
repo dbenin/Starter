@@ -10,7 +10,7 @@ module VisualSearch.Models
         constructor(q: ng.IQService, http: ng.IHttpService, interval: ng.IIntervalService)
         {
             // Prende la chiave dallo storage locale, se non è presente viene fornito un valore di default
-            let key: string = window.localStorage["CloudSight Key"] || "Q-mo9tM_bf4fGlaJaAoZ8g";
+            let key: string = window.localStorage["CloudSight Key"] || "loH3LlHvk-MpNaQ_ftCWVw";
 
             // Definizione dei set utilizzati da CloudSight
             let sets: Array<ISearchEngineSet> = [{ name: "Product", value: "" }];
